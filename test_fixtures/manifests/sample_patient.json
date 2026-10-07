@@ -1,0 +1,7 @@
+{
+  "id": "fixture-p-001",
+  "schema_version": "0.1.0",
+  "ruleset_version": "0.1.0",
+  "name_key": "manifests.fixture_p001.name",
+  "presentation_key": "manifests.fixture_p001.presentation"
+}

@@ -1,0 +1,93 @@
+# local state
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+
+# auto-installed/generated on open — never source of truth
+.pydeps/
+.tools/
+*.egg-info/
+
+# scaffold output / per-project agent runtime
+docs/tracking/state/*
+!docs/tracking/state/.gitkeep
+
+# editor noise
+.idea/
+*.swp
+*.swo
+
+# user-local overrides
+.env
+.env.local
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+*.iml
+.idea/
+android/.gradle/
+android/app/debug/
+android/app/profile/
+android/app/release/
+ios/Pods/
+ios/.symlinks/
+macos/Pods/
+macos/.symlinks/
+linux/flutter/
+windows/flutter/
+web/flutter/
+
+# Go server
+server/psy-server
+server/**/*.test
+*.out
+vendor/
+
+# Native build artifacts
+*.so
+*.a
+*.o
+*.obj
+*.dll
+*.dylib
+*.exe
+native/build/
+native/build-*/
+native/third_party/*
+!native/third_party/llama.cpp
+native/third_party/llama.cpp/build/
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+
+# Android Gradle caches generated during local builds
+app/android/.gradle/
+app/android/local.properties
+
+# Large binaries — models, assets, build outputs are never committed
+*.gguf
+*.bin
+*.onnx
+*.pt
+*.ckpt
+models/
+assets/models/
+*.zip
+*.tar.gz
+*.tar
+
+# Coverage / reports
+coverage/
+*.lcov
+
+# OS noise
+.DS_Store
+Thumbs.db
