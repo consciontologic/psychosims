@@ -1,8 +1,8 @@
 ---
-agent: agent
+name: self-review
 description: Self-review the staged diff before handing off to the human.
+disable-model-invocation: true
 ---
-
 # Self-review staged diff
 
 Before the human runs `make git`, audit your own staged change:

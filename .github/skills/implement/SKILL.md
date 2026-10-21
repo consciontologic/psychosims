@@ -1,8 +1,8 @@
 ---
-agent: agent
-description: Execute a plan end-to-end. Drains every checklist bullet, ships tests with code, ends in staged / reverted / no-op / blocked.
+name: implement
+description: "Execute a plan end-to-end. Drains every checklist bullet, ships tests with code, ends in staged / reverted / no-op / blocked."
+disable-model-invocation: true
 ---
-
 # Implement a plan
 
 Switch to the [`implementer` custom agent](../agents/implementer.agent.md).

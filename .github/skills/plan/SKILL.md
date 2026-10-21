@@ -1,8 +1,8 @@
 ---
-agent: agent
-description: Produce a written implementation plan for a feature, fix, or roadmap phase. Read-only — no code changes in this prompt.
+name: plan
+description: "Produce a written implementation plan for a feature, fix, or roadmap phase. Read-only — no code changes in this prompt."
+disable-model-invocation: true
 ---
-
 # Plan a piece of work
 
 Switch to the [`planner` custom agent](../agents/planner.agent.md) for

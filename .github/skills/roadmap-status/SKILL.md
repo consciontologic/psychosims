@@ -1,8 +1,8 @@
 ---
-agent: ask
-description: Summarise current ROADMAP.md progress — checked / unchecked / blocked bullets per phase.
+name: roadmap-status
+description: "Summarise current ROADMAP.md progress — checked / unchecked / blocked bullets per phase."
+disable-model-invocation: true
 ---
-
 # Roadmap status
 
 Read [`docs/planning/ROADMAP.md`](../../docs/planning/ROADMAP.md) and produce:

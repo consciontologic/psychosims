@@ -1,8 +1,8 @@
 ---
-agent: ask
+name: review
 description: Peer-review the staged diff (or a commit range) and produce a categorized findings list.
+disable-model-invocation: true
 ---
-
 # Review changes
 
 Switch to the [`reviewer` custom agent](../agents/reviewer.agent.md).

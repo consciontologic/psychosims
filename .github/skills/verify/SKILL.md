@@ -1,8 +1,8 @@
 ---
-agent: ask
-description: Run the mechanical verification gate on the staged diff — tests, lint, doctor, diff hygiene, tracking — and return PASS / FAIL.
+name: verify
+description: "Run the mechanical verification gate on the staged diff — tests, lint, doctor, diff hygiene, tracking — and return PASS / FAIL."
+disable-model-invocation: true
 ---
-
 # Verify changes
 
 Switch to the [`verifier` custom agent](../agents/verifier.agent.md).

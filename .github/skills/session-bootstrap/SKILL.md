@@ -1,8 +1,8 @@
 ---
-agent: ask
+name: session-bootstrap
 description: Print a session-bootstrap report so the agent knows where the previous session left off.
+disable-model-invocation: true
 ---
-
 # Session bootstrap
 
 Run [`xops/agent/session-bootstrap.sh`](../../xops/agent/session-bootstrap.sh)

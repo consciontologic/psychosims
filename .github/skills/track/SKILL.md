@@ -1,8 +1,8 @@
 ---
-agent: agent
+name: track
 description: Append a tracking row to docs/tracking/tracking.csv for the work just completed.
+disable-model-invocation: true
 ---
-
 # Track work
 
 Append exactly one row to [`docs/tracking/tracking.csv`](../../docs/tracking/tracking.csv)
