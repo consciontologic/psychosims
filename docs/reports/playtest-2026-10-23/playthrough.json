@@ -1,0 +1,1456 @@
+{
+  "viewportChecks": [
+    {
+      "width": 360,
+      "height": 640,
+      "homeNewGameInitialBox": {
+        "x": 41,
+        "y": 404,
+        "width": 137.140625,
+        "height": 48
+      },
+      "homeNewGameWheelSteps": 0
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "homeNewGameInitialBox": {
+        "x": 41,
+        "y": 474,
+        "width": 137.140625,
+        "height": 48
+      },
+      "homeNewGameWheelSteps": 0
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "homeNewGameInitialBox": {
+        "x": 65,
+        "y": 329,
+        "width": 137.140625,
+        "height": 48
+      },
+      "homeNewGameWheelSteps": 0
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "homeNewGameInitialBox": {
+        "x": 145,
+        "y": 373,
+        "width": 137.140625,
+        "height": 48
+      },
+      "homeNewGameWheelSteps": 0
+    }
+  ],
+  "playthrough": [
+    {
+      "turn": 1,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 1 · Trust 30 · Agitation 45",
+      "transcriptEntries": 2,
+      "completed": false
+    },
+    {
+      "turn": 2,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 2 · Trust 29 · Agitation 45",
+      "transcriptEntries": 4,
+      "completed": false
+    },
+    {
+      "turn": 3,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 3 · Trust 28 · Agitation 45",
+      "transcriptEntries": 6,
+      "completed": false
+    },
+    {
+      "turn": 4,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 4 · Trust 28 · Agitation 45",
+      "transcriptEntries": 8,
+      "completed": false
+    },
+    {
+      "turn": 5,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 5 · Trust 30 · Agitation 45",
+      "transcriptEntries": 10,
+      "completed": false
+    },
+    {
+      "turn": 6,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 6 · Trust 33 · Agitation 45",
+      "transcriptEntries": 12,
+      "completed": false
+    },
+    {
+      "turn": 7,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 7 · Trust 34 · Agitation 45",
+      "transcriptEntries": 14,
+      "completed": false
+    },
+    {
+      "turn": 8,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 8 · Trust 36 · Agitation 45",
+      "transcriptEntries": 16,
+      "completed": false
+    },
+    {
+      "turn": 9,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 9 · Trust 37 · Agitation 45",
+      "transcriptEntries": 18,
+      "completed": false
+    },
+    {
+      "turn": 10,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 10 · Trust 36 · Agitation 45",
+      "transcriptEntries": 20,
+      "completed": false
+    },
+    {
+      "turn": 11,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 11 · Trust 36 · Agitation 45",
+      "transcriptEntries": 22,
+      "completed": false
+    },
+    {
+      "turn": 12,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 12 · Trust 35 · Agitation 45",
+      "transcriptEntries": 24,
+      "completed": false
+    },
+    {
+      "turn": 13,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 13 · Trust 34 · Agitation 45",
+      "transcriptEntries": 26,
+      "completed": false
+    },
+    {
+      "turn": 14,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 14 · Trust 35 · Agitation 45",
+      "transcriptEntries": 28,
+      "completed": false
+    },
+    {
+      "turn": 15,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 15 · Trust 38 · Agitation 45",
+      "transcriptEntries": 30,
+      "completed": false
+    },
+    {
+      "turn": 16,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 16 · Trust 39 · Agitation 45",
+      "transcriptEntries": 32,
+      "completed": false
+    },
+    {
+      "turn": 17,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 17 · Trust 39 · Agitation 45",
+      "transcriptEntries": 34,
+      "completed": false
+    },
+    {
+      "turn": 18,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 18 · Trust 42 · Agitation 45",
+      "transcriptEntries": 36,
+      "completed": false
+    },
+    {
+      "turn": 19,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 19 · Trust 42 · Agitation 45",
+      "transcriptEntries": 38,
+      "completed": false
+    },
+    {
+      "turn": 20,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 20 · Trust 41 · Agitation 45",
+      "transcriptEntries": 40,
+      "completed": false
+    },
+    {
+      "turn": 21,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 21 · Trust 42 · Agitation 45",
+      "transcriptEntries": 42,
+      "completed": false
+    },
+    {
+      "turn": 22,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 22 · Trust 41 · Agitation 45",
+      "transcriptEntries": 44,
+      "completed": false
+    },
+    {
+      "turn": 23,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 23 · Trust 43 · Agitation 45",
+      "transcriptEntries": 46,
+      "completed": false
+    },
+    {
+      "turn": 24,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 24 · Trust 42 · Agitation 45",
+      "transcriptEntries": 48,
+      "completed": false
+    },
+    {
+      "turn": 25,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 25 · Trust 41 · Agitation 45",
+      "transcriptEntries": 50,
+      "completed": false
+    },
+    {
+      "turn": 26,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 26 · Trust 44 · Agitation 45",
+      "transcriptEntries": 52,
+      "completed": false
+    },
+    {
+      "turn": 27,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 27 · Trust 47 · Agitation 45",
+      "transcriptEntries": 54,
+      "completed": false
+    },
+    {
+      "turn": 28,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 28 · Trust 51 · Agitation 45",
+      "transcriptEntries": 56,
+      "completed": false
+    },
+    {
+      "turn": 29,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 29 · Trust 54 · Agitation 45",
+      "transcriptEntries": 58,
+      "completed": false
+    },
+    {
+      "turn": 30,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 30 · Trust 57 · Agitation 45",
+      "transcriptEntries": 60,
+      "completed": false
+    },
+    {
+      "turn": 31,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 31 · Trust 59 · Agitation 45",
+      "transcriptEntries": 62,
+      "completed": false
+    },
+    {
+      "turn": 32,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 32 · Trust 61 · Agitation 45",
+      "transcriptEntries": 64,
+      "completed": false
+    },
+    {
+      "turn": 33,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 33 · Trust 65 · Agitation 45",
+      "transcriptEntries": 66,
+      "completed": false
+    },
+    {
+      "turn": 34,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 34 · Trust 67 · Agitation 45",
+      "transcriptEntries": 68,
+      "completed": false
+    },
+    {
+      "turn": 35,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 35 · Trust 71 · Agitation 45",
+      "transcriptEntries": 70,
+      "completed": false
+    },
+    {
+      "turn": 36,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 36 · Trust 74 · Agitation 45",
+      "transcriptEntries": 72,
+      "completed": false
+    },
+    {
+      "turn": 37,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 37 · Trust 76 · Agitation 45",
+      "transcriptEntries": 74,
+      "completed": false
+    },
+    {
+      "turn": 38,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 38 · Trust 79 · Agitation 45",
+      "transcriptEntries": 76,
+      "completed": false
+    },
+    {
+      "turn": 39,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 39 · Trust 83 · Agitation 45",
+      "transcriptEntries": 78,
+      "completed": false
+    },
+    {
+      "turn": 40,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 40 · Trust 86 · Agitation 45",
+      "transcriptEntries": 80,
+      "completed": false
+    },
+    {
+      "turn": 41,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 41 · Trust 88 · Agitation 45",
+      "transcriptEntries": 82,
+      "completed": false
+    },
+    {
+      "turn": 42,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 42 · Trust 91 · Agitation 45",
+      "transcriptEntries": 84,
+      "completed": false
+    },
+    {
+      "turn": 43,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 43 · Trust 93 · Agitation 45",
+      "transcriptEntries": 86,
+      "completed": false
+    },
+    {
+      "turn": 44,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 44 · Trust 95 · Agitation 45",
+      "transcriptEntries": 88,
+      "completed": false
+    },
+    {
+      "turn": 45,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 45 · Trust 97 · Agitation 45",
+      "transcriptEntries": 90,
+      "completed": false
+    },
+    {
+      "turn": 46,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 46 · Trust 100 · Agitation 45",
+      "transcriptEntries": 92,
+      "completed": false
+    },
+    {
+      "turn": 47,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 47 · Trust 100 · Agitation 45",
+      "transcriptEntries": 94,
+      "completed": false
+    },
+    {
+      "turn": 48,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 48 · Trust 100 · Agitation 45",
+      "transcriptEntries": 96,
+      "completed": false
+    },
+    {
+      "turn": 49,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 49 · Trust 100 · Agitation 45",
+      "transcriptEntries": 98,
+      "completed": false
+    },
+    {
+      "turn": 50,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 50 · Trust 100 · Agitation 45",
+      "transcriptEntries": 100,
+      "completed": false
+    },
+    {
+      "turn": 51,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 51 · Trust 100 · Agitation 45",
+      "transcriptEntries": 102,
+      "completed": false
+    },
+    {
+      "turn": 52,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 52 · Trust 100 · Agitation 45",
+      "transcriptEntries": 104,
+      "completed": false
+    },
+    {
+      "turn": 53,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 53 · Trust 100 · Agitation 45",
+      "transcriptEntries": 106,
+      "completed": false
+    },
+    {
+      "turn": 54,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 54 · Trust 100 · Agitation 45",
+      "transcriptEntries": 108,
+      "completed": false
+    },
+    {
+      "turn": 55,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 55 · Trust 100 · Agitation 45",
+      "transcriptEntries": 110,
+      "completed": false
+    },
+    {
+      "turn": 56,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 56 · Trust 100 · Agitation 45",
+      "transcriptEntries": 112,
+      "completed": false
+    },
+    {
+      "turn": 57,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 57 · Trust 100 · Agitation 45",
+      "transcriptEntries": 114,
+      "completed": false
+    },
+    {
+      "turn": 58,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 58 · Trust 100 · Agitation 45",
+      "transcriptEntries": 116,
+      "completed": false
+    },
+    {
+      "turn": 59,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 59 · Trust 100 · Agitation 45",
+      "transcriptEntries": 118,
+      "completed": false
+    },
+    {
+      "turn": 60,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 60 · Trust 100 · Agitation 45",
+      "transcriptEntries": 120,
+      "completed": false
+    },
+    {
+      "turn": 61,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 61 · Trust 100 · Agitation 45",
+      "transcriptEntries": 122,
+      "completed": false
+    },
+    {
+      "turn": 62,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 62 · Trust 100 · Agitation 45",
+      "transcriptEntries": 124,
+      "completed": false
+    },
+    {
+      "turn": 63,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 63 · Trust 100 · Agitation 45",
+      "transcriptEntries": 126,
+      "completed": false
+    },
+    {
+      "turn": 64,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 64 · Trust 100 · Agitation 45",
+      "transcriptEntries": 128,
+      "completed": false
+    },
+    {
+      "turn": 65,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 65 · Trust 100 · Agitation 45",
+      "transcriptEntries": 130,
+      "completed": false
+    },
+    {
+      "turn": 66,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 66 · Trust 100 · Agitation 45",
+      "transcriptEntries": 132,
+      "completed": false
+    },
+    {
+      "turn": 67,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 67 · Trust 100 · Agitation 45",
+      "transcriptEntries": 134,
+      "completed": false
+    },
+    {
+      "turn": 68,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 68 · Trust 100 · Agitation 45",
+      "transcriptEntries": 136,
+      "completed": false
+    },
+    {
+      "turn": 69,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 69 · Trust 100 · Agitation 45",
+      "transcriptEntries": 138,
+      "completed": false
+    },
+    {
+      "turn": 70,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 70 · Trust 100 · Agitation 45",
+      "transcriptEntries": 140,
+      "completed": false
+    },
+    {
+      "turn": 71,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 71 · Trust 100 · Agitation 45",
+      "transcriptEntries": 142,
+      "completed": false
+    },
+    {
+      "turn": 72,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 72 · Trust 100 · Agitation 45",
+      "transcriptEntries": 144,
+      "completed": false
+    },
+    {
+      "turn": 73,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 73 · Trust 100 · Agitation 45",
+      "transcriptEntries": 146,
+      "completed": false
+    },
+    {
+      "turn": 74,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 74 · Trust 100 · Agitation 45",
+      "transcriptEntries": 148,
+      "completed": false
+    },
+    {
+      "turn": 75,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 75 · Trust 100 · Agitation 45",
+      "transcriptEntries": 150,
+      "completed": false
+    },
+    {
+      "turn": 76,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 76 · Trust 100 · Agitation 45",
+      "transcriptEntries": 152,
+      "completed": false
+    },
+    {
+      "turn": 77,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 77 · Trust 100 · Agitation 45",
+      "transcriptEntries": 154,
+      "completed": false
+    },
+    {
+      "turn": 78,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 78 · Trust 100 · Agitation 45",
+      "transcriptEntries": 156,
+      "completed": false
+    },
+    {
+      "turn": 79,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 79 · Trust 100 · Agitation 45",
+      "transcriptEntries": 158,
+      "completed": false
+    },
+    {
+      "turn": 80,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 80 · Trust 100 · Agitation 45",
+      "transcriptEntries": 160,
+      "completed": false
+    },
+    {
+      "turn": 81,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 81 · Trust 100 · Agitation 45",
+      "transcriptEntries": 162,
+      "completed": false
+    },
+    {
+      "turn": 82,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 82 · Trust 100 · Agitation 45",
+      "transcriptEntries": 164,
+      "completed": false
+    },
+    {
+      "turn": 83,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 83 · Trust 100 · Agitation 45",
+      "transcriptEntries": 166,
+      "completed": false
+    },
+    {
+      "turn": 84,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 84 · Trust 100 · Agitation 45",
+      "transcriptEntries": 168,
+      "completed": false
+    },
+    {
+      "turn": 85,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 85 · Trust 100 · Agitation 45",
+      "transcriptEntries": 170,
+      "completed": false
+    },
+    {
+      "turn": 86,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 86 · Trust 100 · Agitation 45",
+      "transcriptEntries": 172,
+      "completed": false
+    },
+    {
+      "turn": 87,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 87 · Trust 100 · Agitation 45",
+      "transcriptEntries": 174,
+      "completed": false
+    },
+    {
+      "turn": 88,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 88 · Trust 100 · Agitation 45",
+      "transcriptEntries": 176,
+      "completed": false
+    },
+    {
+      "turn": 89,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 89 · Trust 100 · Agitation 45",
+      "transcriptEntries": 178,
+      "completed": false
+    },
+    {
+      "turn": 90,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 90 · Trust 100 · Agitation 45",
+      "transcriptEntries": 180,
+      "completed": false
+    },
+    {
+      "turn": 91,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 91 · Trust 100 · Agitation 45",
+      "transcriptEntries": 182,
+      "completed": false
+    },
+    {
+      "turn": 92,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 92 · Trust 100 · Agitation 45",
+      "transcriptEntries": 184,
+      "completed": false
+    },
+    {
+      "turn": 93,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 93 · Trust 100 · Agitation 45",
+      "transcriptEntries": 186,
+      "completed": false
+    },
+    {
+      "turn": 94,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 94 · Trust 100 · Agitation 45",
+      "transcriptEntries": 188,
+      "completed": false
+    },
+    {
+      "turn": 95,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 95 · Trust 100 · Agitation 45",
+      "transcriptEntries": 190,
+      "completed": false
+    },
+    {
+      "turn": 96,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "visibleState": "Turn 96 · Trust 100 · Agitation 45",
+      "transcriptEntries": 192,
+      "completed": false
+    },
+    {
+      "turn": 97,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 97 · Trust 100 · Agitation 45",
+      "transcriptEntries": 194,
+      "completed": false
+    },
+    {
+      "turn": 98,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 98 · Trust 100 · Agitation 45",
+      "transcriptEntries": 196,
+      "completed": false
+    },
+    {
+      "turn": 99,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "visibleState": "Turn 99 · Trust 100 · Agitation 45",
+      "transcriptEntries": 198,
+      "completed": false
+    },
+    {
+      "turn": 100,
+      "action": "Validate",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 237,
+        "width": 271.546875,
+        "height": 69
+      },
+      "visibleState": "Session complete",
+      "transcriptEntries": 200,
+      "completed": true
+    }
+  ],
+  "outcome": "succeed",
+  "rewards": {
+    "xp": 100,
+    "study": 3,
+    "cash": 50
+  }
+}

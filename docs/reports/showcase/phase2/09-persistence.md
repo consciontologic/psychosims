@@ -14,13 +14,15 @@ _atomic-metric career profile · canonical round-trips · ledger compaction shap
 
 ## 2. Session receipt — byte-identical canonical encoding
 
-- ✅ two receipts built from identical inputs encode to byte-identical canonical bytes (checksum/signature-ready for Phase 3.3)
-- receipt carries its own idempotency key + correlation id — the exactly-once submission contract precursor (Phase 3.4)
+- ✅ two receipts built from identical inputs encode to byte-identical canonical bytes
+- receipt carries its own idempotency key + correlation id — a reusable core schema contract, not a live submission endpoint
 
 
 ## 3. Session start-state round-trip
 
 - ✅ the equipped loadout + controllers + seed round-trip byte-identically — the receipt-forgery guard (no play may reference an un-equipped card) is preserved on reload
 
-> No raw dialogue transcript is ever persisted (0.6) — the durable save is structured, checksum-guarded deltas only, even offline.
+> This report exercises pure-core schemas. The current browser separately saves
+> full transcripts and validated state snapshots; see the
+> [PWA data lifecycle](../../../project/DATA-LIFECYCLE.md).
 

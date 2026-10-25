@@ -1,0 +1,16 @@
+{
+  "tested_at": "2026-10-23",
+  "build_id": "1b9610030c2fd789cec17ec9",
+  "model_id": "xingchen-agi/xing4.0-29b-a4b:free",
+  "provider_tags": [
+    "phala"
+  ],
+  "catalog": "Exact public models / ZDR endpoints intersection",
+  "direct_diagnostic_http": 429,
+  "browser_result": "Rate-limit pause; turn0; no committed reply; explicit retry available",
+  "daily_free_requests_remaining": 50,
+  "successful_live_completion": false,
+  "privacy_unchanged": true,
+  "temporary_key_forgotten": true,
+  "automatic_retries": 0
+}

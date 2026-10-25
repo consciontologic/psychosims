@@ -2,7 +2,10 @@
 
 **Date:** 2026-07-14
 **Scope:** Phase 2.4–2.10 implementation
-**Status:** Complete — 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, and 2.10 delivered.
+**Scope now retained:** pure-core component and historical tuning evidence.
+The browser product uses its own save implementation. Retired native persistence
+and its tests were removed under explicit user authorization on 2026-10-23;
+current acceptance is in the [PWA report](2026-10-23-static-pwa.md).
 
 ## What was delivered
 
@@ -39,15 +42,6 @@
   - `CardBalance.fromConfig(BalanceConfig)` wires all balance constants through the central config authority.
   - C-4 `BALANCE-SPEC.md` updated with first tuned values and sandbox findings.
 
-- **2.9 Offline persistence, career profile & save integrity**
-  - `CareerPersistenceService` in `app/lib/shared/` persists `CareerProfile`, `ClinicAsset`, owned-case histories, and the local receipt queue.
-  - Atomic write path: temp file → fsync → rename; backup copy maintained for fallback.
-  - SHA-256 content checksum guards every save against disk corruption and hand-edits.
-  - Save-schema migration path supports forward migration from a golden v1 corpus.
-  - Imported/restored saves are treated as untrusted input: size, nesting-depth, field-count, checksum, and transcript-block guards fail closed.
-  - No-durable-transcript rule enforced at write time.
-  - `app/test/career_persistence_test.dart` covers round-trip, backup fallback, kill-at-every-offset atomic-write fuzz, migration, budget/checksum/transcript rejection, and receipt-queue idempotency.
-
 - **2.10 Offline case corpus & Phase 2 balance/solvability exit report**
   - Representative offline corpus spans the four card types, capped loadout, fictional pharmacology, lifecycle branches, and multi-session siege cases.
   - Every committed manifest passes the content-integrity lint and the 2.8 solvability oracle with no LLM present.
@@ -60,10 +54,9 @@
 | config | +7 | ✅ |
 | packages/psychemas | +12 | ✅ |
 | packages/psycore | +150 | ✅ |
-| app/career persistence | +12 | ✅ |
-| app/session persistence | +4 | ✅ |
 
-`make dart.test` still shows five pre-existing app/native integration failures unrelated to Phase 2 work (missing model binaries and context-window mismatches in `poc_gate_measurements_test.dart`, `inference_service_test.dart`, and `poc_gate_exit_report_test.dart`). The deterministic core, schema, config, and new persistence tests are green.
+These historical component counts are not current gate totals. The current
+`make verify` result is recorded in the PWA report.
 
 ## Economy / solvability observations
 
@@ -83,8 +76,11 @@ Sandbox diagnostics (median over 60 bot runs, 2 manifests, 3 skill levels):
 - Offline router seed is deterministic for a fixed profile + cursor + root seed.
 - Siege manifest is mechanically solvable and content-compliant.
 - First C-4 tuning pass recorded in `docs/specs/BALANCE-SPEC.md`; placeholder XP/reputation curve shapes remain and will be finalized as more content lands.
-- Dead-currency flags in the proxy economy (`study`, `xp`, `subspecialty`, `prestige`) are expected: the sandbox proxy only models session rewards + cash overhead. Full career sinks (training, clinic purchases, taxes) remove these flags in the integrated career model (Phase 3 / 6).
+- Dead-currency flags in the proxy economy (`study`, `xp`, `subspecialty`, `prestige`) are expected: the sandbox proxy only models session rewards + cash overhead. The proxy results do not measure a complete player economy or prove that every
+  design currency has a current browser sink.
 
-## Go / revisit decision
+## Current use
 
-**Go for Phase 3 spend.** The deterministic offline game core is implemented, the balance sandbox and solvability oracle are running, the C-4 spec has a first tuned baseline, and the offline career persistence seam is in place with atomic writes, checksums, migration, and untrusted-input handling. Pre-existing app/native integration test failures are unrelated to Phase 2 and should be addressed in their own scope.
+Retain these pure rules, schemas, fixtures and headless tools as reusable game
+logic. This report does not authorize a server implementation or publication.
+The active [roadmap](../planning/ROADMAP.md) and PWA report define current scope.

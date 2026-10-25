@@ -1,0 +1,10 @@
+html, body { margin: 0; width: 100%; height: 100%; background: #10191a; color: #f3e6cd; }
+body { display: flex; flex-direction: column; font: 14px system-ui, sans-serif; }
+#flutter-host { flex: 1; min-height: 0; width: 100%; position: relative; }
+#pwa-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 5px max(12px, env(safe-area-inset-right)) max(5px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); border-top: 1px solid #586563; background: #1c2829; }
+#pwa-status { flex: 1; min-width: 180px; line-height: 1.5; }
+button { font: inherit; min-height: 44px; min-width: 44px; padding: 8px 12px; color: #10191a; background: #e8b76f; border: 1px solid #e8b76f; border-radius: 2px; cursor: pointer; }
+button:focus-visible { outline: 3px solid #f3e6cd; outline-offset: 2px; }
+[hidden] { display: none !important; }
+@media (hover: hover) { button:hover { background: #f3d29d; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

@@ -28,7 +28,8 @@ _Discount Practice · Academic Sabbatical · operational pressure · tamper-resi
 
 - after 3 days of rest, pressure decays 1000 → 940 millis (atRisk)
 
-> Operational pressure is computed from the same accepted-delta inputs the Phase 5.5 server derivation will use — no hidden well-being stat (§23).
+> Operational pressure is a deterministic pure-core calculation over structured
+> session inputs; the browser has no separate server-derived authority.
 
 
 ## 3. Recovery-window cooldown on the monotonic source

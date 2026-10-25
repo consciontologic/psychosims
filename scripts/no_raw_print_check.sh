@@ -5,12 +5,7 @@ cd "$(dirname "$0")/.."
 
 echo "▶️  Checking for raw print/stdout writes outside allowed zones"
 
-# Allowed zones where direct output is acceptable:
-#   - scripts/ (CLI tooling)
-#   - xops/    (ops/debug scripts)
-#   - native/test/ (test harnesses)
-#   - native/include/psychosims_log.h (the canonical logger implementation)
-# We forbid raw writes in app/lib, native/src, server/, packages/*.
+# CLI tooling may print; application and shared gameplay code must not.
 
 VIOLATIONS=0
 
@@ -35,19 +30,9 @@ scan() {
 scan app/lib 'print\(' 'raw print()'
 scan packages 'print\(' 'raw print()'
 
-# Go: bare fmt.Print / fmt.Printf / fmt.Println in the server module.
-# The canonical logger writes via fmt.Fprintln(os.Stderr, ...), which is allowed.
-scan server 'fmt\.Print' 'raw stdout write (use psylog)'
-
-# C/C++: std::cout / printf / NSLog in native src/include.
-scan native/src 'std::cout|printf\(|NSLog\(' 'raw stdout/log write'
-# Exclude the canonical logger header; it is the only file allowed to emit.
-scan native/include 'std::cout|printf\(|NSLog\(' 'raw stdout/log write' -not -name 'psychosims_log.h'
-
 if [[ "$VIOLATIONS" -gt 0 ]]; then
   echo ""
-  echo "❌ Found $VIOLATIONS raw output violation(s). Use the shared logger instead."
-  echo "   See docs/code/LOGGING.md"
+  echo "❌ Found $VIOLATIONS raw output violation(s). Keep logs out of application and shared gameplay code."
   exit 1
 fi
 

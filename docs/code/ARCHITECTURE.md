@@ -1,131 +1,100 @@
-# 🏛 Architecture: Psychosims
+# Psychosims architecture
 
-> The repo-level architecture and — critically — the **module boundary map** and
-> **configuration authority** that every phase of [`ROADMAP.md`](../planning/ROADMAP.md)
-> must honour (Principles 1 and 2). Section refs (§N) point at
-> [`STARTER.md`](../design/STARTER.md). This document is the "where does new code go?"
-> contract.
+## Current static web runtime (2026-10-23)
 
-## 1. System context
-
-Psychosims is a server-client system. The Flutter client runs the game loop and
-local AI inference; a small authoritative server owns everything trustworthy;
-patient content is delivered from a CDN/object store.
+The production entrypoint is `app/lib/main.dart`. It imports the browser game
+runtime, the shared deterministic `psycore`/`psychemas` packages, configuration
+and the OpenRouter transport. GitHub Pages serves the immutable Flutter build;
+it runs no application server, database, API proxy or background worker service.
 
 ```mermaid
-flowchart TD
-    player([Player]) --> app["Flutter client<br/>(app/)"]
-    app -->|HTTPS / WebSocket| server["Server control plane<br/>(server/)"]
-    app -->|FFI| llama["Local inference<br/>llama.cpp / GGUF"]
-    app -->|HTTPS / fetch| cdn["CDN / object store<br/>(signed manifests)"]
-    server --> db[("Profiles + ledger<br/>BaaS Postgres")]
-    server --> cdn
-    server --> mod["Moderation / revocation"]
+flowchart LR
+  Player --> Flutter[Flutter browser game]
+  Flutter --> Core[Existing deterministic rules]
+  Flutter --> Local[Browser-local career and transcripts]
+  Flutter -->|explicit online request, tab-only user key| OpenRouter
+  Pages[GitHub Pages static files] --> Cache[Static-only service worker cache]
+  Cache --> Flutter
 ```
 
-- **Client-side (local):** session play, local inference, UI, provisional turn
-  resolution. The client *proposes* outcomes; it never self-certifies them.
-- **Server-side (authoritative):** identity, profiles/progression, matchmaking,
-  ownership arbitration, receipt validation, content signing, economy ledger,
-  moderation, macro-event seeding, creator-royalty accounting.
+### Boundaries
 
-## 2. Top-level components (the module boundary map)
+- `app/lib/browser/`: browser controller, persistence, navigation and responsive
+  screens. Core outcomes, cards, scenario constraints and progression retain
+  their existing definitions. Local progression carries no multiplayer authority.
+- `app/lib/shared/openrouter*`: validated catalog, in-memory key and bounded
+  streaming requests. No server, account login, database or model-file download.
+- `packages/psycore/`, `packages/psychemas/`, `config/`: reused game rules,
+  structured content, prompt assembly/validation, balance and progression.
+- `app/web/`, `scripts/web_build.sh`: static shell, manifest, explicit resource
+  inventory and service worker. Every runtime font/renderer/content resource is
+  bundled. Cross-origin/API/authenticated requests never enter Cache Storage.
+- Retired native/server implementations, binaries and their obsolete tests/docs
+  have been removed under explicit user authorization. The shared core and its
+  current regression fixtures remain.
 
-The monorepo is organized for **strong separation of concerns** (Principle 2).
-Each domain lives in its own directory; shared logic lives in a common layer;
-deterministic rules never mix with UI or I/O.
+### AI and persistence contract
 
-| Component | Path | Responsibility |
-|---|---|---|
-| Client app | `app/` | Flutter cross-platform client (the game loop + UI). |
-| — Sim core | `packages/psycore/` | **Pure deterministic rules**: state, outcomes, prompt assembler. No I/O, no model calls. Imported by `app/lib/core/` and `tools/`. |
-| — App adapter | `app/lib/core/` | Thin adapter that re-exports `packages/psycore/` for the Flutter app and wires DI. |
-| — Features | `app/lib/features/` | One directory per domain: `session/`, `cards/`, `clinic/`, `progression/`, `recovery/`, `content/`, `presentation/`. |
-| — Shared | `app/lib/shared/` | Reusable utilities, models, services (inference service, config access, networking, logging). |
-| Server | `server/` | Authoritative control plane (auth, receipts, ownership, matchmaking, signing, moderation, royalties). Go. |
-| Native / FFI | `native/` | C/C++ shim to llama.cpp and generated Dart FFI bindings. |
-| Shared packages | `packages/` | Cross-cutting Dart packages reused by app + tools (`psychemas/`, `psycore/`). |
-| Content pipeline | `content/` | Nine-axis manifest generation, validation gate, signing inputs. |
-| Config authority | `config/` | **The single centralized configuration source** (schema, overlays, loader). See §4. |
-| Tooling | `tools/` | Balance sandbox, bots, integration sandbox, diagnostics. |
-| Docs | `docs/` | This documentation set + the roadmap + tracking. |
+Only deliberate player actions can send new AI requests. Offline AI actions
+pause; reconnect does not replay them. Cancellation/failure retains partial
+output as incomplete dialogue. An explicit retry requests new text without
+re-applying an already resolved mechanical turn. Existing prompt validation
+protects required clues and output bounds; model text cannot mutate mechanics.
 
-**The rule:** new code lands inside exactly one declared module. Domain logic →
-`features/`; pure rules → `core/`; anything reused by two+ modules → `shared/`
-or `packages/`. Nothing reads configuration except through `config/` (§4).
+The API key exists only in memory. It is never in build defines, URLs, browser
+storage, service-worker cache, logs or exported game state. Closing/reloading the
+tab forgets it. Game state and transcripts intentionally persist locally as
+requested; this supersedes the former no-durable-transcripts policy. Browser
+storage is origin-scoped, not an encrypted secret vault or cloud backup. Other
+people using the same browser profile can access saves, and clearing site data
+removes them. Storage errors must be visible and must not falsely report a save.
 
-## 3. Data flow (happy path: one session turn)
+### Hosting and navigation
 
-1. Player selects a card in a `session/` feature screen.
-2. `core/` (sim core) evaluates the action against deterministic rules, updates
-   state, and produces approved narrative context + mandatory clue tokens (§4).
-3. `core/` prompt assembler builds a token-budgeted, tiered prompt (§6).
-4. `shared/` inference service runs the local model; a validation pass confirms
-   clue tokens survived (templated fallback if not).
-5. The UI renders the returned dialogue. The turn's structured delta is queued.
-6. At session end, a structured **receipt** is submitted to `server/`, which
-   validates it (plausibility bounds + anomaly detection + `ruleset_version`)
-   and only then updates the authoritative profile (§3).
+The build uses `/` as its base, start URL and scope at `psychosim.com`. Hash
+navigation makes deep links and reloads independent of server rewrite rules.
+A custom worker caches the complete enumerated build and reports ready only
+when installation succeeds. Updates wait until all app tabs close; local saves
+are separate from versioned resource caches. See the [hosting guide](../guides/STATIC_HOSTING.md).
 
-## 4. Cross-cutting concerns
+### Source adaptations
 
-- **Config (Principle 1 — the load-bearing one):** all configuration resolves
-  through the `config/` authority — one typed schema, loaded once, validated at
-  startup, environment differences expressed as validated overlays. No module
-  reads raw environment variables or holds scattered constants; balance numbers,
-  endpoints, model params, and feature flags all flow from here. Secrets are
-  referenced by *variable name* only, never committed. See
-  [`../design/DESIGN-centralized-configuration.md`](../design/DESIGN-centralized-configuration.md).
-- **Auth:** server-authoritative identity for the life of the product; the client
-  caches but never owns it (§3). Apple/Google on mobile; desktop channels decided
-  in roadmap C-5.
-- **Logging:** one cross-stack structured log-line schema, rendered identically
-  by Dart, the C++ FFI shim, and the Go server. See
-  [LOGGING.md](LOGGING.md). Direct `print`/`std::cout`/`stdout` writes fail CI.
-- **Errors:** classify user / system / external; offline is a first-class state
-  (durable receipt queue, idempotency keys) not an error. See
-  [ERROR_TAXONOMY.md](ERROR_TAXONOMY.md) (§3).
-- **Versioning & identifiers:** `ruleset_version` and `manifest_schema_version`
-  live in one registry ([VERSIONING.md](VERSIONING.md));
-  canonical serialization and wire-compatibility rules live in
-  [SERIALIZATION.md](SERIALIZATION.md) and [SHARED_SCHEMAS.md](SHARED_SCHEMAS.md);
-  identifier and idempotency-key strategy lives in [IDENTIFIERS.md](IDENTIFIERS.md)
-  (§3).
-- **Trust boundary:** "a client-computed number is a claim, not a fact." High-value
-  economy outputs require bounded server derivation (§3). Exact operator-pinned
-  Dart witnesses certify an initial finite set of cure paths; other schema 0.3
-  receipts remain `held_unproven`. A device signature cannot prove terminal
-  gameplay. See [ADR-0009](../design/ADR-0009-bounded-authoritative-derivation.md), [SECURITY.md](../../SECURITY.md) and
-  [data classification](../project/DATA-LIFECYCLE.md) for current controls and
-  acceptance limits.
+The browser integration was adapted from
+[Worthhit architecture](https://github.com/consciontologic/worthhit/blob/main/docs/ARCHITECTURE.md)
+(file blob `3e04dd10e833a668f73096e9099d9b24db84dfb7`),
+[wfform chat lifecycle](https://github.com/consciontologic/wfform/blob/main/docs/chat.md)
+(file blob `12d56db93240dc2028c22551893b5aca3c2795c0`) and
+[wfform transport](https://github.com/consciontologic/wfform/blob/main/lib/features/chat/chat_api.dart)
+(file blob `406b7b7b0b1d120aac4cf7469981d64617ec8fa0`), read during implementation.
+These are file identities, not repository commit IDs.
 
-## 5. Invariants you must not break
+Worthhit informed tab-memory credentials, validated current catalog metadata,
+static-only caching and privacy defaults. Wfform informed request ownership,
+UTF-8/SSE framing, cancellation, separate first-output/idle/overall deadlines,
+partial preservation and explicit retry. Psychosims owns a small transport
+adapted to its patient dialogue validator; neither repository is a runtime
+dependency and neither service's login/backend is included.
 
-- **The sim core is pure.** `app/lib/core/` has no I/O and no model calls; outcomes
-  are deterministic given state + action (§4).
-- **The model never decides outcomes.** It voices dialogue only; clue emission is
-  owned by the core (§4).
-- **Only server-accepted results mutate the authoritative profile** (§3).
-- **No transcripts anywhere durable.** Manifests + receipts carry structured
-  state/deltas only; dialogue is ephemeral (§5, §17).
-- **`memory_class` discipline:** stateless patients carry no history envelope (§12, §17).
-- **All configuration flows through `config/`.** A module reading `env` directly
-  is a defect (Principle 1).
-- **All constants are owned by the balance spec**, loaded via `config/`, never
-  hard-coded in features (§9).
+Catalog refresh is explicit, unauthenticated and bounded to 30 seconds/4 MiB.
+Only unambiguous IDs with valid zero prompt/completion pricing and text input
+and output qualify; stale (30-minute), duplicate, changed or removed entries
+cannot silently authorize a replacement model. Requests ask for no provider
+fallback, no data collection and zero data retention. A provider rejecting this
+policy fails visibly rather than silently relaxing it. Completion limits are
+90 seconds to first output, 45 seconds idle and 300 seconds overall; the game
+bounds accumulated output to 65,536 characters and accepts final dialogue only
+under the existing 600-character quality contract. Truncated, malformed,
+refused or incomplete output never commits a mechanical turn. These transport
+limits and privacy settings do not establish a provider's real-world compliance.
 
-## 6. Deployment topology
+### Exact arithmetic on the web
 
-- **Dev:** Flutter runs on Linux desktop + x86 Android emulator (build/packaging
-  baseline); server + BaaS run locally; the `tools/` sandboxes run headless.
-- **Staging/prod:** managed BaaS (Postgres + auth) for profiles/ledger; CDN/object
-  store for signed manifests; the server control plane as a real, cost-modelled
-  service (§3) — not a free static host.
-
-## 7. Out of scope
-
-- **Not a backend rules engine.** The server validates receipts; it does not
-  re-implement or re-derive the game rules (§3).
-- **Not a chat platform.** No free-form player messaging (§1).
-- **Not a real clinical tool.** Fictional simulation only (§8).
-- **Not an MLOps retrain pipeline.** The shipped model footprint is fixed (§5, §18).
+Dart VM integers and JavaScript integers differ. Full-width PRNG values,
+derived seeds, overflow-sensitive fixed-point arithmetic and tax intermediates
+use `BigInt` so the browser preserves the original game's trace. The existing
+root game seed remains an ordinary safe integer. APIs returning a full-width
+seed now return `BigInt`; JSON seed boundaries use exact decimal text where
+required, and oversized input is rejected instead of rounded. The committed
+pre-port fixture and `scripts/web_core_parity.sh` compare the original VM trace
+with both the current VM and compiled JavaScript execution. Historical trusted
+catalog proof payloads are unchanged; only source identity hashes are refreshed.

@@ -1,17 +1,11 @@
 # packages/
 
-> Cross-cutting Dart packages shared by `app/`, `tools/`, and any Dart server
-> components.
+Pure Dart schemas and deterministic gameplay shared by the Flutter browser app
+and headless tools. The same definitions govern cards, loadouts, manifests,
+structured outcomes, progression and canonical serialization.
 
-These packages hold the canonical schemas and shared models so the client and
-tools consume exactly one definition of the manifest, receipt, and structured
-delta formats.
+- `psychemas/`: shared schemas and validation.
+- `psycore/`: deterministic simulation, prompt assembly, progression and balance.
 
-## Layout
-
-- `psychemas/` — shared schema package (manifest, receipt, structured deltas).
-- `psycore/` — pure deterministic core package (used by `app/lib/core/` and
-  `tools/` bots/sandboxes).
-
-Code generation output (FFI bindings, serialization) lands under
-`lib/src/generated/` and is never hand-edited.
+These packages have no application backend or native inference dependency.
+Their regression tests and exact VM/JavaScript traces remain part of `make verify`.

@@ -1,14 +1,25 @@
 # Versioning registry — single source of truth for ruleset and schema versions.
 # See docs/code/VERSIONING.md
 
-ruleset_version: 0.1.0
+ruleset_version: 0.2.0
 manifest_schema_version: 0.1.0
 supported_ranges:
   client_min: 0.1.0
-  client_max: 0.1.0
+  client_max: 0.2.0
+
+# Existing manifests retain their content identity. New browser sessions select
+# 0.2.0 separately; saved 0.1.0 and poc-1.0.0 sessions replay their original rules.
+session_profiles:
+  "0.2.0":
+    minimum_success_turns: 12
+    maximum_turns: 16
+    progress_per_turn: 9
+    success_trust_floor: 50
+    success_agitation_ceiling: 35
+    required_approaches: [validate, exploration]
 
 # Ruleset sunset policy: old versions remain supported for at least one minor
-# manifest schema release after deprecation, gated by a server feature flag.
+# manifest schema release after deprecation, with explicit browser save migration.
 deprecation_policy:
   notice_days: 30
   min_supported_after_deprecation: "0.1.0"

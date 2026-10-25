@@ -82,8 +82,9 @@ void main() {
       '(${decayed.category.name})');
   r.endBullets();
   r.callout(
-      'Operational pressure is computed from the same accepted-delta inputs '
-      'the Phase 5.5 server derivation will use — no hidden well-being stat (§23).');
+      'Operational pressure is a deterministic pure-core calculation over '
+      'structured session inputs; the browser has no separate server-derived '
+      'authority.');
 
   // 3. Tamper-resistant cooldown.
   r.h2('3. Recovery-window cooldown on the monotonic source');

@@ -79,7 +79,7 @@ class OfflineCaseRouter {
 /// A deterministic case slot produced by the router.
 class CaseRouterSeed {
   final int cursor;
-  final int seed;
+  final BigInt seed;
   final int tier;
   final MemoryClass memoryClass;
   final bool misfortune;

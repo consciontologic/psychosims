@@ -1,50 +1,18 @@
-# Content integrity & untrusted-input safety
+# Content integrity and untrusted input
 
-This document enforces the fictional-clinical taxonomy and the prompt-injection
-defense contract across the whole content pipeline.
+All clinical labels and medications are fictional. Bundled manifests and the
+fictional taxonomy registry remain checked by `scripts/content_integrity_check.sh`.
+Use evocative invented names; avoid real diagnostic labels, drug brands and
+near-trademark substitutions. The game does not require real health information.
 
-## No real clinical labels
+Treat manifest text, imported/local save data and model responses as untrusted:
+validate schema/types/bounds, isolate scene text from instructions, preserve
+mandatory clues and reject instruction leaks/refusals/advice before committing
+a turn. The existing dialogue sanitizer and prompt assembler protect the patient
+roleplay boundary. Model output never mutates mechanics directly.
 
-Real DSM/ICD terms and real drug brands are **forbidden** in:
-
-- `content/manifests/`
-- Nine-axis synthesis fields (§12)
-- Study-field definitions (§15)
-- In-game encyclopedia entries (§15)
-
-CI runs `scripts/content_integrity_check.sh` to catch violations.
-
-## Fictional-taxonomy naming convention
-
-Names must be **evocative, not alien**:
-
-- Use familiar linguistic roots + plausible clinical or pharma suffixes.
-- Avoid near-homophones of real trademarks or reskinned real labels.
-- Maintain an explicit registry of approved roots and suffixes.
-
-See `content/fictional_taxonomy.yaml` for the current registry.
-
-## Untrusted-input / prompt-injection defense
-
-Two channels carry attacker-controlled strings into the prompt:
-
-1. Peer-authored case history (§17)
-2. Community-authored manifests (§21)
-
-Defense in depth:
-
-- **Strict schema whitelisting**: enums and numbers over free text wherever possible.
-- **Length caps and sanitization** applied server-side at signing time.
-- **Template isolation**: untrusted strings are inserted into predefined slots
-  and can never be interpreted as instructions.
-- **No free-form player chat** ([DECISION 0002](../project/DECISION_LOG.md)).
-
-## Disclaimer & fictional framing
-
-Reserved presentation slots exist from day one:
-
-- `disclaimers.fictional_simulation`
-- `disclaimers.not_medical_advice`
-- `disclaimers.entertainment_focus`
-
-These are externalized in `app/lib/shared/l10n.dart` and finalized in Phase 7.5.
+There is no peer-content signing service, public UGC upload or player messaging.
+Fictional framing and player-facing warnings are owned by
+[`app/lib/shared/l10n.dart`](../../app/lib/shared/l10n.dart).
+See [content strategy](../specs/AGE-RATING-AND-CONTENT-STRATEGY.md),
+[game rules](../specs/GAME-RULES.md) and [security](../../SECURITY.md).

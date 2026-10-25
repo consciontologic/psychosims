@@ -7,20 +7,10 @@ AGENTS.md @maintainer
 xops/ @maintainer
 Makefile @maintainer
 
-# Client app
+# Flutter browser game
 app/ @client-leads
-app/lib/core/ @core-leads
+app/lib/browser/ @session-leads
 app/lib/shared/ @client-leads
-app/lib/features/session/ @session-leads
-app/lib/features/cards/ @session-leads
-app/lib/features/clinic/ @clinic-leads
-app/lib/features/progression/ @economy-leads
-
-# Native / FFI layer
-native/ @native-leads
-
-# Server control plane
-server/ @server-leads
 
 # Shared schemas + deterministic core
 packages/ @core-leads

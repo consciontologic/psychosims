@@ -9,8 +9,8 @@ bash scripts/install_git_hooks.sh
 
 ## pre-commit
 
-Runs `make verify.contracts` before allowing a commit and propagates any gate
-failure. Real model acceptance remains a separate explicit gate.
+Does not run tests or builds. Run verification explicitly when you want it;
+CI continues to run the repository verification workflow after push.
 
 Installation is idempotent. A different effective `core.hooksPath` or any existing
 default hook file is preserved; the installer fails with an integration message

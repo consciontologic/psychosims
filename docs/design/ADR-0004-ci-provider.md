@@ -6,8 +6,8 @@
 
 ## Context
 
-Phase 0.5 requires standing up CI running build + lint + format + `make verify`
-on every push/PR.
+The static PWA needs reproducible build, lint, format, core/app tests and actual
+browser acceptance on pushes and pull requests.
 
 ## Decision
 
@@ -28,3 +28,8 @@ Use **GitHub Actions** as the CI provider.
 - Required status checks + branch protection should be enabled in repository
   settings.
 - The same `make verify` command runs locally and in CI.
+
+The Pages workflow is separate and manually dispatched. It builds and verifies
+before publishing, with repository-owner-configured environment protection.
+No automatic CI push/PR run publishes the site. See
+[hosting](../guides/STATIC_HOSTING.md) for exact permissions and approval steps.

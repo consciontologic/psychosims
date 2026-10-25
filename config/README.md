@@ -1,18 +1,14 @@
 # config/
 
-> The single centralized configuration authority for Psychosims.
+Shared typed configuration for the deterministic game rules, progression and
+browser runtime. The static app uses bundled defaults; no environment file or
+server configuration is required at runtime. API credentials are managed only
+in tab memory by the browser's OpenRouter client.
 
-All shared configuration lives here: one typed schema, environment overlays, and
-a loader that validates once at startup and injects an immutable `Config` into
-every module.
+- `lib/` contains configuration schemas, validation and optional CLI overrides.
+- `ruleset_registry.yaml` records supported rule and manifest versions.
+- `test/` exercises validation and precedence.
 
-## Layout
-
-- `lib/` — Dart config schema, loader, and validation.
-- `schemas/` — serialized base schema and overlay definitions.
-- `test/` — loader/validator unit tests.
-
-No module outside `config/` reads raw environment variables. Secrets are
-referenced by name only; values live in the runtime environment.
-
-See [`docs/design/DESIGN-centralized-configuration.md`](../docs/design/DESIGN-centralized-configuration.md).
+Headless developer tools may use the existing centralized environment loader;
+no module outside this package reads process environment variables directly.
+See [configuration precedence](PRECEDENCE.md).

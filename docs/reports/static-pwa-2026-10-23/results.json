@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "testedAt": "2026-10-23T11:45:12.823Z",
+  "browser": "156.0.8078.47",
+  "origin": "http://127.0.0.1:8689",
+  "checks": [
+    "Complete static cache: 34 resources",
+    "Chromium installability and manifest checks pass",
+    "Player action persisted deterministic state and transcript",
+    "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+    "Offline reload preserves save/transcript and local mechanics advance",
+    "All five hash routes reload offline without server rewrites",
+    "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+    "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+    "No credential in local/session storage and no API URL in the static cache",
+    "Keyboard navigation and browser back/forward preserve the session"
+  ],
+  "errors": [],
+  "externalRequestAttempts": [
+    "https://openrouter.ai/api/v1/models",
+    "https://openrouter.ai/api/v1/chat/completions"
+  ],
+  "aiTransport": "Intercepted deterministic fixtures; no external service contacted",
+  "resourceCount": 34,
+  "buildId": "e8b8a522cc8d77fd3ff1d7d9"
+}

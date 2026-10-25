@@ -186,9 +186,9 @@ void main() {
   }
   r.table(['dose #', 'drug', 'dosage', 'tolerance', 'dependency'], medRows);
   r.callout(
-      'Medication shifts **dialogue delivery via the style filter — never '
-      'the mechanical outcome** (§4). A persistent-memory case can inherit '
-      'chemical dependency from its signed history (§17).');
+      'Medication style filtering changes dialogue delivery only. The separate '
+      'core pressure/pacing effect remains deterministic; persistent cases can '
+      'carry dependency through their structured local history.');
 
   r.writeTo('$showcaseOutputDir/phase2/03-session.md');
 }

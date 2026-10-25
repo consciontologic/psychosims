@@ -4,12 +4,8 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 echo "▶️  Dart tests"
-FLUTTER_TEST_FLAGS=()
-if [[ $# -eq 1 && "$1" == --contracts-only ]]; then
-  echo "ℹ️  Explicit contract profile: real-model acceptance is a separate gate"
-  FLUTTER_TEST_FLAGS+=(--exclude-tags=model_acceptance)
-elif [[ $# -ne 0 ]]; then
-  echo "usage: $0 [--contracts-only]" >&2
+if [[ $# -ne 0 ]]; then
+  echo "usage: $0" >&2
   exit 64
 fi
 
@@ -25,7 +21,7 @@ echo "  • trusted outcome source and fixture consistency"
 
 if command -v flutter >/dev/null 2>&1; then
   echo "  • app"
-  (cd app && flutter pub get --enforce-lockfile && flutter test "${FLUTTER_TEST_FLAGS[@]}")
+  (cd app && pwd && flutter pub get --enforce-lockfile && flutter test)
 else
   echo "❌ flutter is required for the full Dart/app test gate" >&2
   exit 127

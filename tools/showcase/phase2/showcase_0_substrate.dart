@@ -43,7 +43,7 @@ void main() {
   // 2. Pure seed derivation over stable inputs only.
   r.h2('2. Per-turn seed derivation depends only on stable inputs');
   const profile = RulesetProfile.v0_1_0;
-  int derive(String caseId, int turn, String action, int root) =>
+  BigInt derive(String caseId, int turn, String action, int root) =>
       deriveTurnSeed(
         caseId: caseId,
         turnIndex: turn,

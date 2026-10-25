@@ -1,41 +1,22 @@
-# Build & task orchestration
+# Build and verification
 
-> The single monorepo entry point for build, test, lint, and format.
+From the repository root, run `scripts/bootstrap.sh` for locked dependencies,
+then `make verify` for the current Dart/Flutter, source/content, worker/cache,
+build-policy and production-build checks. No backend, native compiler, model
+weights or API credential is needed.
 
-Every module is driven through the root [`Makefile`](../../Makefile). Do not
-invent per-module commands; add targets here and call through to the module
-script in `scripts/`.
+`scripts/web_build.sh` alone produces `app/build/web/` using the pinned Flutter
+version. It cleans that generated output, builds release web with base `/`,
+uses local web resources, then audits and hashes the static inventory.
+Do not pass secrets through build defines or copy private files into web assets.
 
-## Daily commands
+Use `make web.serve` to preview at `http://localhost:18763`; wait for **Ready
+offline** before disconnecting. This dedicated origin separates Psychosims
+caches/saves from unrelated projects on common ports. `make web.smoke` exercises
+the actual production build with deterministic mocked AI and a real blocked
+network. See the [hosting guide](../guides/STATIC_HOSTING.md) for dependencies,
+commands, deployment workflow and domain setup.
 
-```bash
-make build        # build all modules
-make test         # run all test suites
-make lint         # run all linters
-make format       # format all code
-make format.check # check formatting without writing
-make verify       # full gate, including real-model acceptance
-make verify.contracts # CI gate without weights; no model-quality claim
-make native.acceptance # real-model smoke and sanitizer cycles
-make doctor       # sanity-check framework wiring and toolchains
-```
-
-## Module scripts
-
-- `scripts/dart_*.sh` — Dart packages and Flutter app.
-- `scripts/server_*.sh` — Go server (uses the module-local Go build cache).
-- `scripts/native_*.sh` — pinned llama.cpp native engine and explicit stub contracts.
-- `server/scripts/postgres_test.sh` — isolated local PostgreSQL race/integration gate.
-
-## CI
-
-CI runs `make verify.contracts` through the same build/lint/test orchestration,
-selecting the explicitly model-free native contract target. `make verify`
-also includes Flutter suites tagged `model_acceptance`, which contract CI
-explicitly excludes and which fail on missing weights. The full gate
-continues to require real weights and real-model sanitizer acceptance. Models
-are large out-of-band assets; absent weights must never count as a passed
-real-model test. Hosted matrix runs, branch protection, and physical-device
-acceptance remain distinct gates; local passing tests do not prove them.
-The rationale and alternatives are recorded in
-[ADR-0008](../design/ADR-0008-explicit-model-acceptance.md).
+The user explicitly authorized removal of the retired implementation and its
+tests. The current product/core tests remain required; test deletion is not a
+substitute for repairing a failing active gate.

@@ -1,0 +1,57 @@
+{
+  "run_id": "pwa-noir-20261023",
+  "status": "PASS",
+  "build_id": "cd48b7e2a12b289ba9f84556",
+  "cached_resources": 39,
+  "cached_bytes": 33818029,
+  "checks": {
+    "dart_flutter": 315,
+    "service_worker": 8,
+    "python": 53,
+    "widget_tests": 29,
+    "secret_scanner_self_tests": 3,
+    "dependency_security_tests": 19,
+    "analyzers": 5,
+    "formatted_files": 156,
+    "dependency_components": 75,
+    "advisory_package_versions": 66,
+    "known_vulnerabilities": 0,
+    "browser_acceptance_claims": 12,
+    "browser_uncaught_errors": 0,
+    "reviewed_doc_local_links": 58,
+    "reviewed_doc_missing_links": 0
+  },
+  "test_accounting": "Full make verify passed 374; final color-only fix adds two title tests and all 29 widget tests pass, yielding 376 verified tests. Final format/analyzer/release build passed.",
+  "production_archive": "app/build/psychosims-pwa-review.zip",
+  "archive_bytes": 16793153,
+  "archive_sha256": "6921d4154a3f864fc9705a57ed8f668dcba1334e6c9b295fe980bd5dc7ba74cb",
+  "logs": {
+    "full_verify": "/tmp/agent-runs/noir-final-verify--20261023T121141Z-457563.log",
+    "final_widgets": "/tmp/agent-runs/noir-widget-title-green--20261023T121531Z-474283.log",
+    "final_build": "/tmp/agent-runs/noir-title-verify-build--20261023T121500Z-472365.log",
+    "security": "/tmp/agent-runs/noir-security--20261023T121142Z-457741.log",
+    "review_new_game": "/tmp/agent-runs/reviewer-new-game--20261023T120729Z-443682.log",
+    "notice_red": "/tmp/agent-runs/noir-notice-contrast-red--20261023T120729Z-443834.log",
+    "focus_red": "/tmp/agent-runs/noir-focus-contrast-red--20261023T120822Z-446885.log",
+    "title_red": "/tmp/agent-runs/noir-title-contrast-red--20261023T121358Z-468292.log",
+    "live_preview": "/tmp/agent-runs/noir-preview-inventory--20261023T121744Z-482505.log",
+    "browser": "/tmp/agent-runs/noir-browser-final--20261023T122042Z-496868.log",
+    "docs_links": "/tmp/agent-runs/noir-doc-links--20261023T122106Z-498343.log",
+    "final_secret_scan": "/tmp/agent-runs/noir-final-review-gates--20261023T122144Z-500247.log"
+  },
+  "browser_evidence": "results.json",
+  "local_preview": {
+    "url": "http://localhost:18763/",
+    "mode": "production static build; existing save retained through waiting-worker update"
+  },
+  "external_publication": "Not performed; no commit, push, DNS or account changes",
+  "art_provenance": "../../design/VISUAL_DIRECTION.md",
+  "harness_sha256": "83065c94d6730774d7b35cb261e2969a580beb6225a05eff519440e19ed2d535",
+  "browser_tested_at": "2026-10-23T12:20:56.943Z",
+  "browser_harness_recovery": [
+    "Initial networkidle timed out despite Ready offline: switched to page load plus existing complete-cache, controller and rendered-UI assertions.",
+    "Taller Flutter lazy lists required genuine wheel scrolling before inspecting action availability; enabled/disabled assertions retained.",
+    "Material hover tooltip temporarily duplicated Home accessibility label: move pointer away before exact selected-tab assertion."
+  ],
+  "codegraph": "Healthy current index includes browser_theme.dart and explicit title foreground"
+}

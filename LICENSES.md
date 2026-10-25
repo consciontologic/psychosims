@@ -1,57 +1,54 @@
-# Third-party licenses and model attribution
+# Third-party licenses
 
-Current local implementation review: 2026-09-10. This project is unreleased.
-
-## Models
-
-| Exact candidate | License | Attribution and primary evidence | Bundled text |
-| --- | --- | --- | --- |
-| Qwen2.5-1.5B-Instruct | Apache-2.0 | Alibaba Cloud; [exact 1.5B model license](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/blob/main/LICENSE) | [QWEN2.5_LICENSE](app/assets/licenses/QWEN2.5_LICENSE) |
-| Phi-3.5-mini-instruct | MIT | Microsoft Corporation; [model license](https://huggingface.co/microsoft/Phi-3.5-mini-instruct/blob/main/LICENSE) | [PHI3.5_LICENSE](app/assets/licenses/PHI3.5_LICENSE) |
-| SmolLM2-1.7B-Instruct | Apache-2.0 | Hugging Face; [official model card and license declaration](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct/blob/main/README.md?code=true) | [SMOLLM2_LICENSE](app/assets/licenses/SMOLLM2_LICENSE) |
-
-The previous Qwen Research License / CC-BY-NC attribution was incorrect for this
-exact 1.5B candidate. Licenses differ across model families and sizes; this table
-does not approve other variants. SmolLM2's official model card declares Apache-2.0;
-the local bundle contains that standard text. Preserve upstream copyright and
-NOTICE material when preparing a distributable artifact.
-
-All three current artifacts use Q4_K_M. Download URLs and verified hashes are
-owned by [config](config/lib/src/loader.dart); native source and patches are
-recorded in [PINNED_BUILDS](native/PINNED_BUILDS.md). Model fetch and inference
-share the app's model cache. Repository-local acceptance weights under
-`assets/models/` are test inputs, not Flutter-bundled model assets.
-
-## Software dependencies
+The static Flutter web app bundles no inference models or backend services. New
+AI responses use the user's OpenRouter account; model weights are not distributed
+with this game.
 
 The generated [CycloneDX inventory](docs/reports/dependency-inventory.cdx.json)
-records resolved Dart packages, Go modules, pinned llama.cpp, SDK notice files,
-and model license texts, with dependency edges and input/license fingerprints.
-It distinguishes workspace code and SDK packages from Pub packages. It does
-not pretend to enumerate every dependency inside a future platform binary.
+records resolved Dart packages, Flutter SDK notice files, and every package in
+the npm browser-verification lockfile, including optional platform packages.
+It includes dependency edges, exact versions, lockfile fingerprints, and license
+text hashes. npm license text is read from SHA-512-verified registry archives;
+package scripts are never executed to produce the inventory.
 
-- llama.cpp is MIT licensed; retain its main license and vendored library notices.
-- Flutter and Dart use BSD-family terms and include additional third-party
-  notices in their SDK/engine bundles. Preserve the complete notice bundles.
-- GTK 2.2.0, pulled in by Linux app-links support, is MPL-2.0. The exact version
-  and license hash are recorded in [license_policy.json](scripts/license_policy.json).
-  Preserve its notices and provide the covered source, including modifications,
-  when distributing a future build. [Mozilla's MPL guidance](https://www.mozilla.org/en-US/MPL/2.0/FAQ/)
-  describes the source-availability boundary. No distribution has occurred.
+Flutter generates the web build's `assets/NOTICES` from dependency license texts.
+Keep that file in the production artifact. Flutter and Dart use BSD-family terms
+and their engine contains additional third-party notices. The exact Flutter
+3.38.5 engine notice bundle has a component-specific review in
+[license_policy.json](scripts/license_policy.json); this does not globally approve
+unknown or copyleft licenses. Preserve the full notices and upstream covered-source
+availability identified by that review. The package inventory does not enumerate
+all engine internals or downloaded browser binaries used only for QA.
 
-The license policy has exact-component, exact-file exceptions for GTK and the
-Flutter engine notice bundle. It does not globally allow MPL or unknown licenses.
-These local development records do not close platform distribution acceptance.
+## Bundled fonts and original artwork
+
+The app retains its local Roboto Regular, Medium and Bold files and their
+[Apache License 2.0 text](app/assets/fonts/Roboto_LICENSE.txt). The additional
+Noto Serif Regular/Bold and Noto Sans Symbols Regular files were copied
+without modification from the
+installed Debian font package's `/usr/share/fonts/truetype/noto/` files. Their
+upstream copyright and SIL Open Font License 1.1 text are preserved in
+[`NotoSerif_LICENSE.txt`](app/assets/fonts/NotoSerif_LICENSE.txt). Keep both font
+notice assets in the deployed bundle; no font CDN is required.
+
+`app/assets/art/clinic-noir.png` and
+`app/assets/art/restless-hour-portrait.png` are original images generated for
+Psychosims with the built-in image generation tool on 2026-10-23. They use
+painterly noir art direction inspired by *Disco Elysium*; no game artwork,
+logos or existing characters were copied. Prompts, provenance, exact sizes and
+the 6.22 MB static-cache tradeoff are recorded in
+[Visual direction](docs/design/VISUAL_DIRECTION.md). These generated assets are
+project artwork, not third-party packages in the dependency inventory.
 
 ## Reproducing the checks
 
-1. Run `scripts/bootstrap.sh --tools-only` to install project-local pinned scanners.
-2. Run `make security.dependencies` to enforce lockfiles, compare the inventory,
-   classify installed license text and scan package versions/native commit IDs.
+1. Run `scripts/bootstrap.sh --tools-only` to install pinned security tools under
+   `.tools/`. Go is needed only to build these development tools; it is not part
+   of the game or its deployment.
+2. Run `make security.dependencies` to enforce Dart lockfiles, compare the reviewed
+   inventory, classify license text, and scan exact Pub/npm versions with OSV.
 3. After an intentional dependency update, run `scripts/sbom.sh --write`, inspect
    the complete inventory and license-policy diff, then repeat the gate.
 
-Never refresh an inventory merely to hide an unexpected license or resolution.
-The base-model policy remains Apache-2.0/MIT only. A release still requires
-complete in-app notices, covered-source delivery where required, model artifact
-provenance and the inventories produced by each target-platform build.
+The read-only check fails on dependency or license drift. Never refresh an
+inventory to hide an unexpected dependency, unknown license, or changed notice.

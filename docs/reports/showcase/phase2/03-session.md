@@ -60,5 +60,7 @@ The medication state is a typed part of `SimState`. Names are drawn from the fic
 | 4 | ferveAxine | 20 | 8 | 4 |
 | 5 | ferveAxine | 20 | 10 | 5 |
 
-> Medication shifts **dialogue delivery via the style filter — never the mechanical outcome** (§4). A persistent-memory case can inherit chemical dependency from its signed history (§17).
+> Medication style filtering changes dialogue delivery only. The separate core
+> pressure/pacing effect remains deterministic; persistent cases can carry
+> dependency through their structured local history.
 

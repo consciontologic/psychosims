@@ -1,21 +1,23 @@
-# 📊 `docs/reports/`
+# Implementation evidence
 
-Generated reports — audit snapshots, status dumps, performance baselines.
-Filenames embed the date (`YYYY-MM-DD-<topic>.md`).
+- [Progression and private AI follow-up](2026-10-23-progression-ai.md): bounded
+  sessions, crisis recovery, exact private endpoints and current review evidence.
+- [End-to-end gameplay playtest](2026-10-23-playtest.md): current browser repairs,
+  live AI evidence, full offline session and remaining balance findings.
 
-This folder is mostly written by tools, not humans. Don't hand-edit reports
-after they're committed.
+- [Static offline PWA, 23 October 2026](2026-10-23-static-pwa.md): current product,
+  build/browser acceptance, cleanup manifest and external release boundary.
+- [Noir review-build evidence](noir-ui-2026-10-23/): current screenshots,
+  New game/offline acceptance and the verified release inventory.
+- [Initial migration evidence](static-pwa-2026-10-23/): retained screenshots,
+  acceptance results and resource inventory from the earlier build.
+- [Implemented core mechanics](implemented-gameplay-rules.md): retained pure
+  rules and explicit distinction from the current browser UI.
+- [Deterministic core delivery](phase_2_exit_report.md) and
+  [core showcases](showcase/phase2/INDEX.md): reusable rules and historical tuning
+  evidence; not a claim of new device or public-service acceptance.
+- [Resolved dependency inventory](dependency-inventory.cdx.json): current source
+  dependency inventory; regenerate intentionally with `scripts/sbom.sh --write`.
 
-## Current assessment
-
-- [2026-09-10 — end-to-end project assessment](2026-09-10-project-assessment.md): implemented capabilities, remaining roadmap, integration defects, current verification evidence and recommended next milestones.
-- [2026-09-10 — remediation progress](2026-09-10-remediation-progress.md): current local acceptance, finite certified progression, verification evidence and remaining implementation; supersedes historical completion claims without replacing the roadmap.
-- [2026-09-10 — local database recovery](2026-09-10-local-database-recovery.md): actual PostgreSQL logical backup and restore, recovered receipt replay protection and session revocation; local synthetic fixture only.
-- [2026-09-10 — local control-plane load](2026-09-10-local-control-plane-load.md): declared HTTP/SQL workload budgets, fresh signed acceptances and retries, admission under a saturated database pool, and executable startup measurements.
-- [2026-09-10 — infrastructure costs](2026-09-10-infrastructure-costs.md): sourced reference rates and editable workload assumptions at four MAU tiers and three data-age horizons; capacity and provider decisions remain pending.
-
-- [2026-09-10 — three-model local baseline](2026-09-10-model-baseline.md): complete measured latency/quality failures and passes with raw samples; no device-acceptance claim.
-
-## Living generated evidence
-
-- [Resolved dependency inventory](dependency-inventory.cdx.json): deterministic CycloneDX inventory, dependency edges and license fingerprints. `scripts/sbom.sh` checks it without rewriting; `scripts/sbom.sh --write` explicitly updates it for review. This inventory is intentionally regenerated when dependency inputs change.
+Obsolete native-model, server, cost and deployment reports were removed with
+the retired implementation. Historical tracking rows remain unchanged.

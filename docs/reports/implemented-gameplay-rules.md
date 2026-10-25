@@ -1,206 +1,33 @@
-Updated todo list
-
-I'll read the core resolver + state model myself for precision, and dispatch parallel subagents to survey the rest of the implemented mechanics across `psycore`/`psychemas` — reporting what the code *actually does*, with effects and implementation status.
-
-Survey card/pharmacology/loadout code
-
-Survey siege/progression code
-
-Survey economy/clinic/routing code
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/turn_resolver.dart#1-1), lines 1 to 400
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/sim_state.dart)
-
-Searched for files matching `**/packages/psycore/lib/src/{multi_session_resolver,multi_session_digest_compiler,clinical_grading_report,xp_curve,study_spend,field_training_spend,reputation_decay}.dart`, 7 matches
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/card.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/card_balance.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/loadout.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/medication_state.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/ledger.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/ledger_event.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/currency_type.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/clinic_economy.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/clinic_asset.dart)
-
-Searched for files matching `**/packages/psychemas/lib/src/{case_lifecycle,memory_class,field_training_tree,study_catalog,clinical_encyclopedia,case_history_envelope}.dart`, 6 matches
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/defense_state.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/therapy_controller.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/card_style_frame.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/structured_delta.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/offline_case_router.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/attraction_vector.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/strategic_exit.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/onboarding_track.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/recovery_controller.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/multi_session_resolver.dart#1-1), lines 1 to 150
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/multi_session_digest_compiler.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/clinical_grading_report.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/xp_curve.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/study_spend.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/field_training_spend.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/reputation_decay.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/state_axis.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/style_archetype.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/interaction_pattern.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/card_library.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/pressure_calculator.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/recovery_mode.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/cooldown_tracker.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/operational_pressure.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/memory_class.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/case_lifecycle.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/field_training_tree.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/study_catalog.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/clinical_encyclopedia.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/case_history_envelope.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/loadout_analyzer.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psychemas/lib/src/session_outcome.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/reputation_decay.dart#50-50), lines 50 to 73
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/multi_session_resolver.dart#100-100), lines 100 to 160
-
-No matches found. Your search pattern might be excluded completely by either the search.exclude settings or .*ignore files.
-If you believe that it should have results, you can check into the .*ignore files and the exclude setting (here are some excluded patterns for reference:[**/node_modules,**/bower_components,**/*.code-search,**/.dart_tool,**/docs/tracking/state/log.jsonl,**/tmp/agent-runs]).
-Then if you want to include those files you can call the tool again by setting "includeIgnoredFiles" to true.
-
-No matches found. Your search pattern might be excluded completely by either the search.exclude settings or .*ignore files.
-If you believe that it should have results, you can check into the .*ignore files and the exclude setting (here are some excluded patterns for reference:[**/node_modules,**/bower_components,**/*.code-search,**/.dart_tool,**/docs/tracking/state/log.jsonl,**/tmp/agent-runs]).
-Then if you want to include those files you can call the tool again by setting "includeIgnoredFiles" to true.
-
-Searched codebase for "manipulative card outcome logic three-way success partial derangement", no results
-
-Searched for regex `TODO|FIXME|server|Phase [56]|deferred|hook|placeholder|stub|macro|royalt|peer-heal|co-op` (`**/packages/psycore/lib/src/{ledger,clinic_economy,offline_case_router,attraction_vector,strategic_exit,onboarding_track,recovery_controller,pressure_calculator,cooldown_tracker}.dart`), 4 results
-
-Searched for regex `TODO|FIXME|server|Phase [56]|deferred|hook|placeholder|stub|macro|royalt|peer-heal|co-op` (`**/packages/psychemas/lib/src/{ledger_event,currency_type,clinic_asset,operational_pressure,recovery_mode}.dart`), 2 results
-
-Searched for text `audit` (`**/packages/psycore/lib/src/*.dart`), 12 results
-
-No matches found. Your search pattern might be excluded completely by either the search.exclude settings or .*ignore files.
-If you believe that it should have results, you can check into the .*ignore files and the exclude setting (here are some excluded patterns for reference:[**/node_modules,**/bower_components,**/*.code-search,**/.dart_tool,**/docs/tracking/state/log.jsonl,**/tmp/agent-runs]).
-Then if you want to include those files you can call the tool again by setting "includeIgnoredFiles" to true.
-
-Searched for text `macro|event|weather|crisis` (`**/packages/psycore/lib/src/*.dart`), 71 results
-
-Searched for files matching `**/packages/psycore/lib/src/**/*.dart`, 39 matches
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/turn_resolver.dart#1-1), lines 1 to 300
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/turn_resolver.dart#300-300), lines 300 to 500
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/turn_resolver.dart#500-500), lines 500 to 532
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/sim_state.dart#1-1), lines 1 to 100
-
-Let me read the three survey outputs, finish the resolver (clue-token/fallback/outcome logic), and launch the final survey on the determinism substrate, sandbox, and prompt/dialogue layer.
-
-Survey determinism/sandbox/dialogue code
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/turn_resolver.dart#400-400), lines 400 to 532
-
-Read [](file:///home/tech/.config/Code/User/workspaceStorage/254a86bb4c6458cc55239056127d2952/GitHub.copilot-chat/chat-session-resources/eae822b7-ccf8-47b4-8fe2-16c7c0a95c04/toolu_bdrk_01JBMM5tiUKfFogXxuDxdV8c__vscode-1784374799620/content.txt)
-
-Read [](file:///home/tech/.config/Code/User/workspaceStorage/254a86bb4c6458cc55239056127d2952/GitHub.copilot-chat/chat-session-resources/eae822b7-ccf8-47b4-8fe2-16c7c0a95c04/toolu_bdrk_01TsRfCZKL5HDBVwcAgo6sPw__vscode-1784374799621/content.txt)
-
-Read [](file:///home/tech/.config/Code/User/workspaceStorage/254a86bb4c6458cc55239056127d2952/GitHub.copilot-chat/chat-session-resources/eae822b7-ccf8-47b4-8fe2-16c7c0a95c04/toolu_bdrk_01BwV7WoQjx6L3yGRi3e9TR7__vscode-1784374799622/content.txt)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/cooldown_tracker.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/prng.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/seed_derivation.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/fixed_point.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/ruleset_profile.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/clock.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/core_run_path.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/balance_sandbox.dart#1-1), lines 1 to 300
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/scenario_runner.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/solvability_oracle.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/bot_player.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/prompt_assembler.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/roleplay_frame.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/token_counter.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/chat_template.dart)
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/balance_sandbox.dart#300-300), lines 300 to 344
-
-Searched for regex `class ScenarioDistribution|class ScenarioResult` (`**/packages/psycore/lib/src/*.dart`), 2 results
-
-Read [](file:///home/tech/code/psychosims/packages/psycore/lib/src/scenario_result.dart)
-
-Let me read the final survey (determinism substrate, sandbox, prompt layer) before synthesizing.
-
-Read [](file:///home/tech/.config/Code/User/workspaceStorage/254a86bb4c6458cc55239056127d2952/GitHub.copilot-chat/chat-session-resources/eae822b7-ccf8-47b4-8fe2-16c7c0a95c04/toolu_bdrk_013uUBfS3UnBQ4sBWis9HvNm__vscode-1784374799685/content.txt)
-
-Here's a code-grounded report on what's **actually implemented** in the Dart core (psycore = rules, psychemas = typed schemas), and how each rule is *effective* in play. I read the resolver directly and surveyed the rest across ~50 files.
-
----
-
-## Verdict up front
-
-The **entire offline single-player loop is genuinely implemented and effective**, not stubbed: a deterministic turn engine, the four-card taxonomy with the signature/context-fit principle, the Manipulative gamble, pharmacology, the multi-session siege with grading, the full multi-currency economy + clinic + routing + recovery, and a bot-driven balance sandbox that proves it all. The only things that are **data-only or deferred** are the pieces the roadmap explicitly pushes to the server (trauma multiplier, Doubt, hiring, macro events, royalties) and one or two dormant knobs. Details below.
-
----
+# Implemented deterministic core mechanics
+
+This is a retained reference to the reusable `psycore` and `psychemas` library
+mechanics, with superseded deployment assumptions removed on 2026-10-23.
+It is **not a list of screens or online features in the current PWA**. The browser
+exposes the preserved scenario/session/loadout/history and local career loop;
+[game design](../design/STARTER.md) describes that playable scope.
+
+Core source: [turn resolver](../../packages/psycore/lib/src/turn_resolver.dart),
+[balance](../../packages/psycore/lib/src/card_balance.dart),
+[schemas](../../packages/psychemas/lib/src/), and
+[current browser session](../../app/lib/browser/browser_session.dart).
+The detailed legacy library values below are retained; current configuration and tests
+remain authoritative. Original pure-core evidence is in the
+[showcase](showcase/phase2/INDEX.md).
+
+## Current browser progression (0.2.0)
+
+New sessions use the [bounded pacing rules](../specs/BALANCE-SPEC.md#current-browser-sessions-ruleset-020):
+healthy state plus validation/exploration can succeed after 12 choices; every
+session ends by 16. Repeated Validate alone no longer wins, and crisis has a
+viable boundary/validation recovery path. Saved legacy sessions replay their
+original rules; New game opts into 0.2.0 without clearing career/history.
+The legacy bands and classification below describe 0.1.0, not new sessions.
 
 ## 1. The turn engine — the deterministic heart
 
 turn_resolver.dart `TurnResolver.resolve(TurnInput) → TurnOutput` is a **pure function**: seeded PRNG + fixed input fully determine the outcome (no clock, no floats). One turn runs this pipeline:
 
-1. **Guards** (receipt-forgery defense, all active): loadout ≤ slot cap; card ∈ loadout; card owned in library; action ∈ manifest's available patterns — each throws if violated.
+1. **Guards** (invalid-action defense, all active): loadout ≤ slot cap; card ∈ loadout; card owned in library; action ∈ manifest's available patterns — each throws if violated.
 2. **Seed derivation** — per-turn seed from `(caseId, turnIndex, actionName, rootSeed, rulesetProfile)`.
 3. **Transference Spike** reclassification (see §3).
 4. **Context-fit** computed from signature + state + controllers → `aligned / partial / mismatched`.
@@ -215,11 +42,14 @@ turn_resolver.dart `TurnResolver.resolve(TurnInput) → TurnOutput` is a **pure 
 |---|---|---|
 | `fail` (walkout) | agitation ≥ **95** | terminal loss |
 | `crisis` | agitation ≥ **80** | freeze/asylum branch |
-| `stabilize` | agitation ≤ **25** AND trust ≥ **40** | good holding state |
-| `succeed` (cure) | sessionProgress ≥ **100** | terminal win |
+| `succeed` (cure) | sessionProgress ≥ **100**, after fail/crisis checks | terminal win |
+| `stabilize` | agitation ≤ **25** AND trust ≥ **40**, if not already terminal | good holding state |
 | `ongoing` | otherwise | continue |
 
-So the effective game is: **drive `sessionProgress` to 100 while keeping agitation off 80/95 and trust above 40.** Progress ticks +1/turn, so a cure is "survive ~100 turns of good play."
+For the default core balance, progress reaches 100 while agitation must stay
+below the crisis/walkout bounds. Trust ≥ 40 is the stabilization condition, not
+an additional success requirement. Scenario/runtime configuration may set a
+different progress threshold; the current browser uses its configured case rules.
 
 ## 2. Card taxonomy & the signature principle
 
@@ -246,7 +76,7 @@ Four types (card.dart), each with a `CardSignature` (breaker/buffer/freeze/gambi
 
 ## 4. Fictional pharmacology
 
-medication_state.dart + _applyMedication. Five fictional drugs; each dosed turn: **agitation += 3 + tolerance/10**, **tolerance += 2**, **dependency += 1** (all clamped 0–100). Effective: medication is a **pressure/pacing lever with a rising cost** — the more you lean on it, the more agitation it adds (tolerance feedback). Per the §4 boundary, meds change *pacing and dialogue voice only, never the mechanical outcome directly*. Dependency is carried across sessions and penalizes the grading report (§6), but there is **no in-session withdrawal mechanic yet** (see gaps).
+medication_state.dart + _applyMedication. Five fictional drugs; each dosed turn: **agitation += 3 + tolerance/10**, **tolerance += 2**, **dependency += 1** (all clamped 0–100). Effective: medication is a **pressure/pacing lever with a rising cost** — the more you lean on it, the more agitation it adds (tolerance feedback). The core pressure shift can affect outcome thresholds; the dialogue style filter cannot override mechanics. Dependency is carried across sessions and penalizes the grading report (§6), but there is **no in-session withdrawal mechanic yet** (see gaps).
 
 ## 5. Multi-session siege, digest & grading
 
@@ -261,7 +91,7 @@ medication_state.dart + _applyMedication. Five fictional drugs; each dosed turn:
 | **XP curve** | xp_curve.dart | Difficulty scales reward per tier; **grinding the same tier past 5 sessions decays reward 0.5× per extra session** (floored 10%). |
 | **Study / field tree** | field_training_spend.dart | Two-currency (study+subspecialty) gated unlocks with **single-parent prerequisites**; pure validators, 5–6 result codes. |
 | **Reputation** | reputation_decay.dart | **Event-sourced, recency-weighted** via an integer half-life table (1-week half-life, weight halves per bucket, 0 after 4) + a **credential floor** (100 × unlocked fields). Integer-only, no `exp`. |
-| **Ledger** | ledger.dart | **Append-only, idempotency-keyed, fixed-point micros**, with snapshot+compaction; balances are always a replay of events (conservation invariant). This is the exact stream Phase 3/5 will validate server-side. |
+| **Ledger** | ledger.dart | **Append-only, idempotency-keyed, fixed-point micros**, with snapshot+compaction; balances are always a replay of events (conservation invariant). The browser does not submit this stream to an authority. |
 | **Currencies** | currency_type.dart | cash, study, subspecialty, xp, reputation, prestige. |
 
 ## 7. Clinic, routing, recovery, pressure
@@ -270,7 +100,7 @@ medication_state.dart + _applyMedication. Five fictional drugs; each dosed turn:
 - **Case router** (offline_case_router.dart): weights the case stream by pricing/reputation/field coverage; **social-chronic bias** for low-rep players (~70% gentle stateless cases when reputation ≤ 20); **tenure-gated "Misfortune Roll"** (~5% chaos, only at level ≥ 3, forces a tier-3–5 crisis). Seed+cursor persist → **identical stream after an app restart**.
 - **Strategic exit** (strategic_exit.dart): reject (no change) / refer (**+1 XP** ethical reward) / force (**−5 rep, +25 agitation, case lost**).
 - **Recovery** (recovery_controller.dart): Discount Practice (**50% XP** when rep ≤ 30) and Academic Sabbatical (restore rep via study fields).
-- **Operational pressure** (pressure_calculator.dart): accrues +100/session (+150 for tier ≥ 3), decays 20/day, buckets to healthy/strained/at-risk. Uses the **injected clock** — a device-clock rewind can't dodge it. (This is the local precursor to the Phase 5.5 server-derived quantity.)
+- **Operational pressure** (pressure_calculator.dart): accrues +100/session (+150 for tier ≥ 3), decays 20/day, buckets to healthy/strained/at-risk. Uses the **injected clock** — a device-clock rewind can't dodge it. This remains a local pure-core calculation.
 
 ## 8. Integrity & tuning backbone
 
@@ -280,14 +110,15 @@ medication_state.dart + _applyMedication. Five fictional drugs; each dosed turn:
 - **Ruleset versioning** (ruleset_profile.dart): PRNG constants pinned per version; unknown versions throw.
 - **Sandbox + oracle + bots** (balance_sandbox.dart, solvability_oracle.dart, bot_player.dart): three skill-tier bots (novice/intermediate/expert heuristics) play thousands of headless sessions **with no LLM**; the sandbox reports win-rate/turns as **median+p95**, flags dead currencies and runaway inflation; the oracle proves each manifest structurally solvable + content-compliant.
 
-## 9. Honest gaps — data-only / deferred
+## 9. Library limits and unimplemented design
 
-These are **not bugs** — they're intentionally later, but you asked what's *really* effective:
+The reusable library does not imply these planned systems are implemented:
 
 - **Medication dependency** accrues and feeds carry-over + grading, but there's **no active in-session withdrawal loop** yet.
-- **`ClinicAsset.tier`** exists but **hiring/associate logic is data-only** (Phase 6.3).
+- **`ClinicAsset.tier`** exists but **hiring/associate logic is data-only** .
 - **Attraction vector** (attraction_vector.dart) is a **UI readout only** — the router uses its own separate logic, not this mean.
-- **`TokenCounter` / `ChatTemplate`** in `psycore` are abstract + a whitespace/plain mock; the **real llama.cpp tokenizer + model chat templates** live behind the inference service (Phase 1.1), injected at runtime.
-- **Deferred to server phases** (absent by design): **Trauma Severity multiplier** (Phase 5.3), **Doubt + transfer roll** (5.5), **macro/environmental events** (Phase 6.5), **peer-healer co-op** and **creator royalties** (Phase 5/6), and **server-arbitrated ownership** (Phase 3.6) — the local `CaseLifecycle` is the offline precursor.
-
-**Bottom line:** everything needed to *play a full offline career* — read the scene, pick the right card in-signature, manage agitation/trust/trauma, prescribe carefully, survive multi-session cases, earn and spend across the economy, run a clinic, and recover from near-bankruptcy — is implemented as deterministic, tested, replay-stable rules. The gaps are exactly the cross-player/server systems that Phases 3–6 add.
+- **`TokenCounter` / `ChatTemplate`** remain injected seams. The browser uses a
+  conservative UTF-8 byte counter and plain template; there is no native tokenizer.
+- **Unimplemented online design:** Trauma Severity multiplier, Doubt transfer,
+  macro/environmental events, peer-healer co-op, creator royalties and shared
+  patient ownership. These are not active release promises.

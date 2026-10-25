@@ -16,21 +16,19 @@ def packages_from_inventory(document):
         package = {'name': component['name'], 'version': component['version']}
         if ref.startswith('pkg:pub/'):
             package['ecosystem'] = 'Pub'
-        elif ref.startswith('pkg:golang/'):
-            package['ecosystem'] = 'Go'
-        elif ref.startswith('native:llama.cpp@'):
-            package = {'name': 'llama.cpp', 'ecosystem': 'GIT', 'commit': component['version']}
+        elif ref.startswith('pkg:npm/'):
+            package['ecosystem'] = 'npm'
+        elif ref.startswith(('local:', 'sdk:flutter/')):
+            continue  # Own code and SDK notices have no package advisory identity.
         else:
-            continue  # Own code, SDK notice inventories and model license texts have no package advisory identity.
+            raise ValueError(f'unsupported dependency advisory identity: {ref}')
         packages.append({'package': package})
-    if not packages or not any(item['package'].get('commit') for item in packages):
-        raise ValueError('dependency scan is missing package or native commit coverage')
+    if not packages:
+        raise ValueError('dependency scan is missing package coverage')
     return packages
 
 
 def identity(package):
-    if package.get('commit'):
-        return ('GIT', package['commit'])
     return (package.get('ecosystem'), package.get('name'), package.get('version'))
 
 
@@ -57,7 +55,7 @@ def main():
             source, output = directory / 'osv-scanner-custom.json', directory / 'result.json'
             source.write_text(json.dumps({'results': [{'source': {'path': 'reviewed-inventory', 'type': 'sbom'},
                                                         'packages': packages}]}))
-            result = subprocess.run([str(scanner), 'scan', 'source', '--no-call-analysis=go',
+            result = subprocess.run([str(scanner), 'scan', 'source',
                                      '--all-vulns', '--format=json', '--all-packages',
                                      '--output-file', str(output), '-L', str(source)],
                                     cwd=ROOT, capture_output=True, text=True, timeout=300)
@@ -73,7 +71,7 @@ def main():
             if any(item.get('vulnerabilities') for group in report.get('results', [])
                    for item in group.get('packages', [])):
                 raise ValueError('scanner reported vulnerabilities with a successful exit')
-            print(f'OSV checked {len(packages)} package/version or native commit identities; no known vulnerabilities.')
+            print(f'OSV checked {len(packages)} Pub/npm package versions; no known vulnerabilities.')
         return 0
     except (OSError, ValueError, KeyError, subprocess.TimeoutExpired) as error:
         print(f'Dependency scan failed: {error}', file=sys.stderr)

@@ -28,6 +28,18 @@ class SimState {
   /// Progress toward session resolution, 0–100.
   final int sessionProgress;
 
+  /// Approaches used by a 0.2.0 session. Legacy states keep zero and omit it
+  /// from their wire representation so historical replay bytes do not change.
+  final int approachMask;
+
+  bool get hasRapportApproach =>
+      approachMask & (1 << InteractionPattern.validate.index) != 0;
+  bool get hasExplorationApproach =>
+      approachMask &
+          ((1 << InteractionPattern.openQuestion.index) |
+              (1 << InteractionPattern.reframe.index)) !=
+      0;
+
   /// Fictional pharmacology state.
   final MedicationState medication;
 
@@ -40,6 +52,7 @@ class SimState {
     this.trauma = 0,
     this.freezeTurns = 0,
     this.sessionProgress = 0,
+    this.approachMask = 0,
     this.medication = const MedicationState.empty(),
   });
 
@@ -73,6 +86,7 @@ class SimState {
     int? trauma,
     int? freezeTurns,
     int? sessionProgress,
+    int? approachMask,
     MedicationState? medication,
   }) {
     return SimState(
@@ -84,6 +98,7 @@ class SimState {
       trauma: trauma ?? this.trauma,
       freezeTurns: freezeTurns ?? this.freezeTurns,
       sessionProgress: sessionProgress ?? this.sessionProgress,
+      approachMask: approachMask ?? this.approachMask,
       medication: medication ?? this.medication,
     );
   }
@@ -120,6 +135,7 @@ class SimState {
         'trauma': trauma,
         'freeze_turns': freezeTurns,
         'session_progress': sessionProgress,
+        if (approachMask != 0) 'approach_mask': approachMask,
         'medication': medication.toJson(),
       };
 
@@ -136,6 +152,7 @@ class SimState {
       trauma: (json['trauma'] ?? 0) as int,
       freezeTurns: (json['freeze_turns'] ?? 0) as int,
       sessionProgress: (json['session_progress'] ?? 0) as int,
+      approachMask: (json['approach_mask'] ?? 0) as int,
       medication: json['medication'] == null
           ? const MedicationState.empty()
           : MedicationState.fromJson(
@@ -157,6 +174,7 @@ class SimState {
       other.trauma == trauma &&
       other.freezeTurns == freezeTurns &&
       other.sessionProgress == sessionProgress &&
+      other.approachMask == approachMask &&
       other.medication == medication;
 
   @override
@@ -169,6 +187,7 @@ class SimState {
         trauma,
         freezeTurns,
         sessionProgress,
+        approachMask,
         medication,
       );
 }

@@ -1,8 +1,12 @@
 """Dependency gates must reject missing evidence, stale inventory and tool errors."""
 import importlib.util
+import base64
+import hashlib
+import io
 import json
 from pathlib import Path
 import tempfile
+import tarfile
 import unittest
 
 
@@ -85,10 +89,65 @@ class InventoryTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'resolver fixture'):
             inventory.command(['bash', '-c', 'echo "resolver fixture" >&2; exit 23'], self.root)
 
-    def test_json_stream_rejects_truncation(self):
-        self.assertEqual(inventory.json_stream('{"a":1}\n{"b":2}'), [{'a': 1}, {'b': 2}])
-        with self.assertRaises(ValueError):
-            inventory.json_stream('{"a":1}\n{"b":')
+    def npm_archive(self, name='example', version='1.0.0', license_type=None):
+        data = io.BytesIO()
+        with tarfile.open(fileobj=data, mode='w:gz') as archive:
+            for filename, contents in [('package/package.json', json.dumps({'name': name, 'version': version}).encode()),
+                                       ('package/LICENSE', b'MIT fixture')]:
+                info = tarfile.TarInfo(filename)
+                info.size = len(contents)
+                if filename.endswith('LICENSE') and license_type:
+                    info.type = license_type
+                archive.addfile(info, io.BytesIO(contents))
+        blob = data.getvalue()
+        entry = {'version': '1.0.0', 'resolved': 'https://registry.npmjs.org/example/-/example-1.0.0.tgz',
+                 'integrity': 'sha512-' + base64.b64encode(hashlib.sha512(blob).digest()).decode()}
+        return blob, entry
+
+    def test_npm_licenses_bind_archive_integrity_and_exact_identity(self):
+        blob, entry = self.npm_archive()
+        self.assertEqual(inventory.npm_archive_licenses(blob, 'example', entry), {'LICENSE': b'MIT fixture'})
+        with self.assertRaisesRegex(ValueError, 'integrity'):
+            inventory.npm_archive_licenses(blob + b'changed', 'example', entry)
+        with self.assertRaisesRegex(ValueError, 'identity'):
+            inventory.npm_archive_licenses(blob, 'different', entry)
+
+    def test_npm_license_link_and_untrusted_registry_are_rejected(self):
+        blob, entry = self.npm_archive(license_type=tarfile.SYMTYPE)
+        with self.assertRaisesRegex(ValueError, 'regular'):
+            inventory.npm_archive_licenses(blob, 'example', entry)
+        for host in ['http://registry.npmjs.org', 'https://registry.npmjs.org.attacker.example']:
+            entry['resolved'] = host + '/example.tgz'
+            with self.assertRaisesRegex(ValueError, 'registry'):
+                inventory.validate_npm_entry('example', entry)
+
+    def test_npm_graph_includes_optional_packages_without_installing_them(self):
+        manifest = {'name': 'qa', 'devDependencies': {'example': '1.0.0'}}
+        _, entry = self.npm_archive()
+        entry['optionalDependencies'] = {'darwin-only': '1.0.0'}
+        optional = dict(entry, resolved='https://registry.npmjs.org/darwin-only/-/darwin-only-1.0.0.tgz')
+        optional.pop('optionalDependencies')
+        lock = {'lockfileVersion': 3, 'packages': {
+            '': manifest, 'node_modules/example': entry, 'node_modules/darwin-only': optional}}
+        graph = inventory.npm_lock_graph(manifest, lock)
+        self.assertEqual(graph['']['dependencies'], {'node_modules/example'})
+        self.assertEqual(graph['node_modules/example']['dependencies'], {'node_modules/darwin-only'})
+        del lock['packages']['node_modules/darwin-only']
+        with self.assertRaisesRegex(ValueError, 'missing'):
+            inventory.npm_lock_graph(manifest, lock)
+
+    def test_npm_manifest_lock_drift_and_external_link_fail_closed(self):
+        manifest = {'name': 'qa', 'devDependencies': {'example': '1.0.0'}}
+        _, entry = self.npm_archive()
+        lock = {'lockfileVersion': 3, 'packages': {
+            '': json.loads(json.dumps(manifest)), 'node_modules/example': entry}}
+        lock['packages']['']['devDependencies']['example'] = '2.0.0'
+        with self.assertRaisesRegex(ValueError, 'mismatch'):
+            inventory.npm_lock_graph(manifest, lock)
+        lock['packages'][''] = manifest
+        entry['link'] = True
+        with self.assertRaisesRegex(ValueError, 'identity'):
+            inventory.npm_lock_graph(manifest, lock)
 
     def test_hosted_identity_requires_public_registry_and_matching_name_version(self):
         package = {'name': 'crypto', 'source': 'hosted', 'version': '3.0.7'}

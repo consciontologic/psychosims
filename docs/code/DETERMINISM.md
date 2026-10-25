@@ -1,42 +1,20 @@
 # Determinism contract
 
-The deterministic core (`packages/psycore/`) guarantees that the same
-**state**, **action**, and **seed** always produce the same outcome and the same
-serialized delta. This is the foundation of:
+The pure core (`packages/psycore/`) guarantees that fixed state, action and seed
+produce the same structured outcome. This supports save replay, mechanical
+solvability tests and consistent gameplay across Dart VM and JavaScript.
 
-- Receipt replay and validation (§3, Phase 3.4).
-- Mechanical solvability bots (§2.2, Phase 4).
-- Cross-platform fairness (x86 vs ARM).
+All nondeterminism is injected: `SeededPrng` provides seeded randomness and
+`InjectedClock` supplies testable time. No wall clock, ambient randomness or
+platform-dependent floating point belongs in pure rules code. There is no online
+server clock or ownership-lease reconciliation in the browser game.
 
-## Nondeterminism seam
+Currency, ratios and percentages use integer/fixed-point arithmetic. Full-width
+PRNG values, derived seeds and overflow-sensitive intermediates use `BigInt` to
+preserve exact 64-bit behavior under JavaScript. JSON boundaries requiring full
+precision use decimal strings rather than rounded JavaScript numbers.
 
-All nondeterminism is injected through two seams:
-
-1. **`SeededPrng`** — a deterministic random source initialized from a seed.
-2. **`InjectedClock`** — a monotonic/authoritative time source; in tests it is
-   frozen or stepped manually.
-
-No wall-clock, no ambient randomness, and no platform-dependent floating point
-may leak into pure rules code.
-
-## Fixed-point economy
-
-All currency, multipliers, ratios, and percentages use integer or fixed-point
-representation. Floating point is banned from `core/` and the economy to ensure
-byte-identical replay across platforms and to prevent rounding from creating or
-destroying value. See `packages/psycore/lib/src/fixed_point.dart`.
-
-## Authoritative time
-
-Time-dependent rules reconcile to server time when online and to the injected
-clock when offline:
-
-- Lease TTLs, cooldowns, recovery windows, daily resets → server-authoritative.
-- Local durations and monotonic timers → device monotonic source only.
-- The device wall clock is treated as untrusted.
-
-## Validation
-
-- `packages/psycore/test/determinism_property_test.dart` asserts identical
-  outcomes across repeated runs.
-- `packages/psycore/test/fixed_point_test.dart` asserts rounding invariants.
+`packages/psycore/test/` covers deterministic outcomes, seed derivation,
+fixed-point rounding and replay. `scripts/web_core_parity.sh` compares the
+committed pre-port trace with current VM and compiled JavaScript execution.
+The [PWA report](../reports/2026-10-23-static-pwa.md) records accepted evidence.

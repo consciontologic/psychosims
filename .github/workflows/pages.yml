@@ -1,0 +1,74 @@
+name: Publish approved PWA to GitHub Pages
+
+# Publication requires a separate human decision; pushes never deploy.
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish this reviewed main revision to psychosim.com'
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main' && inputs.publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # configure-pages reads the existing Pages site through repos.getPages.
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.5'
+          channel: stable
+          cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify and build reviewed static application
+        run: make verify
+      - name: Install browser test dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Verify production PWA in Chromium
+        run: npm run test:browser
+      - name: Upload browser verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: psychosims-browser-evidence
+          path: test-results
+          if-no-files-found: ignore
+      - uses: actions/configure-pages@v5
+        with:
+          # Site/account configuration stays an explicit administrator action.
+          enablement: false
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: app/build/web
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # Configure required reviewers and a main-only deployment rule in Settings.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish approved artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,4 +1,2 @@
-# Heavy native-model tests load/unload llama.cpp backends concurrently.
-# Parallel execution causes intermittent timeouts on resource-constrained
-# runners, so the app test suite runs sequentially.
+# Keep widget and browser lifecycle fixtures deterministic.
 concurrency: 1

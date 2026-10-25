@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 """Resolved CycloneDX inventory, license evidence and read-only drift gate."""
 import argparse
+import base64
 import hashlib
+import io
 import json
 from pathlib import Path
 import re
 import shutil
 import subprocess
 import sys
+import tarfile
 from urllib.parse import quote, unquote, urljoin, urlparse
+from urllib.request import urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 DART_PROJECTS = ('config', 'packages/psychemas', 'packages/psycore', 'tools', 'app')
@@ -27,15 +31,6 @@ def command(args, cwd):
     if process.returncode:
         raise RuntimeError(f'{args[0]} exited {process.returncode}:\n{process.stdout}\n{process.stderr}')
     return process.stdout
-
-
-def json_stream(text):
-    values, decoder = [], json.JSONDecoder()
-    while text.strip():
-        value, end = decoder.raw_decode(text.lstrip())
-        values.append(value)
-        text = text.lstrip()[end:]
-    return values
 
 
 def parse_licenses(output, paths, reviewed=None):
@@ -107,6 +102,126 @@ def validate_hosted_identity(package, lock):
             or description.get('name') != package['name']
             or description.get('url') != 'https://pub.dev'):
         raise ValueError(f'unsupported or mismatched hosted package identity: {package["name"]}')
+
+
+def validate_npm_entry(name, entry):
+    uri = urlparse(entry.get('resolved', ''))
+    if (uri.scheme != 'https' or uri.netloc != 'registry.npmjs.org'
+            or uri.query or uri.fragment or not uri.path.endswith('.tgz')):
+        raise ValueError(f'unreviewed npm registry: {name}')
+    if (entry.get('link') or not isinstance(entry.get('version'), str)
+            or not entry['version'] or not re.fullmatch(r'(?:@[a-z0-9._-]+/)?[a-z0-9._-]+', name)):
+        raise ValueError(f'unsupported npm package identity: {name}')
+    integrity = entry.get('integrity', '')
+    if not re.fullmatch(r'sha512-[A-Za-z0-9+/]{86}==', integrity):
+        raise ValueError(f'npm SHA-512 integrity required: {name}')
+    return base64.b64decode(integrity[7:], validate=True)
+
+
+def npm_archive_licenses(blob, name, entry):
+    expected = validate_npm_entry(name, entry)
+    if hashlib.sha512(blob).digest() != expected:
+        raise ValueError(f'npm archive integrity mismatch: {name}')
+    licenses, metadata = {}, None
+    total_size, total_files = 0, 0
+    with tarfile.open(fileobj=io.BytesIO(blob), mode='r:gz') as archive:
+        for item in archive:
+            total_size += item.size
+            total_files += 1
+            if total_size > 256 * 1024 * 1024 or total_files > 20000:
+                raise ValueError('npm archive exceeds expanded size limit')
+            basename = item.name.removeprefix('package/')
+            selected = item.name == 'package/package.json' or (
+                item.name.startswith('package/') and '/' not in basename and
+                re.fullmatch(r'(LICENSE|LICENCE|COPYING)(\..*)?', basename, re.I))
+            if not selected:
+                continue
+            if not item.isfile() or item.size > 2 * 1024 * 1024:
+                raise ValueError(f'npm license/metadata must be a bounded regular file: {name}')
+            data = archive.extractfile(item).read()
+            if item.name == 'package/package.json':
+                if metadata is not None:
+                    raise ValueError(f'duplicate npm package metadata: {name}')
+                metadata = json.loads(data)
+            else:
+                if basename in licenses:
+                    raise ValueError(f'duplicate npm license: {name}')
+                data.decode('utf-8')
+                licenses[basename] = data
+    if not metadata or metadata.get('name') != name or metadata.get('version') != entry['version']:
+        raise ValueError(f'npm archive identity mismatch: {name}')
+    if not licenses:
+        raise ValueError(f'npm archive license missing: {name}')
+    return licenses
+
+
+def npm_license_files(root, name, entry):
+    expected = validate_npm_entry(name, entry)
+    cache = root / '.tools/npm-license-cache' / expected.hex()
+    if any(path.is_symlink() for path in (cache, cache.parent, cache.parent.parent)):
+        raise ValueError('unsafe npm license cache')
+    cache.mkdir(parents=True, exist_ok=True)
+    archive = cache / 'package.tgz'
+    if archive.is_symlink():
+        raise ValueError('unsafe npm archive cache')
+    if archive.is_file():
+        if archive.stat().st_size > 64 * 1024 * 1024:
+            raise ValueError('npm archive exceeds size limit')
+        blob = archive.read_bytes()
+    else:
+        # Download metadata/notice bytes only; no npm lifecycle code executes.
+        with urlopen(entry['resolved'], timeout=60) as response:
+            if response.geturl() != entry['resolved']:
+                raise ValueError('npm archive redirect requires review')
+            blob = response.read(64 * 1024 * 1024 + 1)
+    if len(blob) > 64 * 1024 * 1024:
+        raise ValueError('npm archive exceeds size limit')
+    contents = npm_archive_licenses(blob, name, entry)
+    archive.write_bytes(blob)
+    paths = []
+    for filename, data in sorted(contents.items()):
+        path = cache / filename
+        if path.is_symlink():
+            raise ValueError('unsafe npm license cache file')
+        path.write_bytes(data)
+        paths.append(path)
+    return paths
+
+
+def npm_lock_graph(manifest, lock):
+    entries = lock.get('packages', {})
+    if lock.get('lockfileVersion') != 3 or '' not in entries:
+        raise ValueError('npm lockfile v3 required')
+    for field in ('name', 'dependencies', 'devDependencies', 'optionalDependencies'):
+        if manifest.get(field) != entries[''].get(field):
+            raise ValueError(f'npm manifest/lock mismatch: {field}')
+    graph = {}
+    for location, entry in entries.items():
+        if location:
+            if (not location.startswith('node_modules/') or '\\' in location
+                    or '..' in location.split('/') or '.' in location.split('/')):
+                raise ValueError('unsupported npm lock path')
+            name = location.rsplit('node_modules/', 1)[-1]
+            validate_npm_entry(name, entry)
+        else:
+            name = manifest['name']
+        graph[location] = {'name': name, 'entry': entry, 'dependencies': set()}
+    for location, package in graph.items():
+        entry = package['entry']
+        dependencies = {**entry.get('dependencies', {}), **entry.get('optionalDependencies', {})}
+        if not location:
+            dependencies.update(entry.get('devDependencies', {}))
+        for name in dependencies:
+            current = location
+            while True:
+                candidate = f'{current}/node_modules/{name}' if current else f'node_modules/{name}'
+                if candidate in graph:
+                    package['dependencies'].add(candidate)
+                    break
+                if not current:
+                    raise ValueError(f'npm locked dependency missing: {location}: {name}')
+                current = current.rsplit('/node_modules/', 1)[0] if '/node_modules/' in current else ''
+    return graph
 
 
 def collect(root):
@@ -181,45 +296,22 @@ def collect(root):
         for package in graph['packages']:
             edges[refs[package['name']]].update(refs[name] for name in package['dependencies'])
 
-    server = root / 'server'
-    for name in ('go.mod', 'go.sum'):
-        inputs[f'server/{name}'] = digest(server / name)
-    command(['go', 'mod', 'verify'], server)
-    modules = json_stream(command(['go', 'list', '-mod=readonly', '-m', '-json', 'all'], server))
-    go_refs = {}
-    for module in modules:
-        if module.get('Replace'):
-            raise ValueError('Go module replacements require explicit inventory support')
-        name, version = module['Path'], module.get('Version', 'workspace')
-        purl = None if module.get('Main') else f'pkg:golang/{quote(name, safe="/")}@{quote(version, safe="")}'
-        ref = purl or f'local:{name}'
-        go_refs[f'{name}@{version}' if not module.get('Main') else name] = ref
-        add(ref, name, version, 'go', license_files(Path(module['Dir']), root / 'LICENSE' if module.get('Main') else None), purl)
-        if 'Sum' in module:
-            components[ref]['properties'].append(property_value('go-module-sum', module['Sum']))
-    for edge in command(['go', 'mod', 'graph'], server).splitlines():
-        left, right = edge.split()
-        if left in go_refs and right in go_refs:
-            edges[go_refs[left]].add(go_refs[right])
-    for name in ('go.mod', 'go.sum'):
-        if digest(server / name) != inputs[f'server/{name}']:
-            raise ValueError('Go module resolution changed reviewed inputs')
-
-    native = root / 'native/third_party/llama.cpp'
-    revision = command(['git', 'rev-parse', 'HEAD'], native).strip()
-    add(f'native:llama.cpp@{revision}', 'llama.cpp', revision, 'git-submodule',
-        license_files(native) + sorted((native / 'licenses').glob('LICENSE*')),
-        f'pkg:generic/llama.cpp@{revision}')
-    inputs['native/third_party/llama.cpp:commit'] = revision
-    inputs['native/third_party/llama.cpp:diff'] = hashlib.sha256(
-        command(['git', 'diff', '--binary', 'HEAD'], native).encode()).hexdigest()
-    for path in sorted((root / 'native/patches').glob('*.patch')):
-        inputs[str(path.relative_to(root))] = digest(path)
-    for path in sorted((root / 'app/assets/licenses').iterdir()):
-        if not path.is_file():
-            raise ValueError('unexpected model license directory entry')
-        add(f'model-license:{path.name}', path.name, digest(path), 'bundled-model-license', [path])
-        inputs[str(path.relative_to(root))] = digest(path)
+    for filename in ('package.json', 'package-lock.json'):
+        inputs[filename] = digest(root / filename)
+    npm_graph = npm_lock_graph(json.loads((root / 'package.json').read_text()),
+                               json.loads((root / 'package-lock.json').read_text()))
+    npm_refs = {}
+    for location, package in npm_graph.items():
+        name, entry = package['name'], package['entry']
+        version = entry.get('version', 'workspace')
+        purl = f'pkg:npm/{quote(name, safe="/")}@{quote(version, safe="")}' if location else None
+        ref = purl or f'local:{name}@{version}'
+        files = npm_license_files(root, name, entry) if location else [root / 'LICENSE']
+        npm_refs[location] = add(ref, name, version, 'npm' if location else 'workspace', files, purl)
+        if location:
+            components[ref]['properties'].append(property_value('npm-integrity', entry['integrity']))
+    for location, package in npm_graph.items():
+        edges[npm_refs[location]].update(npm_refs[name] for name in package['dependencies'])
 
     classifier = root / '.tools/bin/identify_license'
     if not classifier.is_file():
@@ -240,8 +332,6 @@ def collect(root):
     evidence = parse_licenses(output, paths, reviewed)
     for ref, files in licenses.items():
         ids = sorted({identifier for path in files for identifier in evidence[path.resolve()]['ids']})
-        if ref.startswith('model-license:') and not set(ids) <= {'MIT', 'Apache-2.0'}:
-            raise ValueError(f'base model license violates the permissive-only decision: {ref}')
         components[ref]['licenses'] = [{'license': {'id': name}} for name in ids]
         for path in sorted(files):
             value = {'file': path.name, **evidence[path.resolve()]}
@@ -250,8 +340,7 @@ def collect(root):
     properties = [property_value(f'input:{path}', sha) for path, sha in sorted(inputs.items())]
     properties.extend([
         property_value('license-classifier', 'google/licenseclassifier@3cfbab2d0e0d; threshold=0.9'),
-        property_value('coverage', 'Resolved Dart packages including dev/SDK packages, Go modules, pinned llama.cpp, bundled model license texts. Platform binaries and bundled SDK internals require platform build inventories.'),
-        property_value('go-toolchain', command(['go', 'env', 'GOVERSION'], server).strip()),
+        property_value('coverage', 'Resolved Dart packages including dev/SDK packages and all locked npm QA dependencies, including optional platform packages. No game backend, native inference or bundled model dependencies. Flutter engine internals and downloaded browser test binaries are not enumerated by package-level metadata.'),
     ])
     return {'bomFormat': 'CycloneDX', 'specVersion': '1.6', 'version': 1,
             'metadata': {'properties': properties},
@@ -269,7 +358,7 @@ def main():
         write_or_check(target, document, options.write)
         print(f'{"Updated" if options.write else "Verified"} {len(document["components"])} components: {target.relative_to(ROOT)}')
         return 0
-    except (OSError, ValueError, KeyError, RuntimeError, subprocess.TimeoutExpired) as error:
+    except (OSError, ValueError, KeyError, RuntimeError, tarfile.TarError, subprocess.TimeoutExpired) as error:
         print(f'Dependency gate failed: {error}', file=sys.stderr)
         return 1
 

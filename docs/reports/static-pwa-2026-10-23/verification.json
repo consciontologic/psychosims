@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "run_id": "pwa-cleanup-20261023",
+  "build_id": "e8b8a522cc8d77fd3ff1d7d9",
+  "cached_resources": 34,
+  "cached_bytes": 26315996,
+  "checks": {
+    "dart_flutter": 291,
+    "service_worker": 8,
+    "python": 53,
+    "secret_scanner_self_tests": 3,
+    "analyzers": 5,
+    "formatted_files": 155,
+    "consecutive_browser_passes": 11,
+    "dependency_unit_tests": 17,
+    "security_acceptance_tests": 5,
+    "dependency_components": 75,
+    "advisory_package_versions": 66,
+    "known_vulnerabilities": 0,
+    "retained_markdown_links_missing": 0
+  },
+  "browser_evidence": "results.json",
+  "production_archive": "app/build/psychosims-pwa-review.zip",
+  "archive_bytes": 10070761,
+  "archive_sha256": "9ecdd20a0cade139a0ffc34107de7b52fdfb14bd57c5b6821f1e210fc37075dc",
+  "logs": {
+    "full_verify": "/tmp/agent-runs/pwa-cleanup-final-verify--20261023T113248Z-318259.log",
+    "browser": "/tmp/agent-runs/pwa-editor-ready-final--20261023T114504Z-367856.log",
+    "secrets": "/tmp/agent-runs/pwa-cleanup-final-secret-handoff--20261023T114531Z-369408.log",
+    "independent_review_tests": "/tmp/agent-runs/reviewer-accessibility-reconnect--20261023T111122Z-250240.log",
+    "browser_repeatability": "/tmp/agent-runs/pwa-editor-ready-ten--20261023T114317Z-359711.log",
+    "independent_cleanup_review_tests": "/tmp/agent-runs/reviewer-cleanup-green--20261023T113200Z-314847.log",
+    "dependency_gate": "/tmp/agent-runs/static-dependencies-gate--20261023T112913Z-302304.log",
+    "docs_links": "/tmp/agent-runs/pwa-cleanup-doc-links--20261023T113747Z-338903.log"
+  },
+  "external_publication": "Not performed; domain/account setup and deployment require owner approval",
+  "previous_run_id": "pwa-20261023",
+  "browser_repeatability": "repeatability.json",
+  "local_preview": {
+    "url": "http://localhost:18763/",
+    "command": "make web.serve",
+    "mode": "production build; no backend"
+  },
+  "retirement": {
+    "bytes_removed": 10689661292,
+    "explicit_paths_removed": 26,
+    "obsolete_docs_removed": 39,
+    "current_core_and_app_tests_preserved": true
+  }
+}

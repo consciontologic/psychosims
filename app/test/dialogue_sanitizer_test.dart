@@ -5,13 +5,18 @@ void main() {
   test('clue matching and removal agree on case', () {
     const sanitizer = DialogueSanitizer();
     expect(
-        sanitizer
-            .hasRequiredClueTokens('A feeling. [FERVE-AXINE]', ['ferve-axine']),
-        isTrue);
+      sanitizer.hasRequiredClueTokens('A feeling. [FERVE-AXINE]', [
+        'ferve-axine',
+      ]),
+      isTrue,
+    );
     expect(
-        sanitizer
-            .sanitize('A feeling. [FERVE-AXINE]', clueTokens: ['ferve-axine']),
-        'A feeling.');
+      sanitizer.sanitize(
+        'A feeling. [FERVE-AXINE]',
+        clueTokens: ['ferve-axine'],
+      ),
+      'A feeling.',
+    );
   });
 
   group('DialogueSanitizer', () {
@@ -68,10 +73,9 @@ void main() {
         isTrue,
       );
       expect(
-        sanitizer.hasRequiredClueTokens(
-          'I just feel tired.',
-          const ['ferve-axine'],
-        ),
+        sanitizer.hasRequiredClueTokens('I just feel tired.', const [
+          'ferve-axine',
+        ]),
         isFalse,
       );
     });

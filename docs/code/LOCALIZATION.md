@@ -1,35 +1,14 @@
-# Localization & string discipline
+# Localization and copy
 
-All user-facing strings are externalized; no hard-coded copy lives in UI code.
+Current player-facing copy is centralized in
+[`app/lib/shared/l10n.dart`](../../app/lib/shared/l10n.dart); original patient
+content remains in the bundled manifest. The app currently ships English copy.
+Do not claim translated locales or generated ARB integration that is absent.
 
-## String ownership
+Core values and action identifiers remain locale-independent. Resolve labels in
+the UI and preserve stable serialized values for saves/replay. New copy should
+follow the existing fictional-game terminology, avoid real diagnostic advice,
+and remain readable with text scaling and narrow layouts.
 
-- Copy lives in ARB files under `app/lib/l10n/` (created when the first feature
-  lands).
-- The presentation layer resolves keys to localized strings using `AppLocalizations`.
-- The deterministic `core/` emits stable tokens/keys only; it never contains
-  localized prose.
-
-## Locale-aware formatting
-
-- Numbers, currencies, dates, and pluralization use `intl` helpers keyed to the
-  config-selected locale.
-- RTL readiness is a shared convention: start/end alignment, bidirectional text
-  support, and mirrored layouts where required.
-
-## Keys
-
-Keys are lower-case dot-separated paths:
-
-- `manifests.p001.name`
-- `economy.currency_symbol`
-- `errors.lifecycle_invalid_transition`
-
-## Hard-coded-string gate
-
-CI runs `scripts/check_hardcoded_strings.sh` to catch planted hard-coded strings.
-Allowed exceptions:
-
-- Empty strings.
-- Developer-only `assert` / `debugPrint` messages.
-- URLs and package names that are not user-facing.
+`scripts/check_hardcoded_strings.sh` runs in the current source gate. Changes to
+copy ownership must update its checks rather than bypass them.

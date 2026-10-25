@@ -147,18 +147,18 @@ if [[ "${{FIXTURE_FAIL_PACKAGE:-}}" == "${{PWD##*/}}" ]]; then exit 29; fi''')
         self.assertIn('executable', result.stderr)
         self.assertEqual(self.git('config', '--local', '--get', 'core.hooksPath', check=False).returncode, 1)
 
-    def test_hook_runs_contracts_from_root_and_propagates_failure(self):
+    def test_pre_commit_hook_does_not_run_tests(self):
         self.tool('make', 'printf "%s|%s\\n" "$PWD" "$*" > "$FIXTURE_ARGS"; exit 31')
         result = self.run_script('.githooks/pre-commit')
-        self.assertEqual(result.returncode, 31, result.stdout + result.stderr)
-        self.assertEqual((self.root / 'args').read_text().strip(), f'{self.root}|verify.contracts')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertFalse((self.root / 'args').exists())
 
-    def test_git_invokes_the_installed_hook_and_propagates_failure(self):
+    def test_git_commit_hook_does_not_run_tests(self):
         self.tool('make', 'printf "%s|%s\\n" "$PWD" "$*" > "$FIXTURE_ARGS"; exit 31')
         self.assert_ok(self.run_script('scripts/install_git_hooks.sh'))
         result = self.git('hook', 'run', 'pre-commit', check=False)
-        self.assertEqual(result.returncode, 31, result.stdout + result.stderr)
-        self.assertEqual((self.root / 'args').read_text().strip(), f'{self.root}|verify.contracts')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertFalse((self.root / 'args').exists())
 
     def test_configuration_write_failure_is_propagated(self):
         lock = self.root / '.git/config.lock'
@@ -199,6 +199,14 @@ if [[ "${{FIXTURE_FAIL_PACKAGE:-}}" == "${{PWD##*/}}" ]]; then exit 29; fi''')
         self.assertEqual((self.root / '.git/config').read_bytes(), before)
         self.assertFalse((self.root / 'args').exists())
 
+    def test_static_bootstrap_never_invokes_server_or_native_tools(self):
+        self.fake_sdks()
+        (self.root / 'server/go.mod').write_text('module historical/server\n')
+        for tool in ('go', 'clang', 'cmake'):
+            self.tool(tool, 'echo "retired tool must not run" >&2; exit 47')
+        self.assert_ok(self.run_script('scripts/bootstrap.sh'))
+        self.assertEqual(self.git('config', '--local', '--get', 'core.hooksPath').stdout.strip(), '.githooks')
+
     def test_failed_dependency_prevents_hook_installation(self):
         self.fake_sdks()
         self.env['FIXTURE_FAIL_PACKAGE'] = 'tools'
@@ -220,13 +228,11 @@ if [[ "${{FIXTURE_FAIL_PACKAGE:-}}" == "${{PWD##*/}}" ]]; then exit 29; fi''')
         self.assertEqual(result.returncode, 64, result.stdout + result.stderr)
         self.assertFalse((self.root / '.tools').exists())
 
-    def test_environment_example_uses_real_config_names_without_values(self):
-        example = (REPO_ROOT / '.env.example').read_text()
-        names = re.findall(r'^([A-Z][A-Z0-9_]*)=(.*)$', example, re.MULTILINE)
-        source = (REPO_ROOT / 'server/internal/config/config.go').read_text()
-        self.assertGreater(len(names), 4)
-        for name, value in names:
-            self.assertIn(f'"{name}"', source)
-            self.assertEqual(value, '')
-        self.assertIn('PSY_TOKEN_SECRET_FILE', dict(names))
-        self.assertIn('not automatically', example)
+    def test_static_bootstrap_needs_no_backend_configuration(self):
+        self.fake_sdks()
+        shutil.rmtree(self.root / 'server')
+        self.assertFalse((self.root / '.env.example').exists())
+        self.assert_ok(self.run_script('scripts/bootstrap.sh'))
+        self.assertFalse((self.root / 'server').exists())
+        self.assertFalse((self.root / '.env.example').exists())
+        self.assertEqual(self.git('config', '--local', '--get', 'core.hooksPath').stdout.strip(), '.githooks')

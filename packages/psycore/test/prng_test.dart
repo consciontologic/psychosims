@@ -5,6 +5,32 @@ void main() {
   group('SeededPrng', () {
     const profile = RulesetProfile.v0_1_0;
 
+    test('rejects out-of-range seeds without truncation', () {
+      for (final seed in ['18446744073709551616', '-9223372036854775809']) {
+        expect(() => SeededPrng(seed, profile), throwsArgumentError);
+        expect(
+            () => SeededPrng(BigInt.parse(seed), profile), throwsArgumentError);
+      }
+      expect(SeededPrng('18446744073709551615', profile).nextUint64(),
+          SeededPrng(-1, profile).nextUint64());
+    });
+
+    test('full-width decimal seeds preserve signed VM vectors exactly', () {
+      final prng = SeededPrng('9223372036854775807', profile);
+      expect([
+        for (var i = 0; i < 5; i++) prng.nextUint64().toRadixString(16)
+      ], [
+        '2a67d7552e039ea7',
+        '1a0b48cd43449fdf',
+        '2597058fc3b893d0',
+        '1affdfd807bb0905',
+        '3f903546166cae3c'
+      ]);
+      final minimum = SeededPrng('-9223372036854775808', profile);
+      expect(minimum.nextUint64().toRadixString(16), '8071e7d6d65b19b');
+      expect(() => prng.nextInt(4294967297), throwsArgumentError);
+    });
+
     test('produces the specified SplitMix64 sequence for seed 0', () {
       final prng = SeededPrng(0, profile);
       const expected = <String>[

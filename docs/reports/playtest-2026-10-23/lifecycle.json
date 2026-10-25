@@ -1,0 +1,790 @@
+{
+  "lifecycle": [
+    {
+      "event": "document",
+      "documentId": "fd5f738d-720d-4fd9-8868-2aa7f3f6be17",
+      "url": "http://127.0.0.1:31395/",
+      "online": true,
+      "navigation": "navigate",
+      "historyState": null
+    },
+    {
+      "event": "pageshow",
+      "documentId": "fd5f738d-720d-4fd9-8868-2aa7f3f6be17",
+      "url": "http://127.0.0.1:31395/",
+      "online": true,
+      "navigation": "navigate",
+      "historyState": null
+    },
+    {
+      "event": "replaceState",
+      "documentId": "fd5f738d-720d-4fd9-8868-2aa7f3f6be17",
+      "url": "http://127.0.0.1:31395/",
+      "online": true,
+      "navigation": "navigate",
+      "historyState": {
+        "serialCount": 0,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "fd5f738d-720d-4fd9-8868-2aa7f3f6be17",
+      "url": "http://127.0.0.1:31395/",
+      "online": true,
+      "navigation": "navigate",
+      "historyState": {
+        "serialCount": 0,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "fd5f738d-720d-4fd9-8868-2aa7f3f6be17",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": true,
+      "navigation": "navigate",
+      "historyState": {
+        "serialCount": 1,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "fd5f738d-720d-4fd9-8868-2aa7f3f6be17",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "navigation": "navigate",
+      "historyState": {
+        "serialCount": 2,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "5b6c6cec-cb78-4606-af7c-a5ae7f3f4e8f",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 2,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "5b6c6cec-cb78-4606-af7c-a5ae7f3f4e8f",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 2,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "5b6c6cec-cb78-4606-af7c-a5ae7f3f4e8f",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 2,
+        "state": null
+      }
+    },
+    {
+      "event": "popstate",
+      "documentId": "5b6c6cec-cb78-4606-af7c-a5ae7f3f4e8f",
+      "url": "http://127.0.0.1:31395/#/",
+      "online": false,
+      "navigation": "reload",
+      "historyState": null
+    },
+    {
+      "event": "replaceState",
+      "documentId": "5b6c6cec-cb78-4606-af7c-a5ae7f3f4e8f",
+      "url": "http://127.0.0.1:31395/",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 3,
+        "state": null
+      }
+    },
+    {
+      "event": "hashchange",
+      "documentId": "5b6c6cec-cb78-4606-af7c-a5ae7f3f4e8f",
+      "url": "http://127.0.0.1:31395/",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 3,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "c0a00dd0-8c00-4231-b328-cb2fad56d562",
+      "url": "http://127.0.0.1:31395/",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 3,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "c0a00dd0-8c00-4231-b328-cb2fad56d562",
+      "url": "http://127.0.0.1:31395/",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 3,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "c0a00dd0-8c00-4231-b328-cb2fad56d562",
+      "url": "http://127.0.0.1:31395/",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 3,
+        "state": null
+      }
+    },
+    {
+      "event": "popstate",
+      "documentId": "c0a00dd0-8c00-4231-b328-cb2fad56d562",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": false,
+      "navigation": "reload",
+      "historyState": null
+    },
+    {
+      "event": "replaceState",
+      "documentId": "c0a00dd0-8c00-4231-b328-cb2fad56d562",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 4,
+        "state": null
+      }
+    },
+    {
+      "event": "hashchange",
+      "documentId": "c0a00dd0-8c00-4231-b328-cb2fad56d562",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 4,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "a3a716a5-d418-43ad-8a15-38868a2ea787",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 4,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "a3a716a5-d418-43ad-8a15-38868a2ea787",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 4,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "a3a716a5-d418-43ad-8a15-38868a2ea787",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 4,
+        "state": null
+      }
+    },
+    {
+      "event": "popstate",
+      "documentId": "a3a716a5-d418-43ad-8a15-38868a2ea787",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": null
+    },
+    {
+      "event": "replaceState",
+      "documentId": "a3a716a5-d418-43ad-8a15-38868a2ea787",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 5,
+        "state": null
+      }
+    },
+    {
+      "event": "hashchange",
+      "documentId": "a3a716a5-d418-43ad-8a15-38868a2ea787",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 5,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "875a0572-77d9-4f64-82de-ee8a2a2ed9fc",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 5,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "875a0572-77d9-4f64-82de-ee8a2a2ed9fc",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 5,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "875a0572-77d9-4f64-82de-ee8a2a2ed9fc",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 5,
+        "state": null
+      }
+    },
+    {
+      "event": "popstate",
+      "documentId": "875a0572-77d9-4f64-82de-ee8a2a2ed9fc",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": null
+    },
+    {
+      "event": "replaceState",
+      "documentId": "875a0572-77d9-4f64-82de-ee8a2a2ed9fc",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 6,
+        "state": null
+      }
+    },
+    {
+      "event": "hashchange",
+      "documentId": "875a0572-77d9-4f64-82de-ee8a2a2ed9fc",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 6,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "32a2d249-cc61-47bf-bcfc-e8a5e961a4b6",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 6,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "32a2d249-cc61-47bf-bcfc-e8a5e961a4b6",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 6,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "32a2d249-cc61-47bf-bcfc-e8a5e961a4b6",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 6,
+        "state": null
+      }
+    },
+    {
+      "event": "popstate",
+      "documentId": "32a2d249-cc61-47bf-bcfc-e8a5e961a4b6",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": false,
+      "navigation": "reload",
+      "historyState": null
+    },
+    {
+      "event": "replaceState",
+      "documentId": "32a2d249-cc61-47bf-bcfc-e8a5e961a4b6",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      }
+    },
+    {
+      "event": "hashchange",
+      "documentId": "32a2d249-cc61-47bf-bcfc-e8a5e961a4b6",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      }
+    },
+    {
+      "event": "popstate",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      }
+    },
+    {
+      "event": "hashchange",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      }
+    },
+    {
+      "event": "popstate",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      }
+    },
+    {
+      "event": "hashchange",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "ad2e04ca-0bfe-493d-8afd-8d478aa18dd6",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "ad2e04ca-0bfe-493d-8afd-8d478aa18dd6",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "ad2e04ca-0bfe-493d-8afd-8d478aa18dd6",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "ad2e04ca-0bfe-493d-8afd-8d478aa18dd6",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 9,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "ad2e04ca-0bfe-493d-8afd-8d478aa18dd6",
+      "url": "http://127.0.0.1:31395/",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 10,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "ad2e04ca-0bfe-493d-8afd-8d478aa18dd6",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 11,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "ad2e04ca-0bfe-493d-8afd-8d478aa18dd6",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 12,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "ad2e04ca-0bfe-493d-8afd-8d478aa18dd6",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 13,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "1af08637-040a-4154-a394-41f484b4ec46",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 13,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "1af08637-040a-4154-a394-41f484b4ec46",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 13,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "1af08637-040a-4154-a394-41f484b4ec46",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 13,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "1af08637-040a-4154-a394-41f484b4ec46",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 14,
+        "state": null
+      }
+    },
+    {
+      "event": "document",
+      "documentId": "39c07880-36df-40f9-a1c5-0035c88389dd",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 14,
+        "state": null
+      }
+    },
+    {
+      "event": "pageshow",
+      "documentId": "39c07880-36df-40f9-a1c5-0035c88389dd",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 14,
+        "state": null
+      }
+    },
+    {
+      "event": "replaceState",
+      "documentId": "39c07880-36df-40f9-a1c5-0035c88389dd",
+      "url": "http://127.0.0.1:31395/#/history",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 14,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "39c07880-36df-40f9-a1c5-0035c88389dd",
+      "url": "http://127.0.0.1:31395/",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 15,
+        "state": null
+      }
+    },
+    {
+      "event": "pushState",
+      "documentId": "39c07880-36df-40f9-a1c5-0035c88389dd",
+      "url": "http://127.0.0.1:31395/#/loadout",
+      "online": false,
+      "navigation": "reload",
+      "historyState": {
+        "serialCount": 16,
+        "state": null
+      }
+    }
+  ],
+  "readiness": [
+    {
+      "step": "editor activated",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": true,
+      "pwaOnline": true,
+      "keyPresent": false,
+      "keyAbsent": true,
+      "selectedModel": "Patient model",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      },
+      "practice": "true",
+      "activeTab": "Settings"
+    },
+    {
+      "step": "after key use",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": true,
+      "pwaOnline": true,
+      "keyPresent": true,
+      "keyAbsent": false,
+      "selectedModel": "Patient model",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      },
+      "practice": "true",
+      "activeTab": "Settings"
+    },
+    {
+      "step": "after model selection",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": true,
+      "pwaOnline": true,
+      "keyPresent": true,
+      "keyAbsent": false,
+      "selectedModel": "Patient model\nBrowser test patient",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      },
+      "practice": "true",
+      "activeTab": "Settings"
+    },
+    {
+      "step": "AI configured",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": true,
+      "pwaOnline": true,
+      "keyPresent": true,
+      "keyAbsent": false,
+      "selectedModel": "Patient model\nBrowser test patient",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      },
+      "practice": "false",
+      "activeTab": "Settings"
+    },
+    {
+      "step": "before back",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "pwaOnline": true,
+      "keyPresent": false,
+      "keyAbsent": false,
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      },
+      "practice": "false",
+      "validateDisabled": null,
+      "activeTab": "Session"
+    },
+    {
+      "step": "after back",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/settings",
+      "online": true,
+      "pwaOnline": true,
+      "keyPresent": true,
+      "keyAbsent": false,
+      "selectedModel": "Patient model\nBrowser test patient",
+      "historyState": {
+        "serialCount": 7,
+        "state": null
+      },
+      "practice": "false",
+      "activeTab": "Settings"
+    },
+    {
+      "step": "after forward",
+      "documentId": "b51af854-60cd-456c-be99-403e22de5010",
+      "url": "http://127.0.0.1:31395/#/session",
+      "online": true,
+      "pwaOnline": true,
+      "keyPresent": true,
+      "keyAbsent": false,
+      "historyState": {
+        "serialCount": 8,
+        "state": null
+      },
+      "practice": "false",
+      "validateDisabled": null,
+      "activeTab": "Session"
+    }
+  ]
+}

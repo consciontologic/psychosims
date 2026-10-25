@@ -10,8 +10,8 @@ import '../report.dart';
 /// Demonstrates the durable-save *schema* discipline that survives a restart:
 /// the atomic-metric career profile (snapshot + compacted event tail), and
 /// byte-stable round-trips of the receipt and session-start-state through the
-/// one canonical serializer. (The atomic write-temp→fsync→rename itself is the
-/// app-level 0.9 storage seam; here we exercise the pure, testable schema half.)
+/// one canonical serializer. This is pure schema evidence, separate from the
+/// browser's atomic local save, which includes transcripts and game state.
 void main() {
   final r = MarkdownReport(
     'Showcase 9 — Offline Persistence & Save Integrity (2.9)',
@@ -75,10 +75,9 @@ void main() {
   final identical =
       _eq(buildReceipt().toCanonicalBytes(), buildReceipt().toCanonicalBytes());
   r.bullet('${MarkdownReport.ok(identical)} two receipts built from identical '
-      'inputs encode to byte-identical canonical bytes (checksum/signature-ready '
-      'for Phase 3.3)');
+      'inputs encode to byte-identical canonical bytes');
   r.bullet('receipt carries its own idempotency key + correlation id — the '
-      'exactly-once submission contract precursor (Phase 3.4)');
+      'shared schema retains these identifiers without requiring a server');
   r.endBullets();
 
   // 3. Session start-state round-trip.
@@ -100,8 +99,9 @@ void main() {
       'controllers + seed round-trip byte-identically — the receipt-forgery '
       'guard (no play may reference an un-equipped card) is preserved on reload');
   r.endBullets();
-  r.callout('No raw dialogue transcript is ever persisted (0.6) — the durable '
-      'save is structured, checksum-guarded deltas only, even offline.');
+  r.callout('This showcase covers shared structured schemas only. The PWA also '
+      'persists transcripts, partial dialogue and game state in its local save; '
+      'API credentials remain in tab memory.');
 
   r.writeTo('$showcaseOutputDir/phase2/09-persistence.md');
 }

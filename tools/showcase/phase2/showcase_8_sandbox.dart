@@ -142,8 +142,8 @@ void main() {
   r.endBullets();
   r.callout(
       'This is the same pure core the app ships, driven with no inference, '
-      'no Flutter, and no model binary — the reusable solvability check Phase 4.3 '
-      'runs per generated manifest.');
+      'no Flutter, and no model binary — the reusable solvability check for '
+      'bundled content.');
 
   r.writeTo('$showcaseOutputDir/phase2/08-sandbox.md');
 }

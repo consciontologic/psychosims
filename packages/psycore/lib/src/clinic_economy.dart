@@ -16,13 +16,13 @@ class ClinicEconomyConfig {
     this.officeResaleMultiplierMillis = 700,
     this.monthlyOverheadMicros = 1000000,
     // Progressive brackets as (upper_limit_micros, rate_millis); each band is
-    // taxed only at its own rate. The final bracket uses the int-max ceiling so
+    // taxed only at its own rate. The final bracket uses -1 as no upper limit so
     // it is open-ended — income above the top threshold is still taxed at the
     // top rate rather than escaping tax entirely.
     this.taxBrackets = const [
       (20000000, 0),
       (100000000, 100),
-      (9223372036854775807, 200),
+      (-1, 200),
     ],
     this.auditProbabilityMillis = 50,
     this.auditOvermedicationPenalty = 10,
@@ -111,18 +111,24 @@ class ClinicEconomy {
   /// Brackets are (upper_limit_micros, rate_millis); income in each band is
   /// taxed only at that band's rate.
   int taxOwedMicros(int taxableIncomeMicros) {
-    var tax = 0;
+    var tax = BigInt.zero;
     var previousLimit = 0;
     for (final bracket in config.taxBrackets) {
-      final limit = bracket.$1;
+      final limit = bracket.$1 == -1 ? taxableIncomeMicros : bracket.$1;
       final rate = bracket.$2;
       if (taxableIncomeMicros <= previousLimit) break;
       final taxable =
           (taxableIncomeMicros - previousLimit).clamp(0, limit - previousLimit);
-      tax += (taxable * rate) ~/ 1000;
+      // Multiplication can exceed JavaScript's exact integer range even when
+      // both the input income and final tax fit. Divide before converting back.
+      tax += (BigInt.from(taxable) * BigInt.from(rate)) ~/ BigInt.from(1000);
       previousLimit = limit;
     }
-    return tax;
+    final result = tax.toInt();
+    if (BigInt.from(result) != tax) {
+      throw StateError('Tax exceeds the platform exact integer range.');
+    }
+    return result;
   }
 
   /// Deterministic audit outcome.

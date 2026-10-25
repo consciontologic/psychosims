@@ -1,17 +1,14 @@
-# 🎚️ C-4 — Multi-currency balance specification
+# Balance specification
 
-> **Closes register item C-4** ([ROADMAP](../planning/ROADMAP.md#-conceptual-corrections-register)).
-> The §9 entry gate and the **single authoritative owner of every constant,
-> percentage, and formula** in the design. Skeleton now; tuned in the sandbox
-> (Phase 2.8). Section refs (§N) → [`STARTER.md`](../design/STARTER.md).
+This document retains the original numeric design values and pure-core tuning
+baseline. Actual gameplay consumes typed source configuration; do not duplicate
+balance constants in UI code. [GAME-RULES](GAME-RULES.md) owns rule shapes.
 
-- **Status:** skeleton (currencies + sources/sinks enumerated; constants are placeholders)
-- **Owner:** @maintainer
-- **Consumed by:** every gameplay phase; loaded through the central config authority (Principle 1); tuned in Phase 2.8.
-
-> ⚠️ **Every number here is a placeholder** owned by this spec and tuned in the
-> balance sandbox (§3). No other doc or module may hard-code these — they load
-> from config (Principle 1). This is the one place they live.
+The first tables include **design placeholders and unimplemented systems**.
+Purchases, creator royalties, hiring and a shared online economy are not browser
+features. The tuned table records historical core sandbox results, not a new
+balance run or a claim that every core capability has a current UI screen.
+No numeric value is changed by the native/server documentation cleanup.
 
 ## The currencies
 
@@ -19,55 +16,75 @@
 |---|---|---|---|
 | **Clinic currency (cash)** | session fees, cures | rent/overhead, taxes, study points, emergency consultations, offices | no (earned) |
 | **Study points** | play, daily login, milestones, sabbatical | core field training tree | purchasable with **in-game currency only** |
-| **Subspecialty points** | high-tier play, achievements | advanced cross-disciplinary fields | small play-earned + **hard-capped** real-money top-up (§19) |
+| **Subspecialty points** | high-tier play, achievements | advanced cross-disciplinary fields | small play-earned + **hard-capped** real-money top-up |
 | **XP** | sessions (difficulty-scaled), milestones | leveling (role/case-tier unlocks) | no |
 | **Reputation** | good outcomes (event-sourced, recency-weighted) | decays; floored by credentials | no |
 | **Prestige** | endgame milestones, creator royalties | status/legacy unlocks | no |
-| **Royalties** | validated fee/cure events on authored cases (§21) | paid out in clinic currency + prestige | no (payout, not purchase) |
+| **Royalties** | validated fee/cure events on authored cases | paid out in clinic currency + prestige | no (payout, not purchase) |
 
 Every currency must have **both** a modelled source and a modelled sink. The
-sandbox (Phase 2.8) runs sources-vs-sinks, inflation, and **dead-currency**
-checks before any live tuning ships (§9).
+sandbox runs sources-vs-sinks, inflation, and **dead-currency**
+checks before any live tuning ships.
 
 ## Placeholder constants (the single registry)
 
 Grouped as they load into config. All values below are **illustrative** and owned here.
 
 ### Progression
-- Difficulty→XP curve: harder cases worth proportionally more; trivial-grind diminishing returns (§9).
+- Difficulty→XP curve: harder cases worth proportionally more; trivial-grind diminishing returns.
 - Study / subspecialty point earn rates + field-tree costs (foundational cheap → advanced expensive).
-- Reputation: recency-weighting half-life; credential-based floor formula; event-shock magnitudes (§10).
+- Reputation: recency-weighting half-life; credential-based floor formula; event-shock magnitudes.
 
 ### Session / cards
-- Active Card Slots per loadout: **5–6** (pick one at tuning) (§11).
-- Relatable trust bump: **+2..+5** (§16); Postponing freeze: **1–2 turns**; Postponing multi-session decay rate.
-- Manipulative success/partial/derangement thresholds keyed to trust state (§16).
+- Active Card Slots per loadout: **5–6** (pick one at tuning).
+- Relatable trust bump: **+2..+5**; Postponing freeze: **1–2 turns**; Postponing multi-session decay rate.
+- Manipulative success/partial/derangement thresholds keyed to trust state.
 
 ### Routing / ownership
-- Chaos "Misfortune Roll": **~5%**, tenure-gated (does not fire below the new-player threshold) (§13).
-- Doubt-driven transfer: base **~2–4%/session**, escalating under sustained pressure, hard-capped (§12).
-- Social-chronic bias thresholds (early-career level; reputation recovery floor) (§13, §17).
-- Referral reward: **+1 XP** for ethical referral (§13).
+- Chaos "Misfortune Roll": **~5%**, tenure-gated (does not fire below the new-player threshold).
+- Doubt-driven transfer: base **~2–4%/session**, escalating under sustained pressure, hard-capped.
+- Social-chronic bias thresholds (early-career level; reputation recovery floor).
+- Referral reward: **+1 XP** for ethical referral.
 
 ### Economy / recovery
-- Discount Practice XP penalty: **50%**; reputation critical threshold that triggers it (§14).
-- Academic Sabbatical: `reputation_floor = total_study_fields × base_competency_constant` (§14).
-- Trauma multiplier: **hard cap**, chain-decay rate, provenance carve-out window (§17).
+- Discount Practice XP penalty: **50%**; reputation critical threshold that triggers it.
+- Academic Sabbatical: `reputation_floor = total_study_fields × base_competency_constant`.
+- Trauma multiplier: **hard cap**, chain-decay rate, provenance carve-out window.
 
 ### Institutional (endgame)
-- Employer yield: **+25%** illustrative, diminishing per associate, firm-wide hard cap (§24).
-- Employee skim rate + **2.0×** study multiplier (§24).
-- Hire slots: start 1, scale to cap **6**; associate capability ceiling **+5** levels (§24).
-- Clinic buy gate (capital + min level); structural-collapse threshold **<20%** (§22, §24).
+- Employer yield: **+25%** illustrative, diminishing per associate, firm-wide hard cap.
+- Employee skim rate + **2.0×** study multiplier.
+- Hire slots: start 1, scale to cap **6**; associate capability ceiling **+5** levels.
+- Clinic buy gate (capital + min level); structural-collapse threshold **<20%**.
 
-### Offline / server
-- Ownership lease TTL: **48–72 h** (§3).
-- `ruleset_version` sunset: **90 days** after supersession (§3).
-- Per-tier receipt plausibility bounds (XP/currency/reputation caps per session) (§3).
+## Current browser sessions: ruleset 0.2.0
 
-## Tuned values (Phase 2.8)
+New games close successfully at turns 12–16 only when progress is 100, trust
+is at least 50, agitation is at most 35, and the session has used Validate
+plus Open question or Reframe. Progress advances by nine points (clamped at
+100). A session still missing its goals ends for review at turn 16; agitation
+95 still causes an earlier walkout. A review ending grants no success rewards.
 
-The 2.8 balance sandbox ran the deterministic core without inference on the
+Validation builds rapport and eases tension; boundaries now reduce agitation
+even with mismatched delivery, at a small trust cost. Reframing retains its
+risk before trust is established. The new effect centers by aligned/partial/
+mismatched fit are:
+
+| Approach | Trust | Agitation | Resistance |
+|---|---|---|---|
+| Validate | +6 / +4 / 0, ±1 | −3 / −2 / 0 | unchanged |
+| Set boundary | 0 / −1 / −2 | −12 / −9 / −6, ±1 | unchanged |
+| Open question | +4 / +2 / 0, ±1 | unchanged | −4 / −2 / 0, ±1 |
+
+An open question can have partial fit once trust is at least 40 and agitation
+is below 60 even with low resistance; focus still adjusts fit. The core owns
+all changes. AI dialogue cannot decide success or add rewards. Session limits
+are pinned in the versioned profile/registry. Old saved action logs continue
+to use their original effects, with an explicit New game route to shorter play.
+
+## Retained tuned core values (legacy 0.1.0)
+
+The core balance sandbox ran the deterministic core without inference on the
 committed case corpus (`content/manifests/`). Findings and the first tuned
 constants are recorded below; config is the single owner of every number.
 
@@ -93,24 +110,25 @@ constants are recorded below; config is the single owner of every number.
 - Intermediate win-rate on `siege.brumosis`: **50 %** — confirms the siege case
   is not trivially solved by heuristic play and rewards study unlocks.
 - Throughput: **>1000 sessions/second** on the reference environment, satisfying
-  the Phase 2.8 budget placeholder.
+  the historical core throughput target.
 - Dead currencies flagged in the sandbox proxy economy:
   study, xp (no sink in the proxy), subspecialty, prestige (no source yet).
   These are expected: the proxy only models session rewards + cash overhead.
-  Full career sinks (field training, clinic purchases, taxes) remove these flags
-  in the integrated career model (Phase 2.9/3).
+  These results do not prove a complete career economy or a current browser sink
+  for every design currency.
 
-## Tuning process (Phase 2.8)
+## Tuning process
 
 1. Load all constants from config (never hard-coded).
-2. Run bot scenarios across skill levels + parameter mutations (§3 sandbox).
+2. Run bot scenarios across skill levels + parameter mutations.
 3. Check: currency sources vs sinks balance; no runaway inflation; no dead currency;
    no dominant/degenerate strategy.
 4. Record tuned values back **here**; config reads them; the sim core consumes config.
 
-## Open (resolved during tuning)
+## Unresolved design tuning
 
 - Exact difficulty→XP and reputation-decay curve shapes (placeholder shapes remain).
-- Whether subspecialty real-money cap is a % of attainable (per §19) — confirm the %.
-- Final clinic-economy constants (rent, tax brackets) will be tuned once 2.9
-  integrates the full career ledger with sinks.
+- Whether subspecialty real-money cap is a % of attainable — confirm the %.
+- Further clinic-economy tuning (rent, tax brackets) needs a complete career
+  study. These open points are retained design context, not an active server or
+  publishing milestone.

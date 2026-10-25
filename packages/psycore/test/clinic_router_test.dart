@@ -45,6 +45,12 @@ void main() {
       expect(economy.taxOwedMicros(120000000), greaterThan(1000000));
     });
 
+    test('tax intermediate remains exact near the JavaScript integer limit',
+        () {
+      const defaultEconomy = ClinicEconomy(ClinicEconomyConfig());
+      expect(defaultEconomy.taxOwedMicros(9007199254740989), 1801439838948197);
+    });
+
     test('default brackets stay progressive and tax the top band', () {
       // Regression: the shipped default must keep an open-ended top bracket so
       // income above the top threshold is taxed, not left untaxed.

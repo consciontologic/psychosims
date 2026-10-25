@@ -18,4 +18,4 @@ Run `scripts/showcase.sh` from the repository root to refresh the
 corpus and throughput gate. A solver result of `solved` contains a winning
 path for its supplied seed/loadout; budget exhaustion is reported as unproven.
 
-See [`docs/code/ARCHITECTURE.md`](../docs/code/ARCHITECTURE.md) §2 and §5.
+See the [current architecture](../docs/code/ARCHITECTURE.md).

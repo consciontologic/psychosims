@@ -1,17 +1,10 @@
-# 📋 `docs/project/` — project meta-docs
+# Project references
 
-Charter, decision log, glossary. The "what is this project even" docs.
+- [Charter](CHARTER.md): product scope and success criteria.
+- [Decision log](DECISION_LOG.md): current product decisions.
+- [Glossary](GLOSSARY.md): terms used in the game and code.
+- [Data lifecycle](DATA-LIFECYCLE.md): local storage, credentials and deletion.
 
-## Files
-
-- [Data lifecycle and classification](DATA-LIFECYCLE.md) — permitted durable data, privacy acceptance, erasure and restore obligations.
-
-- [`CHARTER.template.md`](CHARTER.template.md) — vision, scope, audience, success criteria.
-- [`DECISION_LOG.template.md`](DECISION_LOG.template.md) — append-only log of meta-decisions (not code-level ADRs — those live in `docs/design/`).
-- [`GLOSSARY.template.md`](GLOSSARY.template.md) — terminology used across this repo.
-
-## When to write project docs
-
-- A new contributor or agent keeps asking "why are we doing X this way?" → CHARTER section.
-- A meta-decision was made (scope cut, target audience shift, license change) → DECISION_LOG row.
-- A domain term keeps being misunderstood → GLOSSARY entry.
+Generic authoring templates are retained: [charter](CHARTER.template.md),
+[decision log](DECISION_LOG.template.md), [glossary](GLOSSARY.template.md).
+Code-level architecture belongs in [design](../design/README.md).

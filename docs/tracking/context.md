@@ -10,8 +10,8 @@
 ## Project identity
 
 - **Name**: Psychosims
-- **One-liner**: Fictional psychology-practice sim; on-device AI voices patients, a deterministic core owns outcomes, a small server owns trust.
-- **Primary language**: Dart / Flutter (client); server runtime finalized in Phase 3.
+- **One-liner**: Fictional psychology-practice sim; optional online OpenRouter voices patients; the deterministic core owns local outcomes in a static offline PWA.
+- **Primary language**: Dart / Flutter web; static GitHub Pages hosting.
 - **Blueprint**: [`STARTER.md`](../design/STARTER.md) (§1–§24).
 
 ## Key paths
@@ -26,11 +26,14 @@
 
 ## Active context (update as the project evolves)
 
-The blueprint is audited and roadmapped. Next up is **Phase 0 — Foundations &
-Conceptual Corrections** in [`ROADMAP.md`](../planning/ROADMAP.md): stand up the
-monorepo structure, the centralized `config/` authority, and close the deferred
-entry-gate decisions (device spec, model license, cost model, balance spec)
-before any feature code.
+The active scope is the **2026-10-23 static offline PWA migration** in
+[`ROADMAP.md`](../planning/ROADMAP.md). The user explicitly replaced native
+inference/server authority with online OpenRouter dialogue and browser-local
+state/transcripts. The user subsequently authorized removing the retired native
+client, backend, model binaries and obsolete documentation. Current core/content,
+PWA evidence and append-only tracking history remain. The production build is
+available locally at `http://localhost:18763/` via `make web.serve`.
+No publication, DNS or external account changes are authorized.
 
 ## Project-specific conventions
 
@@ -40,7 +43,7 @@ before any feature code.
 - **Separation of concerns** — code lands in exactly one declared module per
   [`ARCHITECTURE.md`](../code/ARCHITECTURE.md); pure rules live in `core/`.
 - **All balance constants are owned by the balance spec** (§9), loaded via config.
-- **No dialogue transcripts persisted anywhere** — structured state/deltas only.
+- **Transcripts persist only in browser-local saves** alongside structured game state. OpenRouter keys are memory-only and must never enter any durable store, export or cache.
 
 ## Out-of-scope / do not touch
 
@@ -56,7 +59,7 @@ _None yet._
 
 | Service | Env var | Notes |
 |---|---|---|
-| (example) Stripe | `STRIPE_SECRET_KEY` | Sandbox only in dev |
+| OpenRouter | None | User key entered in the app; memory-only, never a build or deployment secret |
 
 ## Agent quick-reference
 

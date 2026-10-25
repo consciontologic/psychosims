@@ -27,9 +27,8 @@ TAG ?=
 .DEFAULT_GOAL := help
 
 .PHONY: help git git.dry track.add track.list roadmap.status doctor scaffold skills.status skills.find codeg test verify
-.PHONY: build lint format format.check verify.contracts dart.test dart.contracts dart.lint dart.format dart.format.check
-.PHONY: server.build server.test server.lint server.format server.format.check native.build native.test native.contracts native.acceptance
-.PHONY: security.secrets security.dependencies security.privacy server.restore server.load server.certified server.integration cost.check
+.PHONY: build lint format format.check verify.contracts dart.test dart.lint dart.format dart.format.check web.build web.smoke web.serve
+.PHONY: security.secrets security.dependencies security.privacy
 
 ## help              List all available targets
 help:
@@ -80,56 +79,6 @@ skills.status:
 skills.find:
 	@TAG="$(TAG)" $(XOPS)/skills_ops.py find
 
-## test              Run all test suites (xops + project)
-NATIVE_TEST_TARGET ?= native.test
-DART_TEST_TARGET ?= dart.test
-ifneq ($(words $(DART_TEST_TARGET)),1)
-$(error DART_TEST_TARGET must be dart.test or dart.contracts)
-endif
-ifneq ($(filter-out dart.test dart.contracts,$(DART_TEST_TARGET)),)
-$(error DART_TEST_TARGET must be dart.test or dart.contracts)
-endif
-ifneq ($(words $(NATIVE_TEST_TARGET)),1)
-$(error NATIVE_TEST_TARGET must be native.test or native.contracts)
-endif
-ifneq ($(filter-out native.test native.contracts,$(NATIVE_TEST_TARGET)),)
-$(error NATIVE_TEST_TARGET must be native.test or native.contracts)
-endif
-test:
-	@bash xops/test/run_tests.sh
-	@$(MAKE) --no-print-directory cost.check
-	@$(MAKE) --no-print-directory $(DART_TEST_TARGET)
-	@$(MAKE) --no-print-directory server.test
-	@$(MAKE) --no-print-directory $(NATIVE_TEST_TARGET)
-
-## verify            Verifier gate: build + lint + format + test + doctor (run cold)
-verify:
-	@$(MAKE) --no-print-directory build
-	@$(MAKE) --no-print-directory lint
-	@$(MAKE) --no-print-directory format.check
-	@$(MAKE) --no-print-directory test
-	@$(MAKE) --no-print-directory doctor
-
-## verify.contracts  CI verification without real model weights; not model acceptance
-verify.contracts:
-	@$(MAKE) --no-print-directory verify NATIVE_TEST_TARGET=native.contracts DART_TEST_TARGET=dart.contracts
-
-## build             Build all project modules
-build:
-	@$(MAKE) --no-print-directory native.build
-	@$(MAKE) --no-print-directory server.build
-
-## lint              Lint all project modules
-lint:
-	@scripts/secret_check.sh
-	@scripts/env_read_check.sh
-	@scripts/no_raw_print_check.sh
-	@scripts/check_hardcoded_strings.sh
-	@scripts/core_purity_gate.sh
-	@scripts/content_integrity_check.sh
-	@$(MAKE) --no-print-directory dart.lint
-	@$(MAKE) --no-print-directory server.lint
-
 ## security.secrets  Real secret scanner acceptance and index/worktree scan
 security.secrets:
 	@$(PYTHON) -m unittest xops.test.test_security_acceptance.SecretAcceptanceTests
@@ -140,47 +89,9 @@ security.dependencies:
 	@$(PYTHON) -m unittest xops.test.test_dependency_inventory xops.test.test_dependency_scan xops.test.test_security_acceptance.DependencyAcceptanceTests
 	@scripts/vuln_check.sh
 
-## security.privacy  Exercise client and PostgreSQL durable-data privacy boundaries
-security.privacy:
-	@scripts/no_transcripts_check.sh
-
-## server.restore    Prove local PostgreSQL backup, restore and replay/revocation recovery
-server.restore:
-	@bash scripts/local_restore_drill.sh
-
-## server.load       Measure local HTTP/SQL load, admission and executable startup
-server.load:
-	@bash server/scripts/postgres_test.sh --load
-
-## server.certified  Test trusted cure authorization, rewards and replay on local PostgreSQL
-server.certified:
-	@bash server/scripts/postgres_test.sh --certified
-
-## server.integration  Exercise held and certified Flutter receipts through local HTTP and PostgreSQL
-server.integration:
-	@bash server/scripts/postgres_test.sh --flutter
-
-## cost.check        Verify the numeric infrastructure report matches its reviewed assumptions
-cost.check:
-	@$(PYTHON) scripts/infra_cost_model.py
-
-## format.check      Check formatting of all project modules
-format.check:
-	@$(MAKE) --no-print-directory dart.format.check
-	@$(MAKE) --no-print-directory server.format.check
-
-## format            Format all project modules
-format:
-	@$(MAKE) --no-print-directory dart.format
-	@$(MAKE) --no-print-directory server.format
-
 ## dart.test         Run Dart package tests
 dart.test:
 	@scripts/dart_test.sh
-
-## dart.contracts    Explicit contract profile excluding model acceptance suites
-dart.contracts:
-	@scripts/dart_test.sh --contracts-only
 
 ## dart.lint         Run Dart static analysis
 dart.lint:
@@ -194,39 +105,39 @@ dart.format.check:
 dart.format:
 	@scripts/dart_format.sh
 
-## server.test       Run Go server tests
-server.test:
-	@scripts/server_test.sh
+## verify            Verify the static Flutter PWA and produce its release build
+verify:
+	@bash scripts/web_verify.sh
 
-## server.lint       Lint Go server code
-server.lint:
-	@scripts/server_lint.sh
+## verify.contracts  Current static PWA gate (also used by the local commit hook)
+verify.contracts: verify
 
-## server.format.check Check Go formatting
-server.format.check:
-	@scripts/server_format.sh --check
+## test              Test current browser runtime, shared rules and static cache
+test:
+	@bash scripts/web_verify.sh --tests-only
 
-## server.format     Format Go code
-server.format:
-	@scripts/server_format.sh
+## web.build         Build the static production artifact for psychosim.com
+web.build:
+	@bash scripts/web_build.sh
 
-## server.build      Install server dependencies
-server.build:
-	@scripts/server_build.sh
+## web.smoke         Test the production artifact in Chromium (npm ci first)
+web.smoke:
+	@node scripts/web_smoke.mjs
 
-## native.build      Build the pinned llama.cpp native engine
-native.build:
-	@scripts/native_build.sh
+## build             Build the current static Flutter PWA
+build: web.build
+## lint              Analyze the current Dart/Flutter modules
+lint: dart.lint
+## format            Format current Dart/Flutter modules
+format: dart.format
+## format.check      Check current Dart/Flutter formatting
+format.check: dart.format.check
+## security.privacy  Verify browser saves and memory-only AI credentials
+security.privacy:
+	@bash scripts/web_privacy_check.sh
 
-## native.test       Run native C/C++ tests + ASan/LSan cycle gate
-native.test:
-	@scripts/native_test.sh
-	@scripts/native_sanitizer_test.sh
-
-## native.contracts  Explicit API/stub/sanitizer contracts without model weights
-native.contracts:
-	@scripts/native_test.sh --contracts-only
-	@scripts/native_sanitizer_test.sh --contracts-only
-
-## native.acceptance Strict real-model generation and sanitizer acceptance
-native.acceptance: native.test
+WEB_PORT ?= 18763
+## web.serve         Serve the production build locally on a dedicated PWA origin
+web.serve:
+	@test -f app/build/web/index.html || { echo "Run make web.build first." >&2; exit 1; }
+	@$(PYTHON) -m http.server $(WEB_PORT) --bind 127.0.0.1 --directory app/build/web

@@ -1,20 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# One-command reproducible dev-environment bootstrap for Psychosims.
-# Installs / verifies pinned toolchains and prints version diagnostics.
+# Resolve the static Flutter app and pure Dart tools. Security scanners remain
+# opt-in through --tools-only; Go builds these development tools only.
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
 echo "▶️  Psychosims dev bootstrap"
 
-# Official Go vulnerability scanner, pinned and installed only in this repo.
-# https://go.dev/doc/security/vuln/
+# Pinned scanners installed only in this repository; no OS/global installation.
 install_tools() {
   command -v go >/dev/null || { echo "❌ go is required" >&2; return 127; }
   mkdir -p "$REPO_ROOT/.tools/bin"
-  GOBIN="$REPO_ROOT/.tools/bin" go install golang.org/x/vuln/cmd/govulncheck@v1.8.0
   GOBIN="$REPO_ROOT/.tools/bin" go install github.com/zricethezav/gitleaks/v8@v8.30.1
   GOBIN="$REPO_ROOT/.tools/bin" go install github.com/google/osv-scanner/v2/cmd/osv-scanner@v2.5.1
   # This upstream release embeds the generated licenses.db, but its module zip
@@ -67,30 +65,6 @@ else
   echo "⚠️  dart not found" >&2
 fi
 
-# Verify clang / CMake
-if command -v clang &>/dev/null; then
-  echo "ℹ️  clang: $(clang --version | head -n 1)"
-else
-  echo "⚠️  clang not found; needed for native/ builds" >&2
-fi
-
-if command -v cmake &>/dev/null; then
-  echo "ℹ️  CMake: $(cmake --version | head -n 1)"
-else
-  echo "⚠️  cmake not found; needed for native/ builds" >&2
-fi
-
-# Install Go server dependencies
-if [[ -f "server/go.mod" ]]; then
-  if command -v go &>/dev/null; then
-    echo "ℹ️  Go: $(go version | awk '{print $3}')"
-    echo "▶️  Building server module..."
-    (cd server && go build ./...)
-  else
-    echo "⚠️  go not found; install Go 1.26+ to build server/" >&2
-  fi
-fi
-
 # Fetch Dart dependencies
 if [[ -d "app" ]] && command -v flutter &>/dev/null; then
   echo "▶️  Fetching app dependencies..."
@@ -104,7 +78,6 @@ for pkg in config packages/psychemas packages/psycore tools; do
   fi
 done
 
-install_tools
 bash "$REPO_ROOT/scripts/install_git_hooks.sh"
 
 echo "✅ bootstrap complete"

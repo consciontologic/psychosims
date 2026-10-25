@@ -1,0 +1,247 @@
+{
+  "status": "PASS",
+  "consecutivePassingRuns": 10,
+  "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+  "runtimeSourceChanged": false,
+  "changedSource": "scripts/web_smoke.mjs",
+  "harnessSha256": "408905824dfc00c38705618e38e63f1480bca6d05378dba4bf402df0eb2b620c",
+  "diagnosis": "Flutter semantics DOM focus precedes input-listener activation. Immediate fill can be lost before the Dart controller observes it. Instrumentation reproduced a missing key before history traversal while document identity remained unchanged. Keyboard-only entry without listener readiness also dropped the first character. The final harness observes input-listener activation, types normally once, verifies accepted key and cleared field, then gates browser traversal on rendered destination and stable document identity.",
+  "log": "/tmp/agent-runs/pwa-editor-ready-ten--20261023T114317Z-359711.log",
+  "preservedFailures": [
+    "test-results/pwa/failure-20261023T113344Z",
+    "test-results/pwa/history-before-2",
+    "test-results/pwa/history-fixed-6"
+  ],
+  "aiTransport": "Deterministic intercepted fixtures; no real key or external AI request",
+  "previewTouched": false,
+  "runs": [
+    {
+      "run": 1,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-1/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-1/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:43:25.432Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 2,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-2/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-2/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:43:33.583Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 3,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-3/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-3/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:43:41.832Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 4,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-4/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-4/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:43:49.801Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 5,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-5/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-5/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:43:58.231Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 6,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-6/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-6/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:44:06.547Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 7,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-7/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-7/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:44:14.729Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 8,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-8/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-8/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:44:22.911Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 9,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-9/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-9/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:44:31.209Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    },
+    {
+      "run": 10,
+      "status": "PASS",
+      "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+      "results": "test-results/pwa/editor-ready-10/results.json",
+      "lifecycle": "test-results/pwa/editor-ready-10/lifecycle.json",
+      "documentPreservedAcrossHistory": true,
+      "keyAndModelReadyBeforeHistory": true,
+      "testedAt": "2026-10-23T11:44:39.463Z",
+      "acceptanceChecks": [
+        "Complete static cache: 34 resources",
+        "Chromium installability and manifest checks pass",
+        "Player action persisted deterministic state and transcript",
+        "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+        "Offline reload preserves save/transcript and local mechanics advance",
+        "All five hash routes reload offline without server rewrites",
+        "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+        "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+        "No credential in local/session storage and no API URL in the static cache",
+        "Keyboard navigation and browser back/forward preserve the session"
+      ]
+    }
+  ],
+  "finalRefresh": {
+    "status": "PASS",
+    "buildId": "e8b8a522cc8d77fd3ff1d7d9",
+    "results": "test-results/pwa/results.json",
+    "lifecycle": "test-results/pwa/lifecycle.json",
+    "log": "/tmp/agent-runs/pwa-editor-ready-final--20261023T114504Z-367856.log",
+    "testedAt": "2026-10-23T11:45:12.823Z"
+  }
+}

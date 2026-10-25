@@ -3,6 +3,18 @@ import 'package:test/test.dart';
 
 void main() {
   group('FixedPoint', () {
+    test('exact full-width intermediates saturate and round without doubles',
+        () {
+      final maximum = FixedPoint.fromString('922337203685477.5807');
+      expect(maximum.exactRaw.toString(), '9223372036854775807');
+      expect((maximum + const FixedPoint(1)).exactRaw, maximum.exactRaw);
+      expect(maximum.multiplyByRatio(const FixedPoint(10000)), maximum);
+      expect(() => maximum.multiplyByRatioChecked(const FixedPoint(20000)),
+          throwsStateError);
+      expect((const FixedPoint(-10000) * 2).raw, -20000);
+      expect(FixedPoint.fromString('-0.1250').toString(), '-0.1250');
+      expect(FixedPoint.fromString('-922337203685477.5808').negate(), maximum);
+    });
     test('represents values deterministically', () {
       const a = FixedPoint(123450000);
       const b = FixedPoint(50000);

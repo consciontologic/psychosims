@@ -1,193 +1,132 @@
-/// Deterministic fixed-point money / ratio representation.
-///
-/// Uses an integer backing value scaled by 10^4. All arithmetic is integer-only
-/// with a single documented rounding mode: **round-half-to-even** (banker's
-/// rounding). No platform-dependent floating point participates in core
-/// economy rules.
-///
-/// The backing is saturating by default: overflow/underflow clamps to the
-/// largest/smallest representable value rather than silently wrapping. Callers
-/// that need an error on overflow can use [addChecked], [subtractChecked], and
-/// [multiplyByRatioChecked].
+/// Deterministic money / ratios, scaled by 10^4, with signed 64-bit bounds.
+/// Exact intermediates and round-half-to-even are identical on VM and web.
 class FixedPoint {
   static const int scale = 10000;
-  static const int _maxRaw = 0x7FFFFFFFFFFFFFFF;
-  static const int _minRaw = -0x8000000000000000;
+  static final BigInt _scale = BigInt.from(scale);
+  static final BigInt _maxRaw = BigInt.parse('9223372036854775807');
+  static final BigInt _minRaw = -(_maxRaw + BigInt.one);
 
-  final int raw;
+  final int? _smallRaw;
+  final BigInt? _largeRaw;
+  const FixedPoint(int raw)
+      : _smallRaw = raw,
+        _largeRaw = null;
+  const FixedPoint.zero()
+      : _smallRaw = 0,
+        _largeRaw = null;
+  FixedPoint._exact(BigInt raw)
+      : _smallRaw = null,
+        _largeRaw = raw;
 
-  const FixedPoint(this.raw);
+  /// Full-width representation, including values outside JavaScript's integer
+  /// range. Use decimal strings when serializing this value.
+  BigInt get exactRaw {
+    if (_largeRaw != null) return _largeRaw!;
+    const browser = bool.fromEnvironment('dart.library.js_interop');
+    if (browser && _smallRaw!.abs() > 9007199254740991) {
+      throw StateError('Large browser amounts must use decimal strings.');
+    }
+    return BigInt.from(_smallRaw!);
+  }
 
-  const FixedPoint.zero() : raw = 0;
+  /// Compatibility accessor. Never silently rounds a large browser value.
+  int get raw {
+    final exact = exactRaw;
+    const browser = bool.fromEnvironment('dart.library.js_interop');
+    if (browser && exact.abs() > BigInt.from(9007199254740991)) {
+      throw StateError(
+          'Use exactRaw for values outside the JSON integer range.');
+    }
+    final result = exact.toInt();
+    if (BigInt.from(result) != exact) {
+      throw StateError(
+          'Use exactRaw for values outside the platform int range.');
+    }
+    return result;
+  }
 
-  /// Whole units only (e.g. `FixedPoint.fromWhole(5)` == 5.0000).
-  factory FixedPoint.fromWhole(int whole) => FixedPoint(whole * scale);
-
-  /// Integer basis points (1 bp = 0.01 %). `5000` == 50% == 0.5000.
+  factory FixedPoint.fromWhole(int whole) =>
+      FixedPoint._exact(_saturate(BigInt.from(whole) * _scale));
   factory FixedPoint.fromBasisPoints(int basisPoints) =>
       FixedPoint(basisPoints);
 
-  /// Exact decimal string, e.g. `"1.2345"`.
   factory FixedPoint.fromString(String value) {
-    final parts = value.split('.');
-    final whole = int.parse(parts[0]);
-    if (parts.length == 1) return FixedPoint.fromWhole(whole);
-    var frac = parts[1].padRight(4, '0').substring(0, 4);
-    final sign = whole < 0 ? -1 : 1;
-    return FixedPoint(whole * scale + (sign * int.parse(frac)));
+    final match = RegExp(r'^(-?)(\d+)(?:\.(\d+))?$').firstMatch(value);
+    if (match == null) throw const FormatException('Invalid fixed-point value');
+    final magnitude = BigInt.parse(match[2]!) * _scale +
+        BigInt.parse((match[3] ?? '').padRight(4, '0').substring(0, 4));
+    return FixedPoint._exact(
+        _saturate(match[1] == '-' ? -magnitude : magnitude));
   }
 
-  /// Config-boundary conversion from `double`.
-  ///
-  /// This factory exists **only** at the config→core seam. It must never be
-  /// called inside a deterministic rule; percentages are converted to
-  /// fixed-point ratios once at the boundary and then flow through
-  /// [fromBasisPoints] / [multiplyByRatio].
-  factory FixedPoint.fromDouble(double value) {
-    return FixedPoint((value * scale).roundToEven());
-  }
+  /// Config seam only: floating point never participates in core arithmetic.
+  factory FixedPoint.fromDouble(double value) =>
+      FixedPoint((value * scale).roundToEven());
+  double toDouble() => exactRaw.toDouble() / scale;
+  int toWhole() => (exactRaw ~/ _scale).toInt();
 
-  double toDouble() => raw / scale;
+  FixedPoint operator +(FixedPoint other) =>
+      FixedPoint._exact(_saturate(exactRaw + other.exactRaw));
+  FixedPoint operator -(FixedPoint other) =>
+      FixedPoint._exact(_saturate(exactRaw - other.exactRaw));
+  FixedPoint operator *(int multiplier) =>
+      FixedPoint._exact(_saturate(exactRaw * BigInt.from(multiplier)));
 
-  int toWhole() => raw ~/ scale;
-
-  /// Saturating addition.
-  FixedPoint operator +(FixedPoint other) {
-    if (other.raw >= 0) {
-      if (raw > _maxRaw - other.raw) return const FixedPoint(_maxRaw);
-      return FixedPoint(raw + other.raw);
-    } else {
-      if (raw < _minRaw - other.raw) return const FixedPoint(_minRaw);
-      return FixedPoint(raw + other.raw);
-    }
-  }
-
-  /// Saturating subtraction.
-  FixedPoint operator -(FixedPoint other) {
-    if (other.raw >= 0) {
-      if (raw < _minRaw + other.raw) return const FixedPoint(_minRaw);
-      return FixedPoint(raw - other.raw);
-    } else {
-      if (raw > _maxRaw + other.raw) return const FixedPoint(_maxRaw);
-      return FixedPoint(raw - other.raw);
-    }
-  }
-
-  /// Exact multiplication by a signed integer scalar.
-  FixedPoint operator *(int multiplier) {
-    // Detect overflow before it wraps.
-    if (multiplier == 0) return const FixedPoint.zero();
-    if (raw == 0) return const FixedPoint.zero();
-    final limit = raw > 0 ? _maxRaw : _minRaw;
-    final bound = limit ~/ multiplier;
-    if (multiplier > 0) {
-      if (raw > bound) return const FixedPoint(_maxRaw);
-      if (raw < -bound) return const FixedPoint(_minRaw);
-    } else {
-      if (raw < bound) return const FixedPoint(_maxRaw);
-      if (raw > -bound) return const FixedPoint(_minRaw);
-    }
-    return FixedPoint(raw * multiplier);
-  }
-
-  /// Checked addition; throws [StateError] on overflow/underflow.
-  FixedPoint addChecked(FixedPoint other) {
-    if (other.raw >= 0 && raw > _maxRaw - other.raw) {
-      throw StateError('FixedPoint overflow: $raw + ${other.raw}');
-    }
-    if (other.raw < 0 && raw < _minRaw - other.raw) {
-      throw StateError('FixedPoint underflow: $raw + ${other.raw}');
-    }
-    return FixedPoint(raw + other.raw);
-  }
-
-  /// Checked subtraction; throws [StateError] on overflow/underflow.
-  FixedPoint subtractChecked(FixedPoint other) {
-    if (other.raw >= 0 && raw < _minRaw + other.raw) {
-      throw StateError('FixedPoint underflow: $raw - ${other.raw}');
-    }
-    if (other.raw < 0 && raw > _maxRaw + other.raw) {
-      throw StateError('FixedPoint overflow: $raw - ${other.raw}');
-    }
-    return FixedPoint(raw - other.raw);
-  }
-
-  /// Multiply by a [ratio] expressed as a fixed-point fraction.
-  ///
-  /// `value.multiplyByRatio(FixedPoint(5000))` == value * 0.5.
-  /// Rounds half-to-even.
-  FixedPoint multiplyByRatio(FixedPoint ratio) {
-    final product = raw * ratio.raw;
-    final scaled = _divideRoundHalfToEven(product, scale);
-    return FixedPoint(_saturate(scaled));
-  }
-
-  /// Checked variant of [multiplyByRatio]; throws on overflow.
-  FixedPoint multiplyByRatioChecked(FixedPoint ratio) {
-    final product = raw * ratio.raw;
-    final scaled = _divideRoundHalfToEven(product, scale);
-    if (_wouldOverflow(scaled)) {
-      throw StateError('FixedPoint ratio overflow: $raw * ${ratio.raw}');
-    }
-    return FixedPoint(scaled);
-  }
-
-  /// Divide by a positive integer divisor, rounding half-to-even.
-  FixedPoint divideBy(int divisor) {
-    if (divisor == 0) throw ArgumentError('division by zero');
-    return FixedPoint(_divideRoundHalfToEven(raw, divisor));
-  }
-
-  /// Apply a percentage expressed in basis points.
-  ///
-  /// `value.applyPercentage(5000)` returns value * 50%.
+  FixedPoint addChecked(FixedPoint other) =>
+      _checked(exactRaw + other.exactRaw);
+  FixedPoint subtractChecked(FixedPoint other) =>
+      _checked(exactRaw - other.exactRaw);
+  FixedPoint multiplyByRatio(FixedPoint ratio) => FixedPoint._exact(
+      _saturate(_divideRoundHalfToEven(exactRaw * ratio.exactRaw, _scale)));
+  FixedPoint multiplyByRatioChecked(FixedPoint ratio) =>
+      _checked(_divideRoundHalfToEven(exactRaw * ratio.exactRaw, _scale));
+  FixedPoint divideBy(int divisor) => FixedPoint._exact(
+      _saturate(_divideRoundHalfToEven(exactRaw, BigInt.from(divisor))));
   FixedPoint applyPercentage(int basisPoints) =>
       multiplyByRatio(FixedPoint.fromBasisPoints(basisPoints));
+  FixedPoint negate() => FixedPoint._exact(_saturate(-exactRaw));
 
-  /// Returns the negated value (saturating).
-  FixedPoint negate() => FixedPoint(_saturate(-raw));
-
-  static int _saturate(int value) {
-    if (value > _maxRaw) return _maxRaw;
-    if (value < _minRaw) return _minRaw;
-    return value;
+  static FixedPoint _checked(BigInt value) {
+    if (value > _maxRaw || value < _minRaw)
+      throw StateError('FixedPoint overflow');
+    return FixedPoint._exact(value);
   }
 
-  static bool _wouldOverflow(int value) => value > _maxRaw || value < _minRaw;
-
-  /// Divides [numerator] by [denominator] with round-half-to-even.
-  static int _divideRoundHalfToEven(int numerator, int denominator) {
+  static BigInt _saturate(BigInt value) => value > _maxRaw
+      ? _maxRaw
+      : value < _minRaw
+          ? _minRaw
+          : value;
+  static BigInt _divideRoundHalfToEven(BigInt numerator, BigInt denominator) {
+    if (denominator == BigInt.zero) throw ArgumentError('division by zero');
     final quotient = numerator ~/ denominator;
-    final remainder = numerator.remainder(denominator);
+    final twice = numerator.remainder(denominator).abs() * BigInt.two;
     final absDen = denominator.abs();
-    final absRem = remainder.abs();
-    final twice = absRem * 2;
     if (twice > absDen || (twice == absDen && quotient.isOdd)) {
-      return quotient + (numerator.sign == denominator.sign ? 1 : -1);
+      return quotient +
+          BigInt.from(numerator.sign == denominator.sign ? 1 : -1);
     }
     return quotient;
   }
 
   @override
   String toString() {
-    final whole = raw ~/ scale;
-    final frac = (raw.abs() % scale).toString().padLeft(4, '0');
-    return '$whole.$frac';
+    final value = exactRaw;
+    final whole = value.abs() ~/ _scale;
+    final frac = (value.abs() % _scale).toString().padLeft(4, '0');
+    return '${value.isNegative ? '-' : ''}$whole.$frac';
   }
 
   @override
-  bool operator ==(Object other) => other is FixedPoint && other.raw == raw;
-
+  bool operator ==(Object other) =>
+      other is FixedPoint && other.exactRaw == exactRaw;
   @override
-  int get hashCode => raw.hashCode;
-
-  /// Compares two values.
-  int compareTo(FixedPoint other) => raw.compareTo(other.raw);
-
-  bool operator <(FixedPoint other) => raw < other.raw;
-  bool operator <=(FixedPoint other) => raw <= other.raw;
-  bool operator >(FixedPoint other) => raw > other.raw;
-  bool operator >=(FixedPoint other) => raw >= other.raw;
+  int get hashCode => exactRaw.hashCode;
+  int compareTo(FixedPoint other) => exactRaw.compareTo(other.exactRaw);
+  bool operator <(FixedPoint other) => exactRaw < other.exactRaw;
+  bool operator <=(FixedPoint other) => exactRaw <= other.exactRaw;
+  bool operator >(FixedPoint other) => exactRaw > other.exactRaw;
+  bool operator >=(FixedPoint other) => exactRaw >= other.exactRaw;
 }
 
 extension on double {

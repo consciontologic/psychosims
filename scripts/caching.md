@@ -1,18 +1,12 @@
-# Build / dependency caching strategy
+# Build and dependency caching
 
-## CI caching
+The current product uses the Dart/Flutter pub cache and repository-local
+`.dart_tool/` directories. Browser acceptance uses the pinned npm lockfile and
+Playwright browser cache. All are development caches, excluded from the release.
 
-- `~/.pub-cache` — Dart/Flutter package cache.
-- `~/.cache/go-build` + Go module cache — Go build/dependency cache.
-- `native/build` — native compile artifacts.
-- `test_fixtures/` — golden fixtures are committed, not generated.
+`app/build/web/` is a generated static production build; its runtime cache policy
+is documented in [the hosting guide](../docs/guides/STATIC_HOSTING.md).
+Golden game traces in `test_fixtures/` remain committed source evidence.
 
-## Local caching
-
-- Dart `.dart_tool/` is gitignored and reused across builds.
-- Go build cache (`~/.cache/go-build`) is reused across verify runs.
-
-## Budget
-
-- `make verify` target: under 5 minutes on a warm CI runner.
-- Flaky tests fail the build; do not re-run without investigation.
+No native engine, model download, Go game server or server build cache is needed.
+Flaky tests fail the gate; investigate failures instead of retrying until green.

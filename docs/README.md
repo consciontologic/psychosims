@@ -1,26 +1,22 @@
-# 📚 `docs/`
+# Documentation
 
-This folder is the human-readable side of the project. Source of truth for
-agents on **what the project is and where it's going**; source of truth for
-humans on **the project's design and history**.
+Psychosims is a static Flutter web PWA with browser-local saves and optional
+online OpenRouter dialogue. Start with the [hosting guide](guides/STATIC_HOSTING.md),
+[architecture](code/ARCHITECTURE.md) and [implementation evidence](reports/2026-10-23-static-pwa.md).
 
-## Layout
+| Area | Purpose |
+|---|---|
+| [Project](project/README.md) | Charter, current decisions, glossary and local data lifecycle. |
+| [Design](design/README.md) | Current game design and accepted architecture decisions. |
+| [Specifications](specs/README.md) | Deterministic rules, balance, prompts and content boundaries. |
+| [Code](code/README.md) | Build, runtime contracts and reusable core documentation. |
+| [Roadmap](planning/ROADMAP.md) | Authorized work and external release gates. |
+| [Reports](reports/README.md) | Current PWA evidence and retained pure-core showcases. |
+| [Guides](guides/README.md) | Hosting and generic agent/framework operations. |
+| [Tracking](tracking/README.md) | Append-only work records and recovery state. |
+| [Skills](../.agents/skills/README.md) | Repository operating skills. |
 
-| Path | Purpose | Audience |
-|---|---|---|
-| [`code/`](code/) | Module-level documentation (architecture, modules, APIs). | Devs joining the codebase. |
-| [`project/`](project/) | The project's charter, decision log, glossary. | New contributors. |
-| [`design/`](design/) | Design docs (DESIGN.md) and ADRs. | Reviewers + future-you. |
-| [`specs/`](specs/) | Commissioned reference specifications (device spec, cost model, balance spec, lifecycle, token budget, …). | Agents + humans. |
-| [`planning/`](planning/) | The **ROADMAP** — single source of truth for sequenced work. | Agents + humans. |
-| [`tracking/`](tracking/) | How the `docs/tracking/tracking.csv` workflow is used. | Agents. |
-| [`guides/`](guides/) | Cross-cutting how-tos: agent operating model, model profiles, MCP usage. | Agents + ops. |
-| [`reports/`](reports/) | Generated reports (audit, status snapshots). | Reviewers. |
-| [`.agents/skills/`](../.agents/skills/) | The **skill library** — load on demand. | Agents. |
-| [`server/MAINTENANCE.md`](../server/MAINTENANCE.md) | Implemented local retention, account erasure and backup-journal replay procedure. | Operators + reviewers. |
-
-## Discoverability rule
-
-Before creating a new doc, search for an existing one. Templates live next
-to their READMEs (e.g. [`code/MODULE.template.md`](code/MODULE.template.md)).
-Use them.
+The retired backend, native inference and downloaded-model implementation and
+its obsolete documentation were removed with explicit user authorization.
+Historical tracking remains unchanged. Templates remain beside their indexes;
+search for an existing owner before creating a new document.

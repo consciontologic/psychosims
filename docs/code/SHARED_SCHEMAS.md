@@ -1,37 +1,16 @@
-# Shared-schema strategy
+# Shared Dart schemas
 
-The server runtime decision ([ADR-0006](../design/ADR-0006-server-runtime-go.md),
-superseding [ADR-0003](../design/ADR-0003-server-runtime.md)) chose Go for the
-authoritative server while the client is Dart/Flutter. This means the schema
-contract must stay aligned across two languages.
+[`packages/psychemas/`](../../packages/psychemas/) owns the typed manifest, cards,
+loadouts, state deltas, career and case-history contracts consumed by the pure
+core and browser application. It has no backend runtime dependency.
 
-## Strategy: one canonical Dart package + one mirrored Go package
+The reusable package still contains receipt/history structures used by core
+replay and canonical fixtures. Their names do not imply a live receipt endpoint,
+signature authority or shared online economy. The browser persists its validated
+local snapshot rather than sending progression to a server.
 
-- **Dart** owns the canonical in-memory schema under `packages/psychemas/`.
-- **Go** mirrors it under `server/internal/schemas/schemas.go`.
-- Both derive their `schemaVersion` and `rulesetVersion` from the same
-  [`config/ruleset_registry.yaml`](../config/ruleset_registry.yaml).
-
-## Language-neutral contract
-
-A JSON Schema description of each payload lives in `packages/psychemas/schema/`
-(planned). It is the arbiter when the two implementations disagree:
-
-- New fields are added to the JSON Schema first.
-- Dart and Go implementations are updated in the same commit.
-- Contract tests assert round-trip parity.
-
-## Current payloads
-
-| Payload | Dart | Go | Golden fixture |
-|---------|------|------|----------------|
-| `PatientManifest` | `packages/psychemas/lib/src/manifest.dart` | `server/internal/schemas/schemas.go` | `test_fixtures/manifests/sample_patient.json` |
-| `SessionReceipt` | `packages/psychemas/lib/src/receipt.dart` | `server/internal/schemas/schemas.go` | `test_fixtures/receipts/sample_receipt.json` |
-| `StructuredDelta` | `packages/psychemas/lib/src/structured_delta.dart` | `server/internal/schemas/schemas.go` | inline in receipt fixture |
-
-## Change discipline
-
-- A schema change requires updates to Dart, Go, fixtures, and tests in one
-  commit.
-- The `schemaVersion` field in each payload must match the registry.
-- A mismatch fails `make verify`.
+Keep schema changes explicit and update the relevant parsing, canonical JSON and
+replay tests in the same change. Save restoration additionally checks bounds and
+replayed outcomes; a valid JSON object alone is not a valid saved game.
+See [serialization](SERIALIZATION.md), [versioning](VERSIONING.md), and
+[data lifecycle](../project/DATA-LIFECYCLE.md).

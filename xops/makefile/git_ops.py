@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import csv
 import re
+import shutil
 import sys
 from pathlib import Path
 from typing import Iterable, List
@@ -154,6 +155,14 @@ def _working_tree_dirty() -> bool:
     return bool(out(["git", "status", "--porcelain"], check=False).strip())
 
 
+def _remove_test_runs() -> None:
+    """Remove ignored local test artifacts after a successful publication."""
+    test_runs = REPO_ROOT / "test-results"
+    if test_runs.is_dir() and not test_runs.is_symlink():
+        shutil.rmtree(test_runs)
+        info(f"removed local test runs: {test_runs.relative_to(REPO_ROOT)}")
+
+
 # ── subcommands ───────────────────────────────────────────────────────────
 
 def cmd_dry(_args: List[str]) -> None:
@@ -250,6 +259,7 @@ def cmd_push(_args: List[str]) -> None:
     else:
         run(["git", "push"])
     ok("pushed")
+    _remove_test_runs()
 
 
 TABLE = {

@@ -133,22 +133,23 @@ class ProjectGateTests(unittest.TestCase):
                 self.assertIn('symbolic link', result.stdout + result.stderr)
                 link.unlink()
 
-    def test_privacy_gate_runs_real_storage_boundaries_and_propagates_failure(self):
+    def test_privacy_gate_runs_browser_boundaries_and_propagates_failure(self):
         self.tool('flutter', 'printf "%s\\n" "$@" > "$GATE_ARGS_PATH"; exit 29')
-        result = self.run_gate('no_transcripts_check.sh')
+        result = self.run_gate('web_privacy_check.sh')
         self.assertEqual(result.returncode, 29, result.stdout + result.stderr)
         args = (self.root / 'args').read_text().splitlines()
-        self.assertIn('test/session_persistence_test.dart', args)
-        self.assertIn('test/signed_receipt_queue_test.dart', args)
+        self.assertIn('test/browser_session_test.dart', args)
+        self.assertIn('test/browser_ai_lifecycle_test.dart', args)
+        self.assertIn('test/openrouter_client_test.dart', args)
 
-    def test_privacy_gate_does_not_succeed_without_durable_server_checks(self):
-        self.tool('flutter', 'exit 0')
-        script = self.root / 'server/scripts/postgres_test.sh'
-        script.parent.mkdir(parents=True)
-        script.write_text('#!/bin/bash\necho "durable server privacy fixture" >&2\nexit 33\n')
-        result = self.run_gate('no_transcripts_check.sh')
-        self.assertEqual(result.returncode, 33, result.stdout + result.stderr)
-        self.assertIn('durable server privacy fixture', result.stderr)
+    def test_privacy_gate_has_no_server_prerequisite(self):
+        shutil.rmtree(self.root / 'server')
+        self.tool('flutter', 'printf "%s\\n" "$@" > "$GATE_ARGS_PATH"')
+        result = self.run_gate('web_privacy_check.sh')
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual((self.root / 'args').read_text().splitlines(), [
+            'test', '--concurrency=1', 'test/browser_session_test.dart',
+            'test/browser_ai_lifecycle_test.dart', 'test/openrouter_client_test.dart'])
 
     def test_tool_bootstrap_installs_pinned_scanner_inside_project(self):
         cache = self.root / 'module-cache'
@@ -164,7 +165,7 @@ class ProjectGateTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         args = (self.root / 'args').read_text().splitlines()
         self.assertEqual(args[0], str(self.root / '.tools/bin'))
-        self.assertIn('golang.org/x/vuln/cmd/govulncheck@v1.8.0', args)
+        self.assertFalse(any('govulncheck' in arg for arg in args))
         self.assertIn('github.com/google/osv-scanner/v2/cmd/osv-scanner@v2.5.1', args)
         self.assertIn('github.com/zricethezav/gitleaks/v8@v8.30.1', args)
         self.assertIn('github.com/google/licenseclassifier/tools/license_serializer@v0.0.0-20260218193730-3cfbab2d0e0d', args)
@@ -177,16 +178,20 @@ class ProjectGateTests(unittest.TestCase):
         self.assertIn('scanner install fixture', result.stderr)
 
     def test_vulnerability_findings_are_not_suppressed(self):
-        self.tool('govulncheck', 'echo "vulnerability fixture" >&2; exit 19')
+        (self.root / 'scripts/sbom.sh').write_text('#!/bin/bash\nexit 0\n')
+        (self.root / 'scripts/dependency_scan.py').write_text(
+            'import sys\nprint("vulnerability fixture", file=sys.stderr)\nsys.exit(19)\n')
         result = self.run_gate('vuln_check.sh')
         self.assertEqual(result.returncode, 19, result.stdout + result.stderr)
         self.assertIn('vulnerability fixture', result.stderr)
 
-    def test_missing_scanner_is_not_replaced_with_vet(self):
-        self.tool('go', 'echo "unexpected vet" > "$GATE_ARGS_PATH"')
+    def test_inventory_failure_stops_vulnerability_scan(self):
+        (self.root / 'scripts/sbom.sh').write_text('#!/bin/bash\nexit 27\n')
+        (self.root / 'scripts/dependency_scan.py').write_text(
+            'from pathlib import Path\nPath("unexpected-scan").touch()\n')
         result = self.run_gate('vuln_check.sh')
-        self.assertNotEqual(result.returncode, 0, result.stdout)
-        self.assertFalse((self.root / 'args').exists())
+        self.assertEqual(result.returncode, 27, result.stdout + result.stderr)
+        self.assertFalse((self.root / 'unexpected-scan').exists())
 
     def test_secret_scanner_missing_fails_closed(self):
         result = self.run_gate('secret_check.sh')
@@ -227,15 +232,14 @@ class ProjectGateTests(unittest.TestCase):
         self.assertEqual(result.returncode, 31, result.stdout + result.stderr)
         self.assertIn('dependency resolution fixture', result.stdout + result.stderr)
 
-    def test_contract_profile_explicitly_separates_real_model_acceptance(self):
+    def test_retired_model_contract_flag_is_rejected(self):
         self.tool('dart', 'exit 0')
-        self.tool('flutter', 'printf "%s\\n" "$@" > "$GATE_ARGS_PATH"')
+        self.tool('flutter', 'touch "$GATE_ARGS_PATH"')
         result = self.run_gate('dart_test.sh', '--contracts-only')
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertIn('--exclude-tags=model_acceptance',
-                      (self.root / 'args').read_text().splitlines())
+        self.assertEqual(result.returncode, 64, result.stdout + result.stderr)
+        self.assertFalse((self.root / 'args').exists())
 
-    def test_full_profile_never_excludes_model_acceptance(self):
+    def test_current_profile_runs_all_flutter_tests(self):
         self.tool('dart', 'exit 0')
         self.tool('flutter', 'printf "%s\\n" "$@" > "$GATE_ARGS_PATH"')
         result = self.run_gate('dart_test.sh')
@@ -245,7 +249,7 @@ class ProjectGateTests(unittest.TestCase):
     def test_test_gate_requires_reviewed_dependency_resolutions(self):
         for tool in ['dart', 'flutter']:
             self.tool(tool, 'printf "%s\\n" "$@" >> "$GATE_ARGS_PATH"')
-        result = self.run_gate('dart_test.sh', '--contracts-only')
+        result = self.run_gate('dart_test.sh')
         self.assertEqual(result.returncode, 0, result.stderr)
         args = (self.root / 'args').read_text().splitlines()
         self.assertEqual(args.count('--enforce-lockfile'), 5)
@@ -259,27 +263,27 @@ class ProjectGateTests(unittest.TestCase):
                              if failure == 'test' else
                              'if [[ "$*" == *--check* ]]; then exit 42; fi; ')
                           + 'fi; exit 0')
-                result = self.run_gate('dart_test.sh', '--contracts-only')
+                result = self.run_gate('dart_test.sh')
                 self.assertEqual(result.returncode, 41 if failure == 'test' else 42,
                                  result.stdout + result.stderr)
 
-    def test_make_rejects_empty_or_unrecognized_suite_selectors(self):
-        for selector in ['DART_TEST_TARGET', 'NATIVE_TEST_TARGET']:
-            for value in ['', 'help', 'dart.test dart.contracts']:
-                with self.subTest(selector=selector, value=value):
-                    result = subprocess.run(
-                        ['make', '--file', str(ROOT / 'Makefile'), 'help',
-                         f'{selector}={value}'], cwd=self.root, env=self.env,
-                        capture_output=True, text=True)
-                    self.assertNotEqual(result.returncode, 0, result.stdout)
+    def test_retired_native_and_server_targets_are_removed(self):
+        for target in ['legacy.verify.contracts', 'native.build', 'server.test', 'cost.check']:
+            with self.subTest(target=target):
+                result = subprocess.run(
+                    ['make', '--file', str(ROOT / 'Makefile'), '-n', target],
+                    cwd=self.root, env=self.env, capture_output=True, text=True)
+                self.assertNotEqual(result.returncode, 0, result.stdout)
+                self.assertIn('No rule to make target', result.stderr)
 
-    def test_contract_command_is_not_suppressed_by_a_same_named_file(self):
-        (self.root / 'native.contracts').touch()
+    def test_preview_command_is_not_suppressed_by_a_same_named_file(self):
+        (self.root / 'web.serve').touch()
         result = subprocess.run(
-            ['make', '--file', str(ROOT / 'Makefile'), '-n', 'native.contracts'],
+            ['make', '--file', str(ROOT / 'Makefile'), '-n', 'web.serve'],
             cwd=self.root, env=self.env, capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn('scripts/native_test.sh --contracts-only', result.stdout)
+        self.assertIn('-m http.server 18763 --bind 127.0.0.1 --directory app/build/web', result.stdout)
+
 
 
 if __name__ == '__main__':

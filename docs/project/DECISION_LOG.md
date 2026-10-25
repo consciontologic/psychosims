@@ -1,33 +1,24 @@
-# 🗳 Decision log
+# Decision log
 
-Append-only log of **meta-decisions** about Psychosims. Code-level architectural
-decisions go in [`../design/`](../design/) as ADRs. Section refs (§N) point at
-[`STARTER.md`](../../STARTER.md); audit refs point at [`../reports/`](../reports/).
+Current decisions for the static browser game. The user-authorized retirement
+on 2026-10-23 removed superseded native/server decisions and their implementation;
+the append-only [tracking history](../tracking/tracking.csv) remains intact.
+New reversals of the decisions below should append a row rather than rewrite one.
 
-| # | Date | Decision | Context | Consequence | Owner |
-|---|---|---|---|---|---|
-| 0001 | 2026-07-04 | Replace the P2P foundation with a server-client model | P2P could not enforce identity, moderation, ownership, or the economy (2026-07-04 audit) | Small but authoritative server owns all trustworthy state; see [ADR-0001](../design/ADR-0001-server-authoritative-control-plane.md). | @maintainer |
-| 0002 | 2026-07-04 | Ship **no** free-form player messaging / chat | Chat is the single largest moderation, safety, and legal surface for a small team (§1) | Social features are structured, typed interactions only (referrals, hiring, reputation). | @maintainer |
-| 0003 | 2026-07-04 | Fictional clinical taxonomy across the whole pipeline | Real DSM/ICD labels + drug brands are IP and store-review risk (§8) | No real diagnostic label or medication appears in any game content; real frameworks inform design only. | @maintainer |
-| 0004 | 2026-07-04 | Case history is revocable + signed, not immutable | You cannot moderate or honour erasure on a permanently immutable ledger (§17) | Tamper-evident entries + a server revocation list; clients drop revoked entries. | @maintainer |
-| 0005 | 2026-07-07 | Server does **not** re-derive session outcomes | A second server-side rules build is costly and drifts from the client (2026-07-07, NC-4) | Receipts validated via plausibility bounds + anomaly detection + `ruleset_version` pinning (§3). | @maintainer |
-| 0006 | 2026-07-07 | No monthly model retrain-and-ship pipeline | An MLOps retrain loop contradicts the fixed-footprint model + needs a team we lack (§18) | Bug logs feed an offline, opt-in improvement queue; the asylum mechanic is pure client-state freeze. | @maintainer |
-| 0007 | 2026-07-07 | Defer paid cosmetics to post-launch | Cosmetics are not core; launching without them reduces scope + review surface (§19) | Launch with a common functional UI; architecture stays cosmetic-ready (theming hooks, skin slots). | @maintainer |
-| 0008 | 2026-07-09 | Encode the corrected patient-lifecycle state machine | The original lifecycle forbade transitions the mechanics require (GM-1) | `pool ⇄ owned`, referral, temporary hospitalization, cure/archival are all first-class (§18); built in Phase 3.6. | @maintainer |
-| 0009 | 2026-07-11 | Keep server-client; do not revert to P2P | Re-examined P2P vs server cost (2026-07-11 assessment) | Verdict **no**: server-client retained; cost is modelled explicitly per MAU tier. | @maintainer |
-| 0010 | 2026-07-11 | Centralized configuration is mandatory, no exceptions | Scattered per-module/per-env config is a maintainability trap (roadmap Principle 1) | One typed, validated `config/` authority; see [DESIGN-centralized-configuration](../design/DESIGN-centralized-configuration.md). | @maintainer |
-| 0011 | 2026-07-11 | Tests target load-bearing logic, not blanket TDD | Prioritize working software + speed while protecting the risky core (roadmap Principle 4) | Sim core, economy, prompt assembler, and receipt validation are tested; UI/content iterate fast. | @maintainer |
-| 0012 | 2026-07-11 | Desktop = Steam (Win/macOS) + direct signed download (Linux); identity = unified Google/Apple OAuth | Closing C-5: all five platforms needed a named channel + sign-in path (§3) | One portable server account across every channel; Steam is distribution only. See [ADR-0002](../design/ADR-0002-desktop-distribution-and-auth.md). | @maintainer |
-| 0013 | 2026-07-11 | Target a mature age band (ESRB 17+ / PEGI 16–18) with Manipulative-card tone guidelines | Closing C-6: the derangement loop (§16) will be scrutinized (§8) | Content framed as "clinical gamble, not cruelty"; finalized pre-submission (Phase 7.5). See [C-6](../specs/AGE-RATING-AND-CONTENT-STRATEGY.md). | @maintainer |
-| 0014 | 2026-07-11 | Entry-gate artifacts (C-1…C-10) live under `docs/specs/` as the single owner of their subject | Addressing the roadmap corrections register in one pass | Specs are living references; later phases edit them in place, never fork a second copy. See [docs/specs/](../specs/README.md). | @maintainer |
-| 0015 | 2026-07-12 | Provisional base model: permissive-licensed only — Tier A **Qwen2.5 1.5B (Apache-2.0)** primary + **Phi-3.5-mini (MIT)** comparator, Tier B **SmolLM2 1.7B (Apache-2.0)** | Commercial redistribution of embedded weights demands minimal legal surface; custom-license models (Gemma, Llama) add notice/AUP/attribution/MAU obligations (C-2) | Bundle Apache-2.0/MIT weights; custom-license models deferred unless they clearly win the Phase 1.6 acting-quality gate; final pick confirmed at PoC. See [C-2](../specs/MODEL-LICENSE-SHORTLIST.md). | @maintainer |
-| 0016 | 2026-07-12 | **GetX** is the Flutter state-management + dependency-injection layer | Decision needed before any feature is written (Phase 0.9); GetX provides reactive state, DI, and navigation in one package with no build_runner codegen overhead | All features wire state and services through GetX; config authority injected via `Get.put`/`Get.find`; no globals or ad-hoc singletons; ADR to be written in Phase 0.9. | @maintainer |
-| 0017 | 2026-07-12 | All Phase 0.6 security work deferred until after the Phase 1 PoC is running | No server, no secrets to manage, no backup store to protect — implementing security conventions before a PoC exists is premature overhead | Phase 0.6 bullets are picked up as Phase 2 pre-work once Phase 1.6 exit gates pass; the PoC runs with no secret-scan gate, no SBOM, and no backup policy. | @maintainer |
-| 0018 | 2026-07-12 | Acting quality is **prompting-first**: manifest + assembled prompt on the stock instruction-tuned model; a one-time **offline** LoRA fine-tune is a gated contingency, and runtime/continuous training stays out of scope | Manifests are the input contract, not a capability substitute; a 1.5B model may miss the acting bar, but the sim core owns all mechanics so a weak actor never breaks fairness (§4). Continuous/on-device training would break determinism (0.8), the no-durable-transcript rule (0.6), the fixed footprint (§5/§18), and offline-first | Phase 1.6 measures prompting first; a red acting-quality gate escalates along [prompt/few-shot → GBNF grammar-constrained decoding → offline LoRA (fixed shipped weights) → tier bump] before Phase 2 spend. Reaffirms [ARCHITECTURE](../code/ARCHITECTURE.md) §7 "not an MLOps retrain pipeline." | @maintainer |
-| 0019 | 2026-07-14 | Ink-wash (Disco Elysium-style) is the authoritative art direction; portrait/background layers are generated **offline at content-build time** with **Google Gemini 2.5 Flash Image ("nano banana")** | Style/atmosphere is a core draw (§20) that needed a named generation tool; a runtime image API would break offline-first (§1) and the fixed on-device footprint (§5) | A shared ink-wash style preamble + per-character prompt + pinned params produce baked transparent layers; the app makes **no image-API calls at play time**; the key is a config/secrets ref, never committed. Built in Phase 7.1. | @maintainer |
+| ID | Date | Decision | Consequence |
+|---|---|---|---|
+| PWA-01 | 2026-10-23 | Ship a static Flutter web game on GitHub Pages | No application backend, database, native runtime or model weights are required. |
+| PWA-02 | 2026-10-23 | Preserve deterministic gameplay and fictional content | The shared core owns outcomes; dialogue cannot grant rewards or change rules. |
+| PWA-03 | 2026-10-23 | Persist complete local state and transcripts | Browser saves replace the former ephemeral-transcript policy; no cloud synchronization or cross-player authority. |
+| PWA-04 | 2026-10-23 | Use a user OpenRouter key only in tab memory | Reload forgets the key; no key enters saves, exports, cache, source or build configuration. |
+| PWA-05 | 2026-10-23 | Require explicit online AI actions and validated output | Offline practice continues; reconnect does not replay requests; incomplete output stays visible. |
+| PWA-06 | 2026-10-23 | Cache only the complete static build inventory | Hash routes reload without server rewrites; updates wait for open tabs to close. |
+| PWA-07 | 2026-10-23 | Keep deployment and DNS changes separately approved | Local verification and staging do not authorize public publication or account mutations. |
+| PWA-08 | 2026-10-23 | Remove the retired implementation, binaries, tests and docs | Keep reusable core/content tests, PWA evidence and generic agent/framework tooling. |
+| PWA-09 | 2026-10-23 | Version new sessions to bounded 0.2.0 pacing after user-approved gameplay fixes | Preserve old saves; health and varied approaches govern success within 12–16 choices. |
+| PWA-10 | 2026-10-23 | Validate exact free ZDR endpoints, not only model-level metadata | Retain strict privacy and zero price limits; provider availability does not justify weaker routing. |
 
-## Rules
-
-- **Append-only.** Reversing a decision = a new row that references the prior one.
-- **One line per decision.** Anything longer becomes an ADR in [`../design/`](../design/).
-- **Owner is a real person**, not a team — the human accountable for the consequence.
+Fictional taxonomy, contextual card choices and the separation between pure rules
+and dialogue remain foundational. See [game design](../design/STARTER.md),
+[configuration](../design/DESIGN-centralized-configuration.md), and
+[architecture](../code/ARCHITECTURE.md).

@@ -12,17 +12,13 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class SecretAcceptanceTests(unittest.TestCase):
-    def test_public_certificate_hash_and_reconciliation_ids_stay_narrow(self):
+    def test_public_certificate_hash_exception_stays_narrow(self):
         scanner = ROOT / '.tools/bin/gitleaks'
         with tempfile.TemporaryDirectory(prefix='certificate-secret-policy-', dir='/tmp/agent-runs') as tmp:
             root = Path(tmp)
             certificate = root / 'test_fixtures/outcomes/trusted_catalog_v1.json'
             certificate.parent.mkdir(parents=True)
             certificate.write_bytes((ROOT / 'test_fixtures/outcomes/trusted_catalog_v1.json').read_bytes())
-            for name in ['testdata/reconciliation.json', 'wire_test.go']:
-                target = root / 'server/internal/server' / name
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_bytes((ROOT / 'server/internal/server' / name).read_bytes())
             base = [str(scanner), 'dir', str(root), '--redact=100', '--no-banner',
                     '--config', str(ROOT / '.gitleaks.toml'), '--ignore-gitleaks-allow',
                     '--gitleaks-ignore-path', '/dev/null']
@@ -65,7 +61,7 @@ class SecretAcceptanceTests(unittest.TestCase):
             self.assertTrue(any(item['RuleID'] == 'aws-access-token' for item in findings))
             self.assertNotIn(synthetic, report.read_text() + result.stdout + result.stderr)
 
-    def test_public_fixture_ids_and_assessment_prose_are_narrow_exceptions(self):
+    def test_public_fixture_ids_are_narrow_exceptions(self):
         scanner = ROOT / '.tools/bin/gitleaks'
         self.assertTrue(scanner.is_file(), 'Run scripts/bootstrap.sh --tools-only')
         with tempfile.TemporaryDirectory(prefix='secret-policy-', dir='/tmp/agent-runs') as temp:
@@ -106,7 +102,7 @@ class DependencyAcceptanceTests(unittest.TestCase):
                         parse_licenses(result.stdout, [path])
 
     def test_real_scanner_rejects_known_vulnerable_dependency(self):
-        # https://pkg.go.dev/vuln/GO-2021-0113 affects x/text before v0.3.7.
+        # https://github.com/advisories/GHSA-35jh-r3h4-6jhm affects lodash before 4.17.21.
         # Scan metadata only: never install or execute the vulnerable version.
         scanner = ROOT / '.tools/bin/osv-scanner'
         self.assertTrue(scanner.is_file(), 'Run scripts/bootstrap.sh --tools-only')
@@ -114,15 +110,15 @@ class DependencyAcceptanceTests(unittest.TestCase):
             directory = Path(temporary)
             source, output = directory / 'osv-scanner-custom.json', directory / 'result.json'
             source.write_text(json.dumps({'results': [{'packages': [{'package': {
-                'name': 'golang.org/x/text', 'ecosystem': 'Go', 'version': 'v0.3.6'}}]}]}))
-            result = subprocess.run([str(scanner), 'scan', 'source', '--no-call-analysis=go',
+                'name': 'lodash', 'ecosystem': 'npm', 'version': '4.17.20'}}]}]}))
+            result = subprocess.run([str(scanner), 'scan', 'source',
                                      '--format=json', '--output-file', str(output), '-L', str(source)],
                                     cwd=ROOT, text=True, capture_output=True, timeout=300)
             self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
             report = json.loads(output.read_text())
             ids = {vulnerability['id'] for group in report['results']
                    for package in group['packages'] for vulnerability in package.get('vulnerabilities', [])}
-            self.assertIn('GO-2021-0113', ids)
+            self.assertIn('GHSA-35jh-r3h4-6jhm', ids)
 
 
 if __name__ == '__main__':

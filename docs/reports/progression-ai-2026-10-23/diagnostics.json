@@ -1,0 +1,4542 @@
+{
+  "checks": [
+    "Complete static cache: 40 resources",
+    "Chromium installability and manifest checks pass",
+    "Home and patient profile visually captured at 360,768,1440px without page horizontal overflow",
+    "New game remains reachable at 360x640,360x800,768x1024,1440x900",
+    "Player action persisted deterministic state and transcript",
+    "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+    "Offline reload preserves save/transcript and local mechanics advance",
+    "All five hash routes reload offline without server rewrites",
+    "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+    "Truncated SSE preserves partial text without applying a turn; offline retry disables; reconnect does not replay; explicit retry applies exactly once and retains the incomplete attempt",
+    "HTTP404 preserves turn/transcript/rewards and offers safe guidance; reconnect does not replay; explicit retry retains the exact provider allowlist and all privacy flags",
+    "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+    "No credential in local/session storage and no API URL in the static cache",
+    "Keyboard navigation and browser back/forward preserve the session",
+    "New game is reachable from Home and Session; cancel preserves save; confirm resets current turn and transcript while retaining career/setup; fresh game reloads offline",
+    "A varied 12-turn mobile session succeeds with actual rapport and calm; every action needs zero scrolling and every latest reply/state remains visible",
+    "Completed 12-turn offline mobile session; keyboard History navigation exposes archived dialogue; offline reload and New game retain completed history/career",
+    "Each single-action strategy ends without success rewards by turn16; repeated reframing triggers an earlier turn8 walkout",
+    "Objective delivery with low rapport cannot convert repeated progress into success or career rewards",
+    "Seed0 crisis reaches agitation81; three boundaries lower it to47; validation then succeeds at turn14 through the ordinary controls",
+    "Authentic legacy turn20 save resumes with identical transcript and original mechanics through turn21; explicit New game opts into0.2.0 and reloads offline"
+  ],
+  "viewportChecks": [
+    {
+      "width": 360,
+      "height": 640,
+      "homeNewGameInitialBox": {
+        "x": 41,
+        "y": 5.070163726806641,
+        "width": 137.140625,
+        "height": 48
+      },
+      "homeNewGameWheelSteps": 1
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "homeNewGameInitialBox": {
+        "x": 41,
+        "y": 474,
+        "width": 137.140625,
+        "height": 48
+      },
+      "homeNewGameWheelSteps": 0
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "homeNewGameInitialBox": {
+        "x": 65,
+        "y": 329,
+        "width": 137.140625,
+        "height": 48
+      },
+      "homeNewGameWheelSteps": 0
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "homeNewGameInitialBox": {
+        "x": 145,
+        "y": 373,
+        "width": 137.140625,
+        "height": 48
+      },
+      "homeNewGameWheelSteps": 0
+    }
+  ],
+  "playthrough": [
+    {
+      "strategy": "mixed-success",
+      "turn": 1,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 1 / 16 · Trust 33 · Agitation 43",
+      "transcriptEntries": 2,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 2,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 2 / 16 · Trust 36 · Agitation 41",
+      "transcriptEntries": 4,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 3,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 3 / 16 · Trust 39 · Agitation 39",
+      "transcriptEntries": 6,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 4,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 4 / 16 · Trust 42 · Agitation 37",
+      "transcriptEntries": 8,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 5,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 5 / 16 · Trust 47 · Agitation 35",
+      "transcriptEntries": 10,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 6,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 6 / 16 · Trust 52 · Agitation 32",
+      "transcriptEntries": 12,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 7,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 7 / 16 · Trust 53 · Agitation 32",
+      "transcriptEntries": 14,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 8,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 8 / 16 · Trust 55 · Agitation 32",
+      "transcriptEntries": 16,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 9,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 9 / 16 · Trust 56 · Agitation 32",
+      "transcriptEntries": 18,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 10,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 10 / 16 · Trust 57 · Agitation 32",
+      "transcriptEntries": 20,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 11,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 11 / 16 · Trust 60 · Agitation 32",
+      "transcriptEntries": 22,
+      "completed": false
+    },
+    {
+      "strategy": "mixed-success",
+      "turn": 12,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 237,
+        "width": 271.546875,
+        "height": 69
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Session complete",
+      "transcriptEntries": 24,
+      "completed": true
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 1,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 1 / 16 · Trust 33 · Agitation 43",
+      "transcriptEntries": 2,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 2,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 2 / 16 · Trust 36 · Agitation 41",
+      "transcriptEntries": 4,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 3,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 3 / 16 · Trust 39 · Agitation 39",
+      "transcriptEntries": 6,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 4,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 4 / 16 · Trust 42 · Agitation 37",
+      "transcriptEntries": 8,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 5,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 5 / 16 · Trust 47 · Agitation 35",
+      "transcriptEntries": 10,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 6,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 6 / 16 · Trust 52 · Agitation 32",
+      "transcriptEntries": 12,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 7,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 7 / 16 · Trust 57 · Agitation 29",
+      "transcriptEntries": 14,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 8,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 8 / 16 · Trust 62 · Agitation 26",
+      "transcriptEntries": 16,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 9,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 9 / 16 · Trust 69 · Agitation 23",
+      "transcriptEntries": 18,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 10,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 10 / 16 · Trust 76 · Agitation 20",
+      "transcriptEntries": 20,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 11,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 11 / 16 · Trust 83 · Agitation 17",
+      "transcriptEntries": 22,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 12,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 12 / 16 · Trust 88 · Agitation 14",
+      "transcriptEntries": 24,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 13,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 13 / 16 · Trust 94 · Agitation 11",
+      "transcriptEntries": 26,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 14,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 14 / 16 · Trust 100 · Agitation 8",
+      "transcriptEntries": 28,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 15,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 15 / 16 · Trust 100 · Agitation 5",
+      "transcriptEntries": 30,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-validate",
+      "turn": 16,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 237,
+        "width": 271.546875,
+        "height": 69
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Session ended",
+      "transcriptEntries": 32,
+      "completed": true
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 1,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 1 / 16 · Trust 31 · Agitation 45",
+      "transcriptEntries": 2,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 2,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 2 / 16 · Trust 32 · Agitation 45",
+      "transcriptEntries": 4,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 3,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 3 / 16 · Trust 33 · Agitation 45",
+      "transcriptEntries": 6,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 4,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 4 / 16 · Trust 33 · Agitation 45",
+      "transcriptEntries": 8,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 5,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 5 / 16 · Trust 34 · Agitation 45",
+      "transcriptEntries": 10,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 6,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 6 / 16 · Trust 35 · Agitation 45",
+      "transcriptEntries": 12,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 7,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 7 / 16 · Trust 34 · Agitation 45",
+      "transcriptEntries": 14,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 8,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 8 / 16 · Trust 34 · Agitation 45",
+      "transcriptEntries": 16,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 9,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 9 / 16 · Trust 33 · Agitation 45",
+      "transcriptEntries": 18,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 10,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 10 / 16 · Trust 32 · Agitation 45",
+      "transcriptEntries": 20,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 11,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 11 / 16 · Trust 33 · Agitation 45",
+      "transcriptEntries": 22,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 12,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 12 / 16 · Trust 34 · Agitation 45",
+      "transcriptEntries": 24,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 13,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 13 / 16 · Trust 34 · Agitation 45",
+      "transcriptEntries": 26,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 14,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 14 / 16 · Trust 33 · Agitation 45",
+      "transcriptEntries": 28,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 15,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 15 / 16 · Trust 33 · Agitation 45",
+      "transcriptEntries": 30,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-open-question",
+      "turn": 16,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 237,
+        "width": 271.546875,
+        "height": 69
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Session ended",
+      "transcriptEntries": 32,
+      "completed": true
+    },
+    {
+      "strategy": "repeat-reframe",
+      "turn": 1,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 1 / 16 · Trust 30 · Agitation 51",
+      "transcriptEntries": 2,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-reframe",
+      "turn": 2,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 2 / 16 · Trust 30 · Agitation 56",
+      "transcriptEntries": 4,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-reframe",
+      "turn": 3,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 3 / 16 · Trust 30 · Agitation 63",
+      "transcriptEntries": 6,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-reframe",
+      "turn": 4,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 4 / 16 · Trust 30 · Agitation 66",
+      "transcriptEntries": 8,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-reframe",
+      "turn": 5,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 5 / 16 · Trust 30 · Agitation 75",
+      "transcriptEntries": 10,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-reframe",
+      "turn": 6,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 6 / 16 · Trust 30 · Agitation 80",
+      "transcriptEntries": 12,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-reframe",
+      "turn": 7,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 7 / 16 · Trust 30 · Agitation 90",
+      "transcriptEntries": 14,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-reframe",
+      "turn": 8,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 237,
+        "width": 271.546875,
+        "height": 69
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Session ended",
+      "transcriptEntries": 16,
+      "completed": true
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 1,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 1 / 16 · Trust 29 · Agitation 35",
+      "transcriptEntries": 2,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 2,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 2 / 16 · Trust 28 · Agitation 25",
+      "transcriptEntries": 4,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 3,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 3 / 16 · Trust 26 · Agitation 19",
+      "transcriptEntries": 6,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 4,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 4 / 16 · Trust 24 · Agitation 14",
+      "transcriptEntries": 8,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 5,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 5 / 16 · Trust 22 · Agitation 9",
+      "transcriptEntries": 10,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 6,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 6 / 16 · Trust 20 · Agitation 2",
+      "transcriptEntries": 12,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 7,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 7 / 16 · Trust 18 · Agitation 0",
+      "transcriptEntries": 14,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 8,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 8 / 16 · Trust 16 · Agitation 0",
+      "transcriptEntries": 16,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 9,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 9 / 16 · Trust 14 · Agitation 0",
+      "transcriptEntries": 18,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 10,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 10 / 16 · Trust 12 · Agitation 0",
+      "transcriptEntries": 20,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 11,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 11 / 16 · Trust 10 · Agitation 0",
+      "transcriptEntries": 22,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 12,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 12 / 16 · Trust 8 · Agitation 0",
+      "transcriptEntries": 24,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 13,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 13 / 16 · Trust 6 · Agitation 0",
+      "transcriptEntries": 26,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 14,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 14 / 16 · Trust 4 · Agitation 0",
+      "transcriptEntries": 28,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 15,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 15 / 16 · Trust 2 · Agitation 0",
+      "transcriptEntries": 30,
+      "completed": false
+    },
+    {
+      "strategy": "repeat-set-boundary",
+      "turn": 16,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 237,
+        "width": 271.546875,
+        "height": 69
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Session ended",
+      "transcriptEntries": 32,
+      "completed": true
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 1,
+      "action": "Open question",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 1 / 16 · Trust 31 · Agitation 45",
+      "transcriptEntries": 2,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 2,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 2 / 16 · Trust 30 · Agitation 45",
+      "transcriptEntries": 4,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 3,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 3 / 16 · Trust 29 · Agitation 45",
+      "transcriptEntries": 6,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 4,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 4 / 16 · Trust 28 · Agitation 45",
+      "transcriptEntries": 8,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 5,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 5 / 16 · Trust 29 · Agitation 45",
+      "transcriptEntries": 10,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 6,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 6 / 16 · Trust 28 · Agitation 45",
+      "transcriptEntries": 12,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 7,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 7 / 16 · Trust 27 · Agitation 45",
+      "transcriptEntries": 14,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 8,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 8 / 16 · Trust 26 · Agitation 45",
+      "transcriptEntries": 16,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 9,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 9 / 16 · Trust 27 · Agitation 45",
+      "transcriptEntries": 18,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 10,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 10 / 16 · Trust 28 · Agitation 45",
+      "transcriptEntries": 20,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 11,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 11 / 16 · Trust 29 · Agitation 45",
+      "transcriptEntries": 22,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 12,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 12 / 16 · Trust 28 · Agitation 45",
+      "transcriptEntries": 24,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 13,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 13 / 16 · Trust 28 · Agitation 45",
+      "transcriptEntries": 26,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 14,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 14 / 16 · Trust 29 · Agitation 45",
+      "transcriptEntries": 28,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 15,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 15 / 16 · Trust 28 · Agitation 45",
+      "transcriptEntries": 30,
+      "completed": false
+    },
+    {
+      "strategy": "low-trust-objective",
+      "turn": 16,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 237,
+        "width": 271.546875,
+        "height": 69
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Session ended",
+      "transcriptEntries": 32,
+      "completed": true
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 1,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 1 / 16 · Trust 30 · Agitation 53",
+      "transcriptEntries": 2,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 2,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 2 / 16 · Trust 30 · Agitation 59",
+      "transcriptEntries": 4,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 3,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 3 / 16 · Trust 30 · Agitation 69",
+      "transcriptEntries": 6,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 4,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 4 / 16 · Trust 30 · Agitation 73",
+      "transcriptEntries": 8,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 5,
+      "action": "Reframe",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 5 / 16 · Trust 30 · Agitation 81",
+      "transcriptEntries": 10,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 6,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 6 / 16 · Trust 30 · Agitation 68",
+      "transcriptEntries": 12,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 7,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 7 / 16 · Trust 30 · Agitation 56",
+      "transcriptEntries": 14,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 8,
+      "action": "Set boundary",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 8 / 16 · Trust 29 · Agitation 47",
+      "transcriptEntries": 16,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 9,
+      "action": "Validate",
+      "input": "keyboard Enter",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 9 / 16 · Trust 33 · Agitation 45",
+      "transcriptEntries": 18,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 10,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 10 / 16 · Trust 37 · Agitation 43",
+      "transcriptEntries": 20,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 11,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 11 / 16 · Trust 41 · Agitation 41",
+      "transcriptEntries": 22,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 12,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 202,
+        "width": 285,
+        "height": 95
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 12 / 16 · Trust 45 · Agitation 39",
+      "transcriptEntries": 24,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 13,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 176,
+        "width": 285,
+        "height": 121
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Turn 13 / 16 · Trust 52 · Agitation 36",
+      "transcriptEntries": 26,
+      "completed": false
+    },
+    {
+      "strategy": "crisis-recovery",
+      "turn": 14,
+      "action": "Validate",
+      "input": "pointer",
+      "wheelSteps": 0,
+      "replyBox": {
+        "x": 39,
+        "y": 237,
+        "width": 271.546875,
+        "height": 69
+      },
+      "surface": {
+        "windowX": 0,
+        "windowY": 0,
+        "viewX": 0,
+        "viewY": 0
+      },
+      "visibleState": "Session complete",
+      "transcriptEntries": 28,
+      "completed": true
+    }
+  ],
+  "strategies": [
+    {
+      "name": "mixed-success",
+      "fixture": null,
+      "outcome": "succeed",
+      "turns": 12,
+      "rewards": {
+        "xp": 100,
+        "study": 3,
+        "cash": 50
+      },
+      "steps": [
+        {
+          "strategy": "mixed-success",
+          "turn": 1,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 1 / 16 · Trust 33 · Agitation 43",
+          "transcriptEntries": 2,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 2,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 2 / 16 · Trust 36 · Agitation 41",
+          "transcriptEntries": 4,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 3,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 3 / 16 · Trust 39 · Agitation 39",
+          "transcriptEntries": 6,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 4,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 4 / 16 · Trust 42 · Agitation 37",
+          "transcriptEntries": 8,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 5,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 5 / 16 · Trust 47 · Agitation 35",
+          "transcriptEntries": 10,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 6,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 6 / 16 · Trust 52 · Agitation 32",
+          "transcriptEntries": 12,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 7,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 7 / 16 · Trust 53 · Agitation 32",
+          "transcriptEntries": 14,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 8,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 8 / 16 · Trust 55 · Agitation 32",
+          "transcriptEntries": 16,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 9,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 9 / 16 · Trust 56 · Agitation 32",
+          "transcriptEntries": 18,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 10,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 10 / 16 · Trust 57 · Agitation 32",
+          "transcriptEntries": 20,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 11,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 11 / 16 · Trust 60 · Agitation 32",
+          "transcriptEntries": 22,
+          "completed": false
+        },
+        {
+          "strategy": "mixed-success",
+          "turn": 12,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 237,
+            "width": 271.546875,
+            "height": 69
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Session complete",
+          "transcriptEntries": 24,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "name": "repeat-validate",
+      "fixture": null,
+      "outcome": "fail",
+      "turns": 16,
+      "rewards": {},
+      "steps": [
+        {
+          "strategy": "repeat-validate",
+          "turn": 1,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 1 / 16 · Trust 33 · Agitation 43",
+          "transcriptEntries": 2,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 2,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 2 / 16 · Trust 36 · Agitation 41",
+          "transcriptEntries": 4,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 3,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 3 / 16 · Trust 39 · Agitation 39",
+          "transcriptEntries": 6,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 4,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 4 / 16 · Trust 42 · Agitation 37",
+          "transcriptEntries": 8,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 5,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 5 / 16 · Trust 47 · Agitation 35",
+          "transcriptEntries": 10,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 6,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 6 / 16 · Trust 52 · Agitation 32",
+          "transcriptEntries": 12,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 7,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 7 / 16 · Trust 57 · Agitation 29",
+          "transcriptEntries": 14,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 8,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 8 / 16 · Trust 62 · Agitation 26",
+          "transcriptEntries": 16,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 9,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 9 / 16 · Trust 69 · Agitation 23",
+          "transcriptEntries": 18,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 10,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 10 / 16 · Trust 76 · Agitation 20",
+          "transcriptEntries": 20,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 11,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 11 / 16 · Trust 83 · Agitation 17",
+          "transcriptEntries": 22,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 12,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 12 / 16 · Trust 88 · Agitation 14",
+          "transcriptEntries": 24,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 13,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 13 / 16 · Trust 94 · Agitation 11",
+          "transcriptEntries": 26,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 14,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 14 / 16 · Trust 100 · Agitation 8",
+          "transcriptEntries": 28,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 15,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 15 / 16 · Trust 100 · Agitation 5",
+          "transcriptEntries": 30,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-validate",
+          "turn": 16,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 237,
+            "width": 271.546875,
+            "height": 69
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Session ended",
+          "transcriptEntries": 32,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "name": "repeat-open-question",
+      "fixture": null,
+      "outcome": "fail",
+      "turns": 16,
+      "rewards": {},
+      "steps": [
+        {
+          "strategy": "repeat-open-question",
+          "turn": 1,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 1 / 16 · Trust 31 · Agitation 45",
+          "transcriptEntries": 2,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 2,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 2 / 16 · Trust 32 · Agitation 45",
+          "transcriptEntries": 4,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 3,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 3 / 16 · Trust 33 · Agitation 45",
+          "transcriptEntries": 6,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 4,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 4 / 16 · Trust 33 · Agitation 45",
+          "transcriptEntries": 8,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 5,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 5 / 16 · Trust 34 · Agitation 45",
+          "transcriptEntries": 10,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 6,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 6 / 16 · Trust 35 · Agitation 45",
+          "transcriptEntries": 12,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 7,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 7 / 16 · Trust 34 · Agitation 45",
+          "transcriptEntries": 14,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 8,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 8 / 16 · Trust 34 · Agitation 45",
+          "transcriptEntries": 16,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 9,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 9 / 16 · Trust 33 · Agitation 45",
+          "transcriptEntries": 18,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 10,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 10 / 16 · Trust 32 · Agitation 45",
+          "transcriptEntries": 20,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 11,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 11 / 16 · Trust 33 · Agitation 45",
+          "transcriptEntries": 22,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 12,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 12 / 16 · Trust 34 · Agitation 45",
+          "transcriptEntries": 24,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 13,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 13 / 16 · Trust 34 · Agitation 45",
+          "transcriptEntries": 26,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 14,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 14 / 16 · Trust 33 · Agitation 45",
+          "transcriptEntries": 28,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 15,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 15 / 16 · Trust 33 · Agitation 45",
+          "transcriptEntries": 30,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-open-question",
+          "turn": 16,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 237,
+            "width": 271.546875,
+            "height": 69
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Session ended",
+          "transcriptEntries": 32,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "name": "repeat-reframe",
+      "fixture": null,
+      "outcome": "fail",
+      "turns": 8,
+      "rewards": {},
+      "steps": [
+        {
+          "strategy": "repeat-reframe",
+          "turn": 1,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 1 / 16 · Trust 30 · Agitation 51",
+          "transcriptEntries": 2,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-reframe",
+          "turn": 2,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 2 / 16 · Trust 30 · Agitation 56",
+          "transcriptEntries": 4,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-reframe",
+          "turn": 3,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 3 / 16 · Trust 30 · Agitation 63",
+          "transcriptEntries": 6,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-reframe",
+          "turn": 4,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 4 / 16 · Trust 30 · Agitation 66",
+          "transcriptEntries": 8,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-reframe",
+          "turn": 5,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 5 / 16 · Trust 30 · Agitation 75",
+          "transcriptEntries": 10,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-reframe",
+          "turn": 6,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 6 / 16 · Trust 30 · Agitation 80",
+          "transcriptEntries": 12,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-reframe",
+          "turn": 7,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 7 / 16 · Trust 30 · Agitation 90",
+          "transcriptEntries": 14,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-reframe",
+          "turn": 8,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 237,
+            "width": 271.546875,
+            "height": 69
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Session ended",
+          "transcriptEntries": 16,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "name": "repeat-set-boundary",
+      "fixture": null,
+      "outcome": "fail",
+      "turns": 16,
+      "rewards": {},
+      "steps": [
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 1,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 1 / 16 · Trust 29 · Agitation 35",
+          "transcriptEntries": 2,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 2,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 2 / 16 · Trust 28 · Agitation 25",
+          "transcriptEntries": 4,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 3,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 3 / 16 · Trust 26 · Agitation 19",
+          "transcriptEntries": 6,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 4,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 4 / 16 · Trust 24 · Agitation 14",
+          "transcriptEntries": 8,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 5,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 5 / 16 · Trust 22 · Agitation 9",
+          "transcriptEntries": 10,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 6,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 6 / 16 · Trust 20 · Agitation 2",
+          "transcriptEntries": 12,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 7,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 7 / 16 · Trust 18 · Agitation 0",
+          "transcriptEntries": 14,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 8,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 8 / 16 · Trust 16 · Agitation 0",
+          "transcriptEntries": 16,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 9,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 9 / 16 · Trust 14 · Agitation 0",
+          "transcriptEntries": 18,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 10,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 10 / 16 · Trust 12 · Agitation 0",
+          "transcriptEntries": 20,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 11,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 11 / 16 · Trust 10 · Agitation 0",
+          "transcriptEntries": 22,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 12,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 12 / 16 · Trust 8 · Agitation 0",
+          "transcriptEntries": 24,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 13,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 13 / 16 · Trust 6 · Agitation 0",
+          "transcriptEntries": 26,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 14,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 14 / 16 · Trust 4 · Agitation 0",
+          "transcriptEntries": 28,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 15,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 15 / 16 · Trust 2 · Agitation 0",
+          "transcriptEntries": 30,
+          "completed": false
+        },
+        {
+          "strategy": "repeat-set-boundary",
+          "turn": 16,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 237,
+            "width": 271.546875,
+            "height": 69
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Session ended",
+          "transcriptEntries": 32,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "name": "low-trust-objective",
+      "fixture": null,
+      "outcome": "fail",
+      "turns": 16,
+      "rewards": {},
+      "steps": [
+        {
+          "strategy": "low-trust-objective",
+          "turn": 1,
+          "action": "Open question",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 1 / 16 · Trust 31 · Agitation 45",
+          "transcriptEntries": 2,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 2,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 2 / 16 · Trust 30 · Agitation 45",
+          "transcriptEntries": 4,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 3,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 3 / 16 · Trust 29 · Agitation 45",
+          "transcriptEntries": 6,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 4,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 4 / 16 · Trust 28 · Agitation 45",
+          "transcriptEntries": 8,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 5,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 5 / 16 · Trust 29 · Agitation 45",
+          "transcriptEntries": 10,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 6,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 6 / 16 · Trust 28 · Agitation 45",
+          "transcriptEntries": 12,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 7,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 7 / 16 · Trust 27 · Agitation 45",
+          "transcriptEntries": 14,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 8,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 8 / 16 · Trust 26 · Agitation 45",
+          "transcriptEntries": 16,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 9,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 9 / 16 · Trust 27 · Agitation 45",
+          "transcriptEntries": 18,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 10,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 10 / 16 · Trust 28 · Agitation 45",
+          "transcriptEntries": 20,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 11,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 11 / 16 · Trust 29 · Agitation 45",
+          "transcriptEntries": 22,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 12,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 12 / 16 · Trust 28 · Agitation 45",
+          "transcriptEntries": 24,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 13,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 13 / 16 · Trust 28 · Agitation 45",
+          "transcriptEntries": 26,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 14,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 14 / 16 · Trust 29 · Agitation 45",
+          "transcriptEntries": 28,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 15,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 15 / 16 · Trust 28 · Agitation 45",
+          "transcriptEntries": 30,
+          "completed": false
+        },
+        {
+          "strategy": "low-trust-objective",
+          "turn": 16,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 237,
+            "width": 271.546875,
+            "height": 69
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Session ended",
+          "transcriptEntries": 32,
+          "completed": true
+        }
+      ]
+    },
+    {
+      "name": "crisis-recovery",
+      "fixture": "Fresh 0.2.0 save with initial seed0, checksummed before reload",
+      "outcome": "succeed",
+      "turns": 14,
+      "rewards": {
+        "xp": 25,
+        "study": 3,
+        "cash": 50
+      },
+      "steps": [
+        {
+          "strategy": "crisis-recovery",
+          "turn": 1,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 1 / 16 · Trust 30 · Agitation 53",
+          "transcriptEntries": 2,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 2,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 2 / 16 · Trust 30 · Agitation 59",
+          "transcriptEntries": 4,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 3,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 3 / 16 · Trust 30 · Agitation 69",
+          "transcriptEntries": 6,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 4,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 4 / 16 · Trust 30 · Agitation 73",
+          "transcriptEntries": 8,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 5,
+          "action": "Reframe",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 5 / 16 · Trust 30 · Agitation 81",
+          "transcriptEntries": 10,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 6,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 6 / 16 · Trust 30 · Agitation 68",
+          "transcriptEntries": 12,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 7,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 7 / 16 · Trust 30 · Agitation 56",
+          "transcriptEntries": 14,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 8,
+          "action": "Set boundary",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 8 / 16 · Trust 29 · Agitation 47",
+          "transcriptEntries": 16,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 9,
+          "action": "Validate",
+          "input": "keyboard Enter",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 9 / 16 · Trust 33 · Agitation 45",
+          "transcriptEntries": 18,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 10,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 10 / 16 · Trust 37 · Agitation 43",
+          "transcriptEntries": 20,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 11,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 11 / 16 · Trust 41 · Agitation 41",
+          "transcriptEntries": 22,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 12,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 202,
+            "width": 285,
+            "height": 95
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 12 / 16 · Trust 45 · Agitation 39",
+          "transcriptEntries": 24,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 13,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 176,
+            "width": 285,
+            "height": 121
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Turn 13 / 16 · Trust 52 · Agitation 36",
+          "transcriptEntries": 26,
+          "completed": false
+        },
+        {
+          "strategy": "crisis-recovery",
+          "turn": 14,
+          "action": "Validate",
+          "input": "pointer",
+          "wheelSteps": 0,
+          "replyBox": {
+            "x": 39,
+            "y": 237,
+            "width": 271.546875,
+            "height": 69
+          },
+          "surface": {
+            "windowX": 0,
+            "windowY": 0,
+            "viewX": 0,
+            "viewY": 0
+          },
+          "visibleState": "Session complete",
+          "transcriptEntries": 28,
+          "completed": true
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "assetFailures": [],
+  "browserWarnings": [
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x60403dd1400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x60403dd1400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x60403dd1400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x60403dd1400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    }
+  ]
+}

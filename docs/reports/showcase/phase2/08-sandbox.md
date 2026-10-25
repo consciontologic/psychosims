@@ -51,5 +51,5 @@ _per-manifest solvability · bot sweep · win-rate distributions · economy flag
 - ✅ no runaway inflation flag
 - ❌ dead-currency flags: 4
 
-> This is the same pure core the app ships, driven with no inference, no Flutter, and no model binary — the reusable solvability check Phase 4.3 runs per generated manifest.
+> This is the same pure core the app ships, driven with no inference, no Flutter, and no model binary — the reusable solvability check for bundled content.
 

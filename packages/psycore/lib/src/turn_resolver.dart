@@ -21,6 +21,16 @@ class TurnResolver {
   const TurnResolver(this.clock, {this.balance = const CardBalance()});
 
   TurnOutput resolve(TurnInput input) {
+    final profile = RulesetProfile.forVersion(input.rulesetVersion);
+    // Carry-over can start a new session at walkout pressure. Its first action
+    // must still produce an outcome (or contain that pressure), not a softlock.
+    if (profile.hasBoundedSessions && input.state.turn > 0) {
+      final previousOutcome = _classifyBoundedOutcome(input.state, profile);
+      if (previousOutcome == SessionOutcome.succeed ||
+          previousOutcome == SessionOutcome.fail) {
+        throw StateError('A completed session cannot accept another turn.');
+      }
+    }
     if (input.loadout.cardIds.length > input.loadout.slotCap) {
       throw ArgumentError(
         'Loadout exceeds its slot cap: ${input.loadout.cardIds.length} > ${input.loadout.slotCap}',
@@ -57,16 +67,24 @@ class TurnResolver {
       turnIndex: input.state.turn,
       actionName: input.action.name,
       rootSeed: input.state.seed,
-      profile: RulesetProfile.forVersion(input.rulesetVersion),
+      profile: profile,
     );
     final prng = SeededPrng.forRuleset(seed, input.rulesetVersion);
 
     final effectiveCard = _resolveEffectiveCard(card, input.state);
-    final fit = _computeContextFit(
-      effectiveCard.signature,
-      input.state,
-      input.controllers,
-    );
+    final fit = profile.hasBoundedSessions &&
+            effectiveCard.signature == CardSignature.breaker &&
+            input.state.resistance < 35 &&
+            input.state.trustScore >= balance.stableTrustFloor &&
+            input.state.agitationLevel < balance.fitFreezeAgitation
+        ? ContextFit.values[(1 -
+                _controllerModifier(effectiveCard.signature, input.controllers))
+            .clamp(0, 2)]
+        : _computeContextFit(
+            effectiveCard.signature,
+            input.state,
+            input.controllers,
+          );
 
     var next = input.state;
     final deltas = <StructuredDelta>[];
@@ -87,29 +105,40 @@ class TurnResolver {
       ));
     }
 
-    final effect = _resolveEffect(prng, effectiveCard, fit, next);
+    final effect = profile.hasBoundedSessions
+        ? _resolveBoundedEffect(prng, effectiveCard, fit, next)
+        : _resolveEffect(prng, effectiveCard, fit, next);
     next = _applyEffect(
         next, effect, effectiveCard, fit, input.rulesetVersion, deltas.add);
 
     next = _applyMedication(
         next, effectiveCard, fit, input.rulesetVersion, deltas.add);
 
-    // Baseline session progress: each turn advances the session by one step.
+    // New sessions show elapsed pace; success still requires a healthy state
+    // and rapport plus exploration. Legacy progress and bytes stay unchanged.
+    final progress = _clamp(next.sessionProgress + profile.progressPerTurn);
+    final progressDelta =
+        profile.hasBoundedSessions ? progress - next.sessionProgress : 1;
     next = next.copyWith(
       turn: next.turn + 1,
-      sessionProgress: _clamp(next.sessionProgress + 1),
+      sessionProgress: progress,
+      approachMask: profile.hasBoundedSessions
+          ? next.approachMask | (1 << input.action.index)
+          : next.approachMask,
     );
     deltas.add(StructuredDelta(
       rulesetVersion: input.rulesetVersion,
       axis: StateAxis.sessionProgress,
-      deltaMillis: 1,
+      deltaMillis: progressDelta,
       reasonKey: 'deltas.session.progress',
       cardType: effectiveCard.type,
       cardSignature: effectiveCard.signature,
       contextFit: fit,
     ));
 
-    final outcome = _classifyOutcome(next);
+    final outcome = profile.hasBoundedSessions
+        ? _classifyBoundedOutcome(next, profile)
+        : _classifyOutcome(next);
     final lifecycle = _nextLifecycle(
       input.state.turn == 0 ? CaseLifecycle.open : CaseLifecycle.inTreatment,
       outcome,
@@ -256,6 +285,61 @@ class TurnResolver {
           freezeTurnsSet: balance.postponingFreezeTurns,
         ),
       CardType.manipulative => _manipulativeVector(prng, state, fit),
+    };
+  }
+
+  /// Version 0.2.0 makes rapport and containment useful inside a short session.
+  /// It consumes its own pinned deterministic draw; legacy effects above are
+  /// deliberately untouched. Reframing still risks escalation before trust.
+  _EffectVector _resolveBoundedEffect(
+    SeededPrng prng,
+    Card card,
+    ContextFit fit,
+    SimState state,
+  ) {
+    if (card.type == CardType.manipulative) {
+      return _manipulativeVector(prng, state, fit);
+    }
+    final roll = prng.nextInt(3) - 1;
+    return switch (card.type) {
+      CardType.relatable => _EffectVector(
+          trustDelta: switch (fit) {
+                ContextFit.aligned => 6,
+                ContextFit.partial => 4,
+                ContextFit.mismatched => 0,
+              } +
+              roll,
+          agitationDelta: switch (fit) {
+            ContextFit.aligned => -3,
+            ContextFit.partial => -2,
+            ContextFit.mismatched => 0,
+          },
+        ),
+      CardType.postponing => _EffectVector(
+          agitationDelta: switch (fit) {
+                ContextFit.aligned => -12,
+                ContextFit.partial => -9,
+                ContextFit.mismatched => -6,
+              } +
+              roll,
+          trustDelta: -fit.index,
+          freezeTurnsSet: balance.postponingFreezeTurns,
+        ),
+      CardType.disclosing => _EffectVector(
+          trustDelta: switch (fit) {
+                ContextFit.aligned => 4,
+                ContextFit.partial => 2,
+                ContextFit.mismatched => 0,
+              } +
+              roll,
+          resistanceDelta: switch (fit) {
+                ContextFit.aligned => -4,
+                ContextFit.partial => -2,
+                ContextFit.mismatched => 0,
+              } +
+              roll,
+        ),
+      CardType.manipulative => throw StateError('Handled above'),
     };
   }
 
@@ -468,6 +552,32 @@ class TurnResolver {
     ));
 
     return next;
+  }
+
+  SessionOutcome _classifyBoundedOutcome(
+      SimState state, RulesetProfile profile) {
+    if (state.agitationLevel >= balance.walkoutThreshold) {
+      return SessionOutcome.fail;
+    }
+    if (state.turn >= profile.minimumSuccessTurns &&
+        state.sessionProgress >= balance.successProgressThreshold &&
+        state.trustScore >= profile.successTrustFloor &&
+        state.agitationLevel <= profile.successAgitationCeiling &&
+        state.hasRapportApproach &&
+        state.hasExplorationApproach) {
+      return SessionOutcome.succeed;
+    }
+    // A full session closes for review even if crisis remains unresolved.
+    // This precedes the nonterminal crisis classification to prevent softlocks.
+    if (state.turn >= profile.maxSessionTurns!) return SessionOutcome.fail;
+    if (state.agitationLevel >= balance.crisisThreshold) {
+      return SessionOutcome.crisis;
+    }
+    if (state.agitationLevel <= balance.calmThreshold &&
+        state.trustScore >= balance.stableTrustFloor) {
+      return SessionOutcome.stabilize;
+    }
+    return SessionOutcome.ongoing;
   }
 
   SessionOutcome _classifyOutcome(SimState state) {

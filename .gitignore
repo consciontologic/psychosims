@@ -45,13 +45,7 @@ linux/flutter/
 windows/flutter/
 web/flutter/
 
-# Go server
-server/psy-server
-server/**/*.test
-*.out
-vendor/
-
-# Native build artifacts
+# Generated binaries and build artifacts
 *.so
 *.a
 *.o
@@ -59,18 +53,9 @@ vendor/
 *.dll
 *.dylib
 *.exe
-native/build/
-native/build-*/
-native/third_party/*
-!native/third_party/llama.cpp
-native/third_party/llama.cpp/build/
 CMakeCache.txt
 CMakeFiles/
 cmake-build-*/
-
-# Android Gradle caches generated during local builds
-app/android/.gradle/
-app/android/local.properties
 
 # Large binaries — models, assets, build outputs are never committed
 *.gguf
@@ -79,7 +64,6 @@ app/android/local.properties
 *.pt
 *.ckpt
 models/
-assets/models/
 *.zip
 *.tar.gz
 *.tar
@@ -91,3 +75,8 @@ coverage/
 # OS noise
 .DS_Store
 Thumbs.db
+
+# Browser QA dependencies and generated screenshots
+node_modules/
+playwright-report/
+test-results/

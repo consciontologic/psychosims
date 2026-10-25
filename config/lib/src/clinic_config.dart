@@ -17,6 +17,7 @@ class ClinicConfig {
 
   /// Tax brackets as (upper_limit_micros, rate_millis) pairs.
   /// Income in (previous_limit, upper_limit] is taxed at [rate_millis].
+  /// An upper limit of -1 means the final bracket is open-ended.
   final List<(int, int)> taxBrackets;
 
   /// Fixed-point audit probability millis (e.g. 50 = 5%).
@@ -43,7 +44,7 @@ class ClinicConfig {
     this.taxBrackets = const [
       (20000000, 0), // 0% up to 20 cash
       (100000000, 100), // 10% from 20 to 100 cash
-      (9223372036854775807, 200), // 20% above 100 cash
+      (-1, 200), // 20% above 100 cash, with no upper limit
     ],
     this.auditProbabilityMillis = 50,
     this.auditOvermedicationPenalty = 10,

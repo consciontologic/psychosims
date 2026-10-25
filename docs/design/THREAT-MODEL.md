@@ -1,29 +1,17 @@
-# Threat model stub
+# Static PWA threat model
 
-## Boundaries
+| Boundary | Control and limitation |
+|---|---|
+| User credential | Memory-only key; never saved, cached, exported or embedded at build time. A compromised page/tab can still access its live memory. |
+| Model text | Bounded transport, strict terminal states and existing dialogue validator before applying one deterministic turn. |
+| Network | Direct HTTPS to OpenRouter; restrictive privacy routing, no silent fallback/replay, explicit user retry. |
+| Public cache | Complete hashed same-origin resource allowlist; no API, authorization-bearing, query or mutation requests cached. |
+| Local saves | Atomic snapshot with checksum/type/bounds/replay checks; corruption/conflicting tabs fail visibly. Local values are not multiplayer authority. |
+| Same browser profile | Saves/transcripts are readable local data; export/delete controls, no claim of encryption or cloud recovery. |
+| Updates and publication | Waiting worker preserves the running session; deployment is manual with owner-configured environment protection. |
 
-- Client (`app/`) ↔ Native (`native/`) over FFI
-- Client ↔ Server (`server/`) over HTTPS/WebSocket
-- Server ↔ Database (BaaS Postgres)
-- Server ↔ CDN (signed manifests)
-
-## Assets
-
-- Authoritative profile + economy ledger (server database)
-- Receipt idempotency keys and ownership proofs
-- Auth tokens and signing keys
-- The local model file (integrity, license compliance)
-
-## Threats
-
-1. **Forged receipts** → mitigated by server-side validation + ruleset pinning.
-2. **Double-spend of ownership** → mitigated by atomic server-side arbitration.
-3. **Secret leakage** → mitigated by secret-by-reference + scanning.
-4. **Model tampering** → mitigated by checksum/signature verification on fetch.
-5. **Prompt injection via UGC** → mitigated by schema whitelisting + sanitization.
-6. **Data loss of authoritative store** → mitigated by backup/DR conventions.
-
-## Deferred to Phase 2 / Phase 3
-
-Detailed abuse-prevention rules, audit-trail implementation, backup drills, and
-key-custody automation begin after the Phase 1 PoC exit gates pass.
+The application accepts fictional game interaction, not real health information.
+Browser storage can be cleared or evicted. Provider privacy options do not prove
+external retention behavior. See [security](../../SECURITY.md),
+[data lifecycle](../project/DATA-LIFECYCLE.md), and
+[local acceptance evidence](../reports/2026-10-23-static-pwa.md).

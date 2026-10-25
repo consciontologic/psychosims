@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "testedAt": "2026-10-23T13:03:06.607Z",
+  "browser": "156.0.8078.47",
+  "origin": "http://127.0.0.1:31395",
+  "checks": [
+    "Complete static cache: 40 resources",
+    "Chromium installability and manifest checks pass",
+    "Home and patient profile visually captured at 360,768,1440px without page horizontal overflow",
+    "New game remains reachable at 360x640,360x800,768x1024,1440x900",
+    "Player action persisted deterministic state and transcript",
+    "Session responsive at 360,480,600,768,1024,1440px; no page horizontal overflow",
+    "Offline reload preserves save/transcript and local mechanics advance",
+    "All five hash routes reload offline without server rewrites",
+    "No external runtime assets, API calls, or uncaught browser errors during offline practice",
+    "Truncated SSE preserves partial text without applying a turn; offline retry disables; reconnect does not replay; explicit retry applies exactly once and retains the incomplete attempt",
+    "Mocked catalog and SSE apply one validated AI turn; offline reload keeps dialogue but forgets key; reconnect sends no replay",
+    "No credential in local/session storage and no API URL in the static cache",
+    "Keyboard navigation and browser back/forward preserve the session",
+    "New game is reachable from Home and Session; cancel preserves save; confirm resets current turn and transcript while retaining career/setup; fresh game reloads offline",
+    "All 100 mobile actions need zero scrolling; every latest reply and live turn/trust/agitation status is visible after each action",
+    "Completed 100-turn offline mobile session; keyboard History navigation exposes archived dialogue; offline reload and New game retain completed history/career"
+  ],
+  "errors": [],
+  "assetFailures": [],
+  "browserWarnings": [
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x12ec001aac00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x12ec001aac00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x12ec001aac00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x12ec001aac00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    },
+    {
+      "type": "warning",
+      "text": "<meta name=\"apple-mobile-web-app-capable\" content=\"yes\"> is deprecated. Please include <meta name=\"mobile-web-app-capable\" content=\"yes\">"
+    }
+  ],
+  "externalRequestAttempts": [
+    "https://openrouter.ai/api/v1/models",
+    "https://openrouter.ai/api/v1/chat/completions",
+    "https://openrouter.ai/api/v1/chat/completions"
+  ],
+  "aiTransport": "Intercepted deterministic fixtures; no external service contacted",
+  "resourceCount": 40,
+  "buildId": "abf021ab65222904ec98b29c"
+}

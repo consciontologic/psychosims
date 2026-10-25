@@ -3,22 +3,16 @@ publish_to: 'none'
 version: 0.1.0+1
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
-  flutter: '>=3.13.0'
+  sdk: '>=3.10.4 <4.0.0'
+  flutter: '>=3.38.5'
 
 dependencies:
   flutter:
     sdk: flutter
-  convert: ^3.1.1
   crypto: ^3.0.3
-  cryptography: 2.9.0
-  flutter_secure_storage: 11.0.0
-  url_launcher: 6.3.2
-  app_links: 6.4.1
-  ffi: ^2.1.0
-  get: ^4.6.6
-  path: ^1.8.0
-  path_provider: ^2.1.2
+  cupertino_icons: 1.0.9
+  http: 1.6.0
+  web: 1.1.1
   psyconfig:
     path: ../config
   psychemas:
@@ -27,7 +21,6 @@ dependencies:
     path: ../packages/psycore
 
 dev_dependencies:
-  ffigen: ^10.0.0
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
@@ -36,6 +29,23 @@ flutter:
   uses-material-design: true
   assets:
     - ../content/manifests/poc_sample.json
-    - assets/licenses/QWEN2.5_LICENSE
-    - assets/licenses/PHI3.5_LICENSE
-    - assets/licenses/SMOLLM2_LICENSE
+    - assets/fonts/Roboto_LICENSE.txt
+    - assets/fonts/NotoSerif_LICENSE.txt
+    - assets/art/clinic-noir.png
+    - assets/art/restless-hour-portrait.png
+  fonts:
+    - family: NotoSansSymbols
+      fonts:
+        - asset: assets/fonts/NotoSansSymbols-Regular.ttf
+    - family: NotoSerif
+      fonts:
+        - asset: assets/fonts/NotoSerif-Regular.ttf
+        - asset: assets/fonts/NotoSerif-Bold.ttf
+          weight: 700
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700

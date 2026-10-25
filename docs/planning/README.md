@@ -1,11 +1,11 @@
-# 🗺 `docs/planning/`
+# Planning
 
-The **roadmap** lives here. It is the single source of truth for sequenced
-work, and the only place where "phases" and `[ ]` bullets are authoritative.
+[ROADMAP.md](ROADMAP.md) is the single source of truth for the active static PWA,
+authorized cleanup and separately approved external release work. Completed
+implementation evidence belongs in [reports](../reports/README.md); durable
+execution history remains in [tracking](../tracking/README.md).
 
-- [`ROADMAP.md`](ROADMAP.md) — the plan.
-- [`EXECUTION-2026-09-10.md`](EXECUTION-2026-09-10.md) — authorized assessment repairs, execution waves and acceptance mapping; roadmap status remains authoritative.
-
-Agents reading this folder: when implementing a phase, drain every `[ ]`
-bullet in that phase before handing back. See
-[`phase-persistence`](../../.agents/skills/phase-persistence/SKILL.md).
+Before changing scope, state the deliverables and validation gates in the roadmap.
+Tick completed deliverables when their evidence exists; do not equate a local
+build with public deployment. Follow the repository's
+[phase-persistence skill](../../.agents/skills/phase-persistence/SKILL.md).

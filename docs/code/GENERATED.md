@@ -1,28 +1,15 @@
-# Generated code boundary
+# Generated output
 
-> Where generated code lands and the rule that it is never hand-edited.
+`app/build/web/` and the review ZIP are generated, ignored artifacts. The web
+build owns that directory and removes stale files before compiling. Its finalizer
+produces `offline-manifest.json` and embeds the hashed resource inventory in the
+copied worker. Edit source under `app/web/`, not generated build copies.
 
-## Generated outputs
+Dart tool state and Flutter build caches are not source. Dependency lockfiles,
+content manifests, canonical fixtures and the reviewed dependency inventory are
+version-controlled inputs/evidence. Do not regenerate golden gameplay fixtures
+merely to clear a regression; investigate changed behavior first.
 
-| Source | Generator | Output | Commit? |
-|---|---|---|---|
-| `native/include/*.h` | `ffigen` | `app/lib/shared/generated/` | yes |
-| `packages/psychemas/lib/src/*.dart` | `freezed` / `json_serializable` | `*.freezed.dart`, `*.g.dart` | yes |
-| `packages/` schemas (future) | JSON Schema / OpenAPI | `server/src/schemas/*.py` | yes |
-
-## Rule
-
-**Generated files are never hand-edited.** If a generated file needs to change,
-the source or the generator configuration changes, and the file is regenerated.
-Code review treats generated files as build artifacts: scan them for unexpected
-content, but do not edit them in place.
-
-## Regeneration
-
-```bash
-# Dart freezed/json_serializable
-(cd packages/psychemas && dart run build_runner build --delete-conflicting-outputs)
-
-# FFI bindings (future, when ffigen config is added)
-(cd app && dart run ffigen --config ffigen.yaml)
-```
+The inventory in `docs/reports/dependency-inventory.cdx.json` is refreshed only
+through the explicit SBOM command. Pure-core showcase reports are reproducible
+with `scripts/showcase.sh`; retain their scope and evidence date.
