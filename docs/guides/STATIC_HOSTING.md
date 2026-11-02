@@ -8,7 +8,7 @@ dialogue, deterministic outcomes and saves remain local.
 
 ## Build and inspect
 
-Use **Flutter 3.38.5 / Dart 3.10.4**, Python 3 and Node 22. The build checks the
+Use **Flutter 3.47.9 / Dart 3.13.7**, Python 3 and Node 22. The build checks the
 Flutter version and uses the committed dependency lockfile. From the repository:
 
 ```bash

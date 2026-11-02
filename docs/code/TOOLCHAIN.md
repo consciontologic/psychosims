@@ -1,6 +1,6 @@
 # Toolchain
 
-The current web build pins **Flutter 3.38.5 / Dart 3.10.4**. Verification also
+The current web build pins **Flutter 3.47.9 / Dart 3.13.7**. Verification also
 uses Python 3 and Node.js; CI selects Node 22. Project dependency lockfiles are
 committed and consumed by the bootstrap/build commands.
 

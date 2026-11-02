@@ -60,7 +60,7 @@ class BootstrapHookTests(unittest.TestCase):
       chmod +x "$GOBIN/license_serializer"
     fi ;;
 esac''')
-        for name, version in (('flutter', 'Flutter 3.38.5'), ('dart', 'Dart SDK version: 3.10.4')):
+        for name, version in (('flutter', 'Flutter 3.47.9'), ('dart', 'Dart SDK version: 3.13.7')):
             self.tool(name, f'''if [[ "$1" == --version ]]; then echo '{version}'; exit 0; fi
 printf '%s|%s|%s\\n' '{name}' "$PWD" "$*" >> "$FIXTURE_ARGS"
 if [[ "${{FIXTURE_FAIL_PACKAGE:-}}" == "${{PWD##*/}}" ]]; then exit 29; fi''')

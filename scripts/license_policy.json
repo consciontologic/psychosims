@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "reviewed_components": {
-    "sdk:flutter/sky_engine@3.38.5": {
-      "license_sha256": "66f37204b91a314563d3261efdd4b1858a49684ed99c267e0ee4ad5f00f74ea0",
+    "sdk:flutter/sky_engine@3.47.9": {
+      "license_sha256": "3c0040023a5789bf56d6bf41fd44f08b21758523d41f128fb7dd6beb398d1191",
       "additional_ids": [
         "MPL-2.0",
         "SGI-B-2.0",
@@ -11,7 +11,7 @@
         "BSD-2-Clause-NetBSD"
       ],
       "source": "https://github.com/flutter/flutter",
-      "source_revision": "1527ae0ec577a4ef50e65f6fefcfc1326707d9bf",
+      "source_revision": "c197ca5199e9ee5661e865596c9c07294dfab51c",
       "obligation": "Preserve the complete Flutter engine notice bundle and upstream covered-source availability in each target build. This exact SDK notice inventory is not evidence that all platform binary dependencies have been enumerated; distribution acceptance is pending."
     }
   }

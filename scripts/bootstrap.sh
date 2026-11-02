@@ -49,15 +49,15 @@ else
   exit 1
 fi
 
-# Verify the Flutter toolchain (CI pins 3.38.5).
+# Verify the Flutter toolchain (CI pins 3.47.9).
 if command -v flutter &>/dev/null; then
   FLUTTER_VERSION=$(flutter --version | head -n 1 | awk '{print $3}')
   echo "ℹ️  Flutter: $FLUTTER_VERSION"
 else
-  echo "⚠️  flutter not found; CI uses Flutter 3.38.5 to build app/" >&2
+  echo "⚠️  flutter not found; CI uses Flutter 3.47.9 to build app/" >&2
 fi
 
-# Verify Dart (Flutter 3.38.5 bundles Dart 3.10.4).
+# Verify Dart (Flutter 3.47.9 bundles Dart 3.13.7).
 if command -v dart &>/dev/null; then
   DART_VERSION=$(dart --version | awk '{print $4}')
   echo "ℹ️  Dart: $DART_VERSION"

@@ -14,7 +14,7 @@ package scripts are never executed to produce the inventory.
 Flutter generates the web build's `assets/NOTICES` from dependency license texts.
 Keep that file in the production artifact. Flutter and Dart use BSD-family terms
 and their engine contains additional third-party notices. The exact Flutter
-3.38.5 engine notice bundle has a component-specific review in
+3.47.9 engine notice bundle has a component-specific review in
 [license_policy.json](scripts/license_policy.json); this does not globally approve
 unknown or copyleft licenses. Preserve the full notices and upstream covered-source
 availability identified by that review. The package inventory does not enumerate

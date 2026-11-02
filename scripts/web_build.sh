@@ -9,7 +9,7 @@ if [ "$#" -ne 0 ]; then
   echo "web_build.sh accepts no arguments; domain/base path are reviewed source configuration." >&2
   exit 64
 fi
-flutter --version --machine | python3 -c 'import json,sys; actual=json.load(sys.stdin)["frameworkVersion"]; expected="3.38.5"; assert actual == expected, f"Flutter {expected} required, found {actual}"'
+flutter --version --machine | python3 -c 'import json,sys; actual=json.load(sys.stdin)["frameworkVersion"]; expected="3.47.9"; assert actual == expected, f"Flutter {expected} required, found {actual}"'
 python3 scripts/web_finalize.py --clean
 cd "$PSY_WEB_ROOT/app"
 pwd

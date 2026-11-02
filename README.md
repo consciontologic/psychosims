@@ -8,7 +8,7 @@ This is fictional gameplay, not clinical care.
 
 ## Run and verify
 
-Use Flutter **3.38.5** / Dart **3.10.4**, Python 3 and Node.js. No server,
+Use Flutter **3.47.9** / Dart **3.13.7**, Python 3 and Node.js. No server,
 database, Docker, native inference build, model download or API key is required.
 
 ```bash
